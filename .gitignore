@@ -1,1 +1,14 @@
 /nbproject/private/
+
+$ git status :
+
+# Untracked files:
+
+#       Documentation/foo.html
+#       Documentation/gitignore.html
+#       file.o
+#       lib.a
+#       src/internal.o
+
+$ cat .git/info/exclude
+# ignore objects and archives, anywhere in the tree.
