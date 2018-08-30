@@ -1,0 +1,81 @@
+<?php
+require_once'libraries/libUtil.inc.php';
+
+$submit = isset($_POST["submit"]);
+$error = $success = '';
+
+if ($submit) {
+  $user = $_POST["user"];
+  $pwd = $_POST["pwd"];
+  $pwd2 = $_POST["pwd2"];
+  $bluetooth = $_POST["bluetooth"];
+
+  if (isEmpty(array($user, $pwd, $pwd2, $bluetooth))) {
+    $error = '<strong>Attention !</strong> Veuillez renseigner tous les champs !';
+  } elseif ($pwd != $pwd2) {
+    $error = '<strong>Attention !</strong> Les mots de passes doivent correspondre !';
+  }
+//  elseif (isBluetooth($bluetooth)) {
+//    $error = '<strong>Attention!</strong> Lbluetooth doit être dans ce format : AA:AA:AA:AA:AA:AA !'
+//            . 'Pour trouver votre signature bluetooth allez dans les paramètres de votre mobile.';
+//} 
+  elseif (!createAccount(array($user, md5($pwd), $bluetooth))) {
+    $error = '<strong>Attention !</strong> Un problème lors de la création du compte à eu lieu !'
+            . 'Veuillez réessayer ultérieurement.';
+  } else {
+    $success = '<strong>Félicitations !</strong> Votre compte à été crée avec succès !';
+  }
+}
+?>
+<?php if (!empty($success)) { ?>
+  <div id="success" class="alert alert-success" role="alert">
+    <?php
+    echo $success;
+    ?>
+  </div>
+  <?php
+} else {
+  ?>
+  <form id='connection' action="#" method="post">
+    <h2>Inscription</h2>
+    <hr>
+    <?php
+    if (!empty($error)) {
+      ?>
+      <div class="alert alert-danger" role="alert">
+        <?php echo $error; ?>
+      </div>
+      <hr>
+    <?php }
+    ?>
+    <div class="form-group">
+      <label for="user">Nom d'utilisateur</label>
+      <input type="text" class="form-control" name="user" placeholder="Nom d'utilisateur" value="<?php
+      if (isset($user)) {
+        echo $user;
+      }
+      ?>">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Mot de passe</label>
+      <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" value="<?php
+      if (isset($pwd)) {
+        echo $pwd;
+      }
+      ?>">
+    </div>
+    <div class="form-group">
+      <label for="pwd2">Retapez le mot de passe</label>
+      <input type="password" class="form-control" name="pwd2" placeholder="Mot de passe">
+    </div>
+    <div class="form-group">
+      <label for="bluetooth">Adresse Bluetooth</label>&nbsp;&nbsp;&nbsp;<small> Exemple: (AA:AA:AA:AA:AA:AA)</small>
+      <input type="text" class="form-control" name="bluetooth" placeholder="Bluetooth" value="<?php
+             if (isset($bluetooth)) {
+               echo $bluetooth;
+             }
+             ?>">
+    </div>
+    <input type="submit" name="submit" value="Inscription">
+  </form>
+<?php } ?>

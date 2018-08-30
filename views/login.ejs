@@ -1,0 +1,46 @@
+<form id='connection'>
+  <h2>Connexion</h2>
+  <hr>
+  <div id="alert">
+
+  </div>
+  <hr>
+  <div class="form-group">
+    <label for="user">Nom d'utilisateur</label>
+    <input type="text" id="username" class="form-control" placeholder="Nom d'utilisateur">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Mot de passe</label>
+    <input type="password" id="pwd" class="form-control" placeholder="Mot de passe">
+  </div>
+  <input id="submit" type="submit" value="Connexion">
+</form>
+<script>
+  $(document).ready(function () {
+
+    $("#submit").click(function () {
+
+      $.post('php_elements/connection.php',
+              {
+                login: $("#username").val(), // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
+                password: $("#pwd").val()
+              },
+              function (data) {
+
+                if (data == 'Success') {
+                  // Le membre est connecté. Ajoutons lui un message dans la page HTML.
+
+                  $("#alert").html("<div class='alert alert-success' role='alert'><p>Vous avez été connecté avec succès !</p></div>");
+                  document.location.href = "http://127.0.0.1:8888/#myBets";
+                } else {
+                  // Le membre n'a pas été connecté. (data vaut ici "failed")
+                  $("#alert").html("<div class='alert alert-danger' role='alert'><strong>Attention!</strong> Le nom d\'utilisateur ou le mot de passe est incorrect !</div>");
+                }
+
+              },
+              'text'
+              );
+    });
+
+  });
+</script>

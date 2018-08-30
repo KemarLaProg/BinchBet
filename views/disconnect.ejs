@@ -1,0 +1,22 @@
+<?php
+session_start();
+if (!$_SESSION["connect"]){
+  header("Location: http://127.0.0.1:8888/#myBets");
+}
+
+// supprime les tableaux
+$_SESSION = array();
+
+// supprime les cookies
+//récuperé sur internet
+if (ini_get("session.use_cookies")) {
+  $params = session_get_cookie_params();
+  setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
+  );
+}
+// détruit les sessions
+session_destroy();
+
+// redirige
+header("Location: http://127.0.0.1:8888/#login");
+exit();

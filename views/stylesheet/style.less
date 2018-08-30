@@ -1,0 +1,171 @@
+// =============== VARIABLE COLOURS ===============
+@gray-darker:  lighten(#000, 13.5%);
+@gray-dark:    lighten(#000, 20%);
+@gray:         lighten(#000, 33.5%);
+@gray-light:   lighten(#000, 46.7%);
+@gray-lighter: #F4F4F4;
+
+@purple-dark: darken(@purple, 7%);
+@purple: black;
+@purple-light: lighten(@purple, 30%);
+@purple-lighter: lighten(@purple, 40%);
+
+@green-dark: darken(@green, 5%);
+@green: #3FB390;
+@green-lighter: lighten(@green, 40%);
+
+// =============== HTML BALISE ===============
+
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: white;
+  color: @gray-darker;
+}
+a{
+  &:hover{
+    text-decoration: none;
+    color: @gray;
+  }
+}
+hr{
+  border: none;
+  margin: 30px 0;
+}
+h1{
+  font-weight: bold;
+}
+
+// =============== CLASS ===============
+
+// ===== General =====
+.container-fluid{
+  margin: 0;
+  padding: 0;
+}
+#container-main{
+  width: 85%;
+  margin-left: 15%;
+  padding: 50px;
+}
+.row{
+  margin: 0 0;
+}
+.space{
+  border: none;
+  margin: 0;
+  height: 50px;
+}
+.btn-default{
+  background-color: @purple-dark;
+  color: @purple-lighter;
+  border: none;
+  border-radius: 0;
+  height: 40px;
+  font-size: 15px;
+  padding: 0 20px;
+  transition: 0.3s;
+  &:hover{
+    background-color: @green-lighter;
+    color: @green;
+    transition: 0.3s;
+  }
+}
+
+// ===== Navbar =====
+nav.nav{
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 15%;
+  background-color: @purple-dark;
+  border: 0;
+  border-radius: 0;
+  h1{
+    text-align: center;
+    color: @purple-lighter;
+  }
+  li{
+    border-radius: 0;
+    margin: 0;
+    a{
+      padding-left: 20px;
+      font-size: 16px;
+      line-height: 30px;
+      color: @purple-lighter;
+      transition: 0.5s; // en enlevant la souris
+      &:hover{
+        transition: all 0.3s;
+        color: @green-dark;
+        background-color: @purple-light;
+        border-radius: 0;
+      }
+    }
+  }
+  .active{
+    color: @green;
+    background-color: @purple-lighter;
+    border-left: 5px solid @green;
+    border-radius: 0;
+  }
+  hr{
+    border-color: @purple-light;
+  }
+  #imgNav{
+    width: 60px;
+    margin: 0 auto;
+  }
+}
+
+// ===== Login =====
+#connection{
+  margin: auto;
+  padding: 20px;
+  width: 500px;
+  margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+  transform: translateY(-70%); /* tiré de la moitié de sa propre hauteur */
+}
+input[type=submit]{
+  background-color: @purple-dark;
+  color: @purple-lighter;
+  border: none;
+  border-radius: 0;
+  height: 40px;
+  font-size: 15px;
+  padding: 0 20px;
+  transition: 0.3s;
+  &:hover{
+    background-color: @green-lighter;
+    color: @green-dark;
+    transition: 0.3s;
+  }
+}
+
+// ===== Account =====
+#account{
+  margin: auto;
+  padding: 20px;
+  width: 40%;
+  margin-top: 50vh;
+  transform: translateY(-60%);
+  table{
+    margin: 40px 0;
+    td{
+      border: none;
+      color: @purple;
+    }
+    strong{
+      color: black;
+    }
+  }
+}
+#success{
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 50vh;
+  transform: translateY(-100%);
+}
