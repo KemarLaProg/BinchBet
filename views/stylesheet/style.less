@@ -10,9 +10,11 @@
 @purple-light: lighten(@purple, 30%);
 @purple-lighter: lighten(@purple, 40%);
 
-@green-dark: darken(@green, 5%);
-@green: darken(#3FB390, 5%);
-@green-lighter: lighten(@green, 50%);
+@green-dark: darken(@green, 2%);
+//@green: #3FB390, 5%;
+@green: #06A040;
+@green-light: lighten(@green, 30%);
+@green-lighter: lighten(@green, 60%);
 
 
 @body: @gray-lighter;
@@ -53,8 +55,14 @@ h1{
   margin: 0;
   padding: 0;
 }
-.content{
-
+#content{
+  width: 85%;
+  padding: 40px;
+  min-height: 100vh;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .space{
   border: none;
@@ -79,11 +87,14 @@ h1{
 
 // ===== Navbar =====
 nav.nav{
+  width: 15%;
   position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 15%;
   background-color: @green;
   border: 0;
   border-radius: 0;
@@ -91,7 +102,7 @@ nav.nav{
   font-weight: 200;
   .sidebar-title{
     padding: 30px 20px;
-    background-color: darken(@green, 5%);
+    background-color: @green-dark;
   }
   .sidebar-header{
     padding: 20px 10px;
@@ -102,6 +113,7 @@ nav.nav{
       border-radius: 0;
       margin: 0;
       a{
+        font-weight: bold;
         padding-left: 10px;
         font-size: 16px;
         line-height: 30px;
@@ -116,14 +128,10 @@ nav.nav{
       }
     }
   }
-  .active{
-    color: @green;
-    background-color: @green-lighter;
-    border-right: 5px solid @body;
+  .active, .active:hover{
+    color: @green-lighter;
+    background-color: @green-dark;
     border-radius: 0;
-  }
-  hr{
-    border-color: @purple-light;
   }
   #imgNav{
     width: 60px;
