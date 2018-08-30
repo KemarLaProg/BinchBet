@@ -42,17 +42,9 @@ h1{
 // =============== CLASS ===============
 
 // ===== General =====
-.container-fluid{
+.container-fluid, .row{
   margin: 0;
   padding: 0;
-}
-#container-main{
-  width: 85%;
-  margin-left: 15%;
-  padding: 50px;
-}
-.row{
-  margin: 0 0;
 }
 .space{
   border: none;
@@ -122,12 +114,12 @@ nav.nav{
 }
 
 // ===== Login =====
-#connection{
+.form-signin{
   margin: auto;
   padding: 20px;
   width: 500px;
-  margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
-  transform: translateY(-70%); /* tiré de la moitié de sa propre hauteur */
+  /*margin-top: 50vh; poussé de la moitié de hauteur de viewport
+  transform: translateY(-70%); tiré de la moitié de sa propre hauteur */
 }
 input[type=submit]{
   background-color: @purple-dark;
