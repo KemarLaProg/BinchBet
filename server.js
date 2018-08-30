@@ -30,6 +30,10 @@ app.get('/games', function(req, res) {
   res.render('games.ejs');
 });
 
+app.get('/fetch', function(req, res) {
+  res.render('binch.ejs');
+});
+
 
 
 
