@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%- include('includes/head.inc.ejs') %>
+  <%- include('includes/head.inc.ejs'); %>
 
-  <title>BB - Home pag</title>
+  <title>BB - Connexion</title>
   <!--
   Au cas ou fdp:
 
@@ -13,128 +13,36 @@
 -->
 </head>
 <body>
-  <main class="container-fluid row">
-    <div class="wrapper">
-      <!-- Sidebar -->
-      <nav id="sidebar">
-        <div class="sidebar-header">
-          <h3>Bootstrap Sidebar</h3>
-        </div>
+  <main class="container-fluid ">
+<%- include('includes/main_nav.inc.ejs'); %>
 
-        <ul class="list-unstyled components">
-          <p>Dummy Heading</p>
-          <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-              <li>
-                <a href="#">Home 1</a>
-              </li>
-              <li>
-                <a href="#">Home 2</a>
-              </li>
-              <li>
-                <a href="#">Home 3</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-              <li>
-                <a href="#">Page 1</a>
-              </li>
-              <li>
-                <a href="#">Page 2</a>
-              </li>
-              <li>
-                <a href="#">Page 3</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Portfolio</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-        </ul>
-
-      </nav>
-      <!-- Page Content -->
-      <div id="content">
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-
-            <button type="button" id="sidebarCollapse" class="btn btn-info">
-              <i class="fas fa-align-left"></i>
-              <span>Toggle Sidebar</span>
-            </button>
-          </div>
-        </nav>
-      </div>
-    </div>
-
-    <section class="col-md">
+    <section class="content">
       <form class="form-signin">
         <div class="text-center mb-4">
           <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
           <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
           <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element.
             <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>
-          </div>
+        </div>
 
-          <div class="form-label-group">
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputEmail">Email address</label>
-          </div>
+        <div class="form-label-group">
+          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <label for="inputEmail">Email address</label>
+        </div>
 
-          <div class="form-label-group">
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <label for="inputPassword">Password</label>
-          </div>
+        <div class="form-label-group">
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <label for="inputPassword">Password</label>
+        </div>
 
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-          <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
-        </form>
-
-        <script>
-        $(document).ready(function () {
-
-          $("#submit").click(function () {
-
-            $.post('php_elements/connection.php',
-            {
-              login: $("#username").val(), // Nous récupérons la valeur de nos input que l'on fait passer à connexion.php
-              password: $("#pwd").val()
-            },
-            function (data) {
-
-              if (data == 'Success') {
-                // Le membre est connecté. Ajoutons lui un message dans la page HTML.
-
-                $("#alert").html("<div class='alert alert-success' role='alert'><p>Vous avez été connecté avec succès !</p></div>");
-                document.location.href = "http://127.0.0.1:8888/#myBets";
-              } else {
-                // Le membre n'a pas été connecté. (data vaut ici "failed")
-                $("#alert").html("<div class='alert alert-danger' role='alert'><strong>Attention!</strong> Le nom d\'utilisateur ou le mot de passe est incorrect !</div>");
-              }
-
-            },
-            'text'
-          );
-        });
-
-      });
-      </script>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+      </form>
     </section>
 
   </main>

@@ -11,8 +11,14 @@
 @purple-lighter: lighten(@purple, 40%);
 
 @green-dark: darken(@green, 5%);
-@green: #3FB390;
-@green-lighter: lighten(@green, 40%);
+@green: darken(#3FB390, 5%);
+@green-lighter: lighten(@green, 50%);
+
+
+@body: @gray-lighter;
+
+// =============== FONTS ===============
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 // =============== HTML BALISE ===============
 
@@ -22,7 +28,8 @@ html, body{
   padding: 0;
 }
 body{
-  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  background-color: @body;
   color: @gray-darker;
 }
 a{
@@ -45,6 +52,9 @@ h1{
 .container-fluid, .row{
   margin: 0;
   padding: 0;
+}
+.content{
+
 }
 .space{
   border: none;
@@ -69,38 +79,46 @@ h1{
 
 // ===== Navbar =====
 nav.nav{
+  position: fixed;
   margin: 0;
   padding: 0;
   height: 100%;
   width: 15%;
-  background-color: @purple-dark;
+  background-color: @green;
   border: 0;
   border-radius: 0;
-  h1{
-    text-align: center;
-    color: @purple-lighter;
+  color: @green-lighter;
+  font-weight: 200;
+  .sidebar-title{
+    padding: 30px 20px;
+    background-color: darken(@green, 5%);
   }
-  li{
-    border-radius: 0;
-    margin: 0;
-    a{
-      padding-left: 20px;
-      font-size: 16px;
-      line-height: 30px;
-      color: @purple-lighter;
-      transition: 0.5s; // en enlevant la souris
-      &:hover{
-        transition: all 0.3s;
-        color: @green-dark;
-        background-color: @purple-light;
-        border-radius: 0;
+  .sidebar-header{
+    padding: 20px 10px;
+  }
+  ul{
+    li{
+      border-radius: 0;
+      margin: 0;
+      a{
+        padding-left: 10px;
+        font-size: 16px;
+        line-height: 30px;
+        color: @green-lighter;
+        transition: 0.5s; // en enlevant la souris
+        &:hover{
+          transition: all 0.3s;
+          color: @green-dark;
+          background-color: @green-lighter;
+          border-radius: 0;
+        }
       }
     }
   }
   .active{
     color: @green;
-    background-color: @purple-lighter;
-    border-left: 5px solid @green;
+    background-color: @green-lighter;
+    border-right: 5px solid @body;
     border-radius: 0;
   }
   hr{
