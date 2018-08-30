@@ -17,10 +17,21 @@ app.get('/index', function(req, res){
   res.render('index.ejs');
 });
 
-// road with parameters
-app.get('login/', function(req, res) {
+app.get('/login', function(req, res) {
   res.render('login.ejs');
 });
+
+app.get('/registration', function(req, res) {
+  res.render('registration.ejs');
+});
+
+// road with parameters
+app.get('/games', function(req, res) {
+  res.render('games.ejs');
+});
+
+
+
 
 // relate to error 404
 app.use(function(req, res, next){

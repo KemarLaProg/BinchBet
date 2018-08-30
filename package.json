@@ -1,16 +1,27 @@
 {
-    "name": "BinchBet",
-    "main": "server.js",
-    "dependencies": {
-        "body-parser": "^1.18.3",
-        "ejs": "^2.6.1",
-        "express": "^4.16.3",
-        "nodemon": "^1.18.3"
-    },
-    "description": "Plateforme de developpement",
-    "scripts": {
-        "test": "nodemon server.js"
-    },
-    "author": "Marc Vachon",
-    "license": "ISC"
+  "name": "binchbet",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.18.3"
+  },
+  "description": "Friendly web application to bet on soccer's games.",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Marc Vachon",
+  "license": "ISC",
+  "version": "1.0.0",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KemarLaProg/BinchBet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KemarLaProg/BinchBet/issues"
+  },
+  "homepage": "https://github.com/KemarLaProg/BinchBet#readme"
 }

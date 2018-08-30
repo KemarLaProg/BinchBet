@@ -1,47 +1,16 @@
-<?php
-require_once 'libraries/libUtil.inc.php';
-$idGame = getGameId();
-?>
-<h2>Match</h2>
-  <table class="table table-responsive">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Championnat</th>
-        <th>Domicile</th>
-        <th>Score</th>
-        <th>Extérieur</th>
-        <th>Mr. Mex</th>
-        <th>KemarLePoulpe</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      foreach ($idGame as $key) {
-        ?>
-        <tr>
-          <?php
-          $game = getGame($key[0]);
-          $bet1 = getBet(1, $key[0]);
-          $bet2 = getBet(2, $key[0]);
-          ?>
-          <td><?php echo dateEU($game['dateGame']); ?></td>
-          <td><?php echo getLeague($game['#league'])['leagueName']; ?></td>
-          <td><?php echo getTeam($game['#homeTeam'])['teamName']; ?></td>
-          <td><?php echo $game['gHomeT'].' - '.$game['gAwayT']; ?></td>
-          <td><?php echo getTeam($game['#awayTeam'])['teamName'];?></td>
-          <td><?php echo $bet2['gHome'].' - '.$bet1['gAway']; ?></td>
-          <td><?php echo $bet1['gHome'].' - '.$bet2['gAway']; ?></td>
-          <?php
-          ?>
-        </tr>
-        <?php
-      }
-      ?>
-    </tbody>
-  </table>
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('includes/head.inc.ejs') %>
 
+  <title>BB - My bet</title>
+</head>
+<body>
+  <main class="container-fluid">
+    <%- include('includes/main_nav.inc.ejs'); %>
 
-<div class="row">
-  <?php curl -X GET "https://api.sportradar.us/soccer-t3/eu/fr/matches/sr:match:15109001/summary.xml?api_key=myjru2suj5mcbs7fjduvxx2f" ?>
-</div>
+    <section>
+    </section>
+  </main>
+</body>
+</html>
