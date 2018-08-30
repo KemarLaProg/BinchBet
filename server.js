@@ -26,8 +26,8 @@ app.get('/registration', function(req, res) {
 });
 
 // road with parameters
-app.get('/game', function(req, res) {
-  res.render('game.ejs');
+app.get('/bet', function(req, res) {
+  res.render('bet.ejs');
 });
 
 app.get('/fetch', function(req, res) {
