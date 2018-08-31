@@ -3,12 +3,7 @@
 @gray-dark:    lighten(#000, 20%);
 @gray:         lighten(#000, 33.5%);
 @gray-light:   lighten(#000, 46.7%);
-@gray-lighter: #F4F4F4;
-
-@purple-dark: darken(@purple, 7%);
-@purple: black;
-@purple-light: lighten(@purple, 30%);
-@purple-lighter: lighten(@purple, 40%);
+@gray-lighter: lighten(#000, 60.2%);
 
 @green-dark: darken(@green, 2%);
 //@green: #3FB390, 5%;
@@ -17,10 +12,11 @@
 @green-lighter: lighten(@green, 60%);
 
 
-@body: @gray-lighter;
+@body: darken(#fff, 1%);
 
 // =============== FONTS ===============
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900";
 
 // =============== HTML BALISE ===============
 
@@ -30,9 +26,9 @@ html, body{
   padding: 0;
 }
 body{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: @body;
-  color: @gray-darker;
+  color: @gray;
 }
 a{
   &:hover{
@@ -69,10 +65,8 @@ h1{
   height: 50px;
 }
 .btn-default{
-  background-color: @purple-dark;
-  color: @purple-lighter;
-  border: none;
-  border-radius: 0;
+  background-color: @green-dark;
+  color: @green-lighter;
   height: 40px;
   font-size: 15px;
   padding: 0 20px;
@@ -99,11 +93,17 @@ nav.nav{
   border-radius: 0;
   color: @green-lighter;
   font-weight: 200;
-  .sidebar-title{
+  .sidebar-header{
     padding: 30px 20px;
     background-color: @green-dark;
   }
-  .sidebar-header{
+  .sidebar-title{
+    padding: 20px 10px;
+  }
+  .sidebar-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     padding: 20px 10px;
   }
   ul{
@@ -117,11 +117,11 @@ nav.nav{
         font-size: 16px;
         line-height: 30px;
         color: @green-lighter;
-        transition: 0.5s; // en enlevant la souris
+        transition: 0.3s; // en enlevant la souris
         &:hover{
-          transition: all 0.3s;
+          transition: all 0.1s;
           color: @green-dark;
-          background-color: @green-lighter;
+          background-color: @body;
           border-radius: 0;
         }
       }
@@ -140,8 +140,8 @@ nav.nav{
 
 // ===== Login =====
 input[type=submit]{
-  background-color: @purple-dark;
-  color: @purple-lighter;
+  background-color: @green-dark;
+  color: @green-lighter;
   border: none;
   border-radius: 0;
   height: 40px;
@@ -166,7 +166,7 @@ input[type=submit]{
     margin: 40px 0;
     td{
       border: none;
-      color: @purple;
+      color: @green;
     }
     strong{
       color: black;
@@ -189,6 +189,13 @@ input[type=submit]{
 }
 
 // ===== Table =====
-.table td{
-  vertical-align: middle;
+.table{
+  .border-0{
+    tr th,tr td{
+      border: none;
+    }
+  }
+  td{
+    vertical-align: middle;
+  }
 }
