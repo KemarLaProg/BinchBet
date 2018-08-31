@@ -30,6 +30,13 @@ app.get('/bet', function(req, res) {
   res.render('bet.ejs');
 });
 
+
+app.get('/account', function(req, res){
+  //res.render('account.ejs', {idAccount: req.params.id});
+  res.render('account.ejs');
+});
+
+
 app.get('/fetch', function(req, res) {
   res.render('binch.ejs');
 });

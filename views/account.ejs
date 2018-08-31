@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('includes/head.inc.ejs') %>
+
+  <title>BB - Home page</title>
+  <!--
+  Au cas ou fdp:
+
+  developer.sportradar.com
+  usr : KemarLAPI
+  pwd : Binchbet24
+-->
+</head>
+<body>
+  <main class="container-fluid">
+    <%- include('includes/main_nav.inc.ejs'); %>
+
+    <section id="content">
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <h1>Mon compte</h1>
+          <hr class="space" />
+
+          <div class="card" style="width: 100%;">
+            <div class="card-caption text-center">
+              <h2>Kemar</h2>
+            </div>
+
+            <div class="card-body">
+              <dl class="row">
+                <dt class="col-sm-6">Password</dt>
+                <dd class="col-sm-6">•••••••••</dd>
+                <hr/>
+                <dt class="col-sm-6">Prénom</dt>
+                <dd class="col-sm-6">Marc</dd>
+
+                <dt class="col-sm-6">Nom</dt>
+                <dd class="col-sm-6">Vachon</dd>
+                <hr/>
+                <dt class="col-sm-6">Date d'inscription</dt>
+                <dd class="col-sm-6">30 août 2018</dd>
+                <hr/>
+                <dt class="col-sm-6">BinchBet(s)</dt>
+                <dd class="col-sm-6">24</dd>
+              </dl>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-8">
+          <h1>Statistiques</h1>
+          <hr class="space" />
+
+          <div class="card" style="width: 100%;">
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md">
+          <h1>Mes BinchBet</h1>
+          <hr class="space" />
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Championnat</th>
+                <th scope="col">Date</th>
+                <th scope="col">Domicile</th>
+                <th scope="col">Score</th>
+                <th scope="col">Extérieur</th>
+                <th scope="col">Mon paris</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Premier League</td>
+                <td rowspan="2">30/08/2018</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Serie A</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Larry the Bird</td>
+                <td>@twitter</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
