@@ -6,17 +6,19 @@
 @gray-lighter: lighten(#000, 60.2%);
 
 @green-dark: darken(@green, 2%);
-//@green: #3FB390, 5%;
-@green: #06A040;
-@green-light: lighten(@green, 30%);
+@green: #3FB390;
+//@green: #06A040;
+//@green: #52C370;
+@green-light: lighten(@green, 40%);
 @green-lighter: lighten(@green, 60%);
 
 
-@body: darken(#fff, 1%);
+@body: darken(#fff, 3%);
 
 // =============== FONTS ===============
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900";
+@import "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,900";
 
 // =============== HTML BALISE ===============
 
@@ -26,8 +28,12 @@ html, body{
   padding: 0;
 }
 body{
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Nunito', sans-serif;
   background-color: @body;
+  //color: lighten(@gray, 10%);
+  color: @gray-light;
+}
+h1,h2,h3,h4,h5,h6{
   color: @gray;
 }
 a{
@@ -89,41 +95,41 @@ nav.nav{
   margin: 0;
   padding: 0;
   background-color: @green;
+  //background-image: linear-gradient(to top left, @green, lighten(@green, 5%));
+  //background-image: linear-gradient(to top left, @green, #47C933);
+  47C933
   border: 0;
   border-radius: 0;
-  color: @green-lighter;
+  color: @green-light;
   font-weight: 200;
   .sidebar-header{
-    padding: 30px 20px;
+    padding: 30px 30px;
     background-color: @green-dark;
+    h2{
+      color: @green-light;
+    }
   }
   .sidebar-title{
-    padding: 20px 10px;
+    padding: 30px 30px 10px 30px;
   }
   .sidebar-footer{
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 20px 10px;
+    padding: 20px 20px;
   }
-  ul{
-    margin-bottom: 30px;
-    li{
-      border-radius: 0;
-      margin: 0;
-      a{
-        font-weight: bold;
-        padding-left: 10px;
-        font-size: 16px;
-        line-height: 30px;
+  li{
+    border-radius: 0;
+    margin: 0;
+    a{
+      padding-left: 30px;
+      line-height: 30px;
+      color: @green-light;
+      transition: 0.3s; // en enlevant la souris
+      &:hover{
+        transition: all 0.1s;
         color: @green-lighter;
-        transition: 0.3s; // en enlevant la souris
-        &:hover{
-          transition: all 0.1s;
-          color: @green-dark;
-          background-color: @body;
-          border-radius: 0;
-        }
+        border-radius: 0;
       }
     }
   }
@@ -183,13 +189,35 @@ input[type=submit]{
 
 // ===== Card =====
 .card{
-  background: transparent;
-}
-.card-caption{
-  height: 200px;
+  background-color: white;
+  border-radius: 2px;
+  border: none;
   width: 100%;
-  padding: 90px 1.25rem;
+  &.card-lil-stat{
+    min-height: 140px;
+  }
 }
+.card-profile{
+  background-color: @green;
+  color: @green-light;
+  .card-title{
+    height: 200px;
+    width: 100%;
+    padding: 90px 1.25rem;
+    h2{
+      color: @green-light;
+    }
+  }
+}
+
+// ===== Table =====
+.breadcrumb{
+  background-color: transparent;
+  a{
+    color: @green;
+  }
+}
+
 
 // ===== Table =====
 .table{

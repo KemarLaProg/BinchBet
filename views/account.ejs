@@ -13,82 +13,231 @@
 -->
 </head>
 <body>
+  <script>
+  var ctxD = document.getElementById("doughnutChart").getContext('2d');
+  var myLineChart = new Chart(ctxD, {
+    type: 'doughnut',
+    data: {
+      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+      datasets: [
+        {
+          data: [300, 50, 100, 40, 120],
+          backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+          hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+        }
+      ]
+    },
+    options: {
+      responsive: true
+    }
+  });
+  </script>
   <main class="container-fluid">
     <%- include('includes/main_nav.inc.ejs'); %>
 
     <section id="content">
       <div class="row">
-        
+        <div class="col-md">
+          <h4 class="d-inline-block">Profil</h4>
+          <nav aria-label="breadcrumb" class="float-right">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Library</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+          </nav>
+        </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-4">
-          <h1>Mon compte</h1>
-          <hr class="space" />
+      <div class="row mt-4">
 
-          <div class="card row">
-            <div class="card-caption text-center">
-              <h2>Kemar</h2>
+        <div class="col-md-4">
+
+          <div class="row mb-4">
+            <div class="card card-profile">
+              <div class="card-title text-center">
+                <h2>Kemar</h2>
+              </div>
+
+              <div class="card-body">
+                <dl class="row">
+                  <dt class="col-sm-6">Prénom</dt>
+                  <dd class="col-sm-6">Marc</dd>
+
+                  <dt class="col-sm-6">Nom</dt>
+                  <dd class="col-sm-6">Vachon</dd>
+                  <hr/>
+                  <dt class="col-sm-6">Date d'inscription</dt>
+                  <dd class="col-sm-6">30 août 2018</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 pl-0 mb-4">
+              <div class="card card-lil-stat">
+                <div class="card-body">
+                  <h6 class="text-uppercase mt-0"><small>Niveau</small></h6>
+                  <h2>7</h2>
+                </div>
+              </div>
             </div>
 
-            <div class="card-body">
-              <dl class="row">
-                <dt class="col-sm-6">Password</dt>
-                <dd class="col-sm-6">•••••••••</dd>
-                <hr/>
-                <dt class="col-sm-6">Prénom</dt>
-                <dd class="col-sm-6">Marc</dd>
+            <div class="col-md-6 pr-0 mb-4">
+              <div class="card card-lil-stat">
+                <div class="card-body">
+                  <h6 class="text-uppercase mt-0"><small>XP</small></h6>
+                  <h2>340</h2>
+                  <h6 class="text-uppercase mt-0"><small>sur 1200</small></h6>
+                </div>
+              </div>
+            </div>
 
-                <dt class="col-sm-6">Nom</dt>
-                <dd class="col-sm-6">Vachon</dd>
-                <hr/>
-                <dt class="col-sm-6">Date d'inscription</dt>
-                <dd class="col-sm-6">30 août 2018</dd>
-                <hr/>
-                <dt class="col-sm-6">BinchBet(s) total</dt>
-                <dd class="col-sm-6">153</dd>
-              </dl>
+            <div class="col-md-6 pl-0 mb-4">
+              <div class="card card-lil-stat">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase mt-0"><small>BB cette année</small></h6>
+                  <h2>56</h2>
+                  <span class="badge badge-success"> +7% </span>
+                  <span class="text-muted">Année dernière</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 pr-0 mb-4">
+              <div class="card card-lil-stat">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase mt-0"><small>BB total</small></h6>
+                  <h2>178</h2>
+                  <span class="badge badge-success"> +7% </span>
+                  <span class="text-muted">Année dernière</span>
+                </div>
+              </div>
             </div>
           </div>
 
         </div>
-        <div class="col-md-8">
-          <h1 class="d-inline-block">Statistiques</h1>
-          <button type="button" class="btn btn-default float-right">Voir tout</button>
-          <hr class="space" />
 
-          <div class="row text-center">
-            <div class="card col-md mr-1">
-              <h2>Perfect</h2>
-            </div>
-            <div class="card col-md ml-1 mr-1">
-              <h2>Difference</h2>
-            </div>
-            <div class="card col-md ml-1 mr-1">
-              <h2>Win</h2>
-            </div>
-            <div class="card col-md ml-1">
-              <h2>Loses</h2>
+        <div class="col-md">
+          <div class="row mb-4">
+            <div class="col-md">
+              <div class="dropdown float-right">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  2018/2019
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
             </div>
           </div>
 
-          <hr/>
-
-          <div class="row">
-
-            <div class="card col-md mr-1">
-              <dl class="card-body row">
-                <dt class="col-sm-6">BinchBet(s)</dt>
-                <dd class="col-sm-6">24</dd>
-                <dt class="col-sm-6">Points total</dt>
-                <dd class="col-sm-6">31</dd>
-                <dt class="col-sm-6">Position mondial</dt>
-                <dd class="col-sm-6">367</dd>
-              </dl>
+          <div class="row text-center">
+            <div class="col-md">
+              <div class="card">
+                <div class="card-body">
+                  <h2>Perfect</h2>
+                  <canvas id="doughnutChart"></canvas>
+                </div>
+              </div>
             </div>
+            <div class="col-md">
+              <div class="card">
+                <div class="card-body">
+                  <h2>Difference</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="card">
+                <div class="card-body">
+                  <h2>Win</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="card">
+                <div class="card-body">
+                  <h2>Loses</h2>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <div class="card col-md ml-1">
-              <div class="card-body">
+          <div class="row mt-4">
+            <div class="col-md">
+              <div class="card">
+                <div class="card-body">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md">
+              <div class="card">
+                <div class="card-body">
+
+                  <h4 class="d-inline-block">Mes derniers BinchBet</h4>
+                  <button type="button" class="btn btn-default float-right">Tout afficher</button>
+                  <table class="table table-bordered mt-4 mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">Championnat</th>
+                        <th scope="col" class="text-center">Date</th>
+                        <th scope="col">Domicile</th>
+                        <th scope="col" class="text-center">Score</th>
+                        <th scope="col" class="text-right">Extérieur</th>
+                        <th scope="col" class="text-center">Mon BB</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Serie A</td>
+                        <td class="text-center">31.08.2018</td>
+                        <td>Milan AC</td>
+                        <td class="text-center">2 – 1</td>
+                        <td class="text-right">AS Rome</td>
+                        <td class="text-center">2 – 1</td>
+                      </tr>
+                      <tr>
+                        <td>Premier League</td>
+                        <td class="text-center">27.08.2018</td>
+                        <td>Manchester United</td>
+                        <td class="text-center">0 – 3</td>
+                        <td class="text-right">Tottenham</td>
+                        <td class="text-center">2 – 3</td>
+                      </tr>
+                      <tr>
+                        <td>Liga</td>
+                        <td rowspan="2" class="text-center">26.08.2018</td>
+                        <td>Séville</td>
+                        <td class="text-center">0 – 0</td>
+                        <td class="text-right">Villareal</td>
+                        <td class="text-center">3 – 1</td>
+                      </tr>
+                      <tr>
+                        <td>Bundesliga</td>
+                        <td>B. Dortmund</td>
+                        <td class="text-center">3 – 1</td>
+                        <td class="text-right">RB Leipzig</td>
+                        <td class="text-center">2 – 1</td>
+                      </tr>
+                      <tr>
+                        <td>Serie A</td>
+                        <td class="text-center">25.08.2018</td>
+                        <td>Naples</td>
+                        <td class="text-center">3 – 2</td>
+                        <td class="text-right">Milan AC</td>
+                        <td class="text-center">0 – 1</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
               </div>
             </div>
           </div>
@@ -96,68 +245,6 @@
         </div>
       </div>
 
-      <div class="row mt-5">
-        <div class="col-md">
-          <h1 class="d-inline-block">Mes derniers BinchBet</h1>
-          <button type="button" class="btn btn-default float-right">Voir tout</button>
-          <hr class="space" />
-
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">Championnat</th>
-                <th scope="col" class="text-center">Date</th>
-                <th scope="col">Domicile</th>
-                <th scope="col" class="text-center">Score</th>
-                <th scope="col" class="text-right">Extérieur</th>
-                <th scope="col" class="text-center">Mon BB</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Serie A</td>
-                <td class="text-center">31.08.2018</td>
-                <td>Milan AC</td>
-                <td class="text-center"></td>
-                <td class="text-right">AS Rome</td>
-                <td class="text-center"></td>
-              </tr>
-              <tr>
-                <td>Premier League</td>
-                <td class="text-center">27.08.2018</td>
-                <td>Manchester United</td>
-                <td class="text-center">0 – 3</td>
-                <td class="text-right">Tottenham</td>
-                <td class="text-center">2 – 3</td>
-              </tr>
-              <tr>
-                <td>Liga</td>
-                <td rowspan="2" class="text-center">26.08.2018</td>
-                <td>Séville</td>
-                <td class="text-center">0 – 0</td>
-                <td class="text-right">Villareal</td>
-                <td class="text-center">3 – 1</td>
-              </tr>
-              <tr>
-                <td>Bundesliga</td>
-                <td>B. Dortmund</td>
-                <td class="text-center">3 – 1</td>
-                <td class="text-right">RB Leipzig</td>
-                <td class="text-center">2 – 1</td>
-              </tr>
-              <tr>
-                <td>Serie A</td>
-                <td class="text-center">25.08.2018</td>
-                <td>Naples</td>
-                <td class="text-center">3 – 2</td>
-                <td class="text-right">Milan AC</td>
-                <td class="text-center">0 – 1</td>
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
-      </div>
     </section>
 
   </main>
