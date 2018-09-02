@@ -44,7 +44,7 @@ app.get('/account', function(req, res){
 
 
 app.get('/fetch', function(req, res) {
-  res.render('binch.ejs');
+  res.render('fetcher.ejs');
 });
 
 
