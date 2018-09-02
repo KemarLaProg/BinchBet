@@ -25,7 +25,10 @@ app.get('/registration', function(req, res) {
   res.render('registration.ejs');
 });
 
-// road with parameters
+app.get('/group', function(req, res) {
+  res.render('group.ejs');
+});
+
 app.get('/bet', function(req, res) {
   res.render('bet.ejs');
 });

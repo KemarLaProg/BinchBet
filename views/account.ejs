@@ -14,21 +14,41 @@
 </head>
 <body>
   <script>
-  var ctxD = document.getElementById("doughnutChart").getContext('2d');
-  var myLineChart = new Chart(ctxD, {
-    type: 'doughnut',
-    data: {
-      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-      datasets: [
-        {
-          data: [300, 50, 100, 40, 120],
-          backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-          hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-        }
-      ]
-    },
-    options: {
-      responsive: true
+  $(document).ready(function () {
+    var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
+
+    var chPie = document.getElementById("chPie");
+    if (chPie) {
+      new Chart(chPie, {
+        type: 'pie',
+        data: {
+          labels: ['Desktop', 'Phone', 'Tablet', 'Unknown'],
+          datasets: [
+            {
+              backgroundColor: [colors[1],colors[0],colors[2],colors[5]],
+              borderWidth: 0,
+              data: [50, 40, 15, 5]
+            }
+          ]
+        },
+        plugins: [{
+          beforeDraw: function(chart) {
+            var width = chart.chart.width,
+            height = chart.chart.height,
+            ctx = chart.chart.ctx;
+            ctx.restore();
+            var fontSize = (height / 70).toFixed(2);
+            ctx.font = fontSize + "em sans-serif";
+            ctx.textBaseline = "middle";
+            var text = chart.config.data.datasets[0].data[0] + "%",
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2;
+            ctx.fillText(text, textX, textY);
+            ctx.save();
+          }
+        }],
+        options: {layout:{padding:0}, legend:{display:false}, cutoutPercentage: 80}
+      });
     }
   });
   </script>
@@ -49,7 +69,7 @@
         </div>
       </div>
 
-      <div class="row mt-4">
+      <div class="row">
 
         <div class="col-md-4">
 
@@ -66,6 +86,9 @@
 
                   <dt class="col-sm-6">Nom</dt>
                   <dd class="col-sm-6">Vachon</dd>
+
+                  <dt class="col-sm-6">Email</dt>
+                  <dd class="col-sm-6">vachon.marc@outlook.com</dd>
                   <hr/>
                   <dt class="col-sm-6">Date d'inscription</dt>
                   <dd class="col-sm-6">30 août 2018</dd>
@@ -115,6 +138,16 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-md-12 pl-0 pr-0">
+              <div class="card">
+                <div class="card-body">
+                  <h2><a href="#">Mes groupes</a></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="col-md">
@@ -134,29 +167,34 @@
           </div>
 
           <div class="row text-center">
-            <div class="col-md">
+            <div class="col-md-3">
               <div class="card">
                 <div class="card-body">
-                  <h2>Perfect</h2>
-                  <canvas id="doughnutChart"></canvas>
+                  <div class="col-md-4 py-1">
+                    <div class="card">
+                      <div class="card-body">
+                        <canvas id="chDonut1"></canvas>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-md">
+            <div class="col-md-3">
               <div class="card">
                 <div class="card-body">
                   <h2>Difference</h2>
                 </div>
               </div>
             </div>
-            <div class="col-md">
+            <div class="col-md-3">
               <div class="card">
                 <div class="card-body">
                   <h2>Win</h2>
                 </div>
               </div>
             </div>
-            <div class="col-md">
+            <div class="col-md-3">
               <div class="card">
                 <div class="card-body">
                   <h2>Loses</h2>
