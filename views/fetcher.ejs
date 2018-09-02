@@ -1,0 +1,77 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('includes/head.inc.ejs') %>
+
+  <title>BB - Home page</title>
+  <!--
+  Au cas ou fdp:
+
+  developer.sportradar.com
+  usr : KemarLAPI
+  pwd : Binchbet24
+-->
+</head>
+<body>
+	<script>
+
+	'use strict';
+	var request = require('request');
+
+	var url = 'https://api.sportradar.us/soccer-t3/eu/fr/tournaments/sr:tournament:8/standings.json?api_key=myjru2suj5mcbs7fjduvxx2f';
+
+	request.get({
+	    url: url,
+	    json: true,
+	    headers: {'User-Agent': 'request'}
+	  }, (err, res, data) => {
+	    if (err) {
+	      console.log('Error:', err);
+	    } else if (res.statusCode !== 200) {
+	      console.log('Status:', res.statusCode);
+	    } else {
+	      // data is already parsed as JSON:
+	      console.log(data.html_url);
+	    }
+	});
+
+	// const https = ("https");
+	// const options = {
+	//   hostname: 'api.sportradar.us',
+	//   port: 443,
+	//   path: '/soccer-t3/eu/fr/tournaments/sr:tournament:8/standings.json?api_key=myjru2suj5mcbs7fjduvxx2f',
+	//   method: 'GET'
+	// };
+	//
+	// const req = https.request(options, (res) => {
+	//   console.log('statusCode:', res.statusCode);
+	//   console.log('headers:', res.headers);
+	//
+	//   res.on('data', (d) => {
+	//     process.stdout.write(d);
+	//   var data = JSON.parse(d);
+	//   });
+	// });
+	//
+	// req.on('error', (e) => {
+	//   console.error(e);
+	// });
+	// req.end();
+
+//  'https://api.sportradar.us/soccer-t3/eu/fr/tournaments/sr:tournament:8/standings.json?api_key=myjru2suj5mcbs7fjduvxx2f'
+</script>
+
+  <main class="container-fluid">
+    <%- include('includes/main_nav.inc.ejs'); %>
+
+    <section id="content">
+    </section>
+
+  </main>
+</body>
+</html>
