@@ -28,6 +28,9 @@ app.get('/registration', function(req, res) {
 app.get('/group', function(req, res) {
   res.render('group.ejs');
 });
+app.get('/my-groups', function(req, res) {
+  res.render('my-groups.ejs');
+});
 
 app.get('/bet', function(req, res) {
   res.render('bet.ejs');

@@ -17,105 +17,165 @@
     <%- include('includes/main_nav.inc.ejs'); %>
 
     <section id="content">
-
-      <div class="row mb-4">
-        <div class="col-md-3">
-          <div class="card card-lil-stat">
-            <div class="card-body">
-              <h2 class="text-truncate">Mondial</h2>
-              <h6 class="text-muted text-uppercase"><small>13 participants</small></h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="card card-lil-stat">
-            <div class="card-body">
-              <h6 class="text-muted text-uppercase mt-0"><small>Classment</small></h6>
-              <h2>3</h2>
-              <span class="badge badge-success"> 19 </span>
-              <span class="text-muted">Points</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-7">
-          <div class="card card-lil-stat">
-            <div class="card-body">
-              <ul class="nav">
-                <li class="nav-item">
-                  <h2>17</h2>
-                  <h6 class="text-muted text-uppercase"><small>match(s)</small></h6>
-                </li>
-                <li class="nav-item">
-                  <h2>1</h2>
-                  <h6 class="text-muted text-uppercase"><small>Parfait</small></h6>
-                </li>
-                <li class="nav-item">
-                  <h2>3</h2>
-                  <h6 class="text-muted text-uppercase"><small>Différence</small></h6>
-                </li>
-                <li class="nav-item">
-                  <h2>10</h2>
-                  <h6 class="text-muted text-uppercase"><small>Gagné</small></h6>
-                </li>
-                <li class="nav-item">
-                  <h2>3</h2>
-                  <h6 class="text-muted text-uppercase"><small>Perdu</small></h6>
-                </li>
-              </ul>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-md">
+          <h4 class="d-inline-block">Groupe</h4>
+          <nav aria-label="breadcrumb" class="float-right">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Groupes</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Groupe</li>
+            </ol>
+          </nav>
         </div>
       </div>
 
       <div class="row mb-4">
-        <div class="col-md-3">
-          <div class="card card-lil-stat">
+        <div class="col-md-4">
+          <div class="card card-profile mb-4">
+            <div class="card-title text-center">
+              <h2>Original</h2>
+            </div>
+
             <div class="card-body">
-              <h2 class="text-truncate">Coucou les amis</h2>
-              <h6 class="text-muted text-uppercase"><small>13 participants</small></h6>
+              <dl class="row">
+                <dt class="col-sm-6">Participants</dt>
+                <dd class="col-sm-6">2</dd>
+
+                <dt class="col-sm-6">BinchBet(s)</dt>
+                <dd class="col-sm-6">18</dd>
+                <hr/>
+                <dt class="col-sm-6">Saison(s)</dt>
+                <dd class="col-sm-6">3</dd>
+
+                <dt class="col-sm-6">Date de création</dt>
+                <dd class="col-sm-6">Mars 2017</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h4 class="d-inline-block">Classement</h4>
+              <button type="button" class="btn btn-default float-right">Détail</button>
+              <table class="table mt-4">
+                <thead>
+                  <tr>
+                    <th>Joueur</th>
+                    <th>Binch(s)</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td>KemarLePoulpe</td>
+                  <td>19</td>
+                </tr>
+                <tr>
+                  <td>Goat</td>
+                  <td>17</td>
+                </tr>
+                <tbody>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <div class="col-md-2">
-          <div class="card card-lil-stat">
-            <div class="card-body">
-              <h6 class="text-muted text-uppercase mt-0"><small>Classement</small></h6>
-              <h2>3</h2>
-              <h6 class="text-muted text-uppercase"><small>19 points</small></h6>
+
+        <div class="col-md-8">
+
+          <div class="row mb-4">
+            <div class="col-md-3 pl-0">
+              <div class="card">
+                <div class="card-body">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-body">
+                  <h2>Difference</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-body">
+                  <h2>Win</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 pr-0">
+              <div class="card">
+                <div class="card-body">
+                  <h2>Loses</h2>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-7">
-          <div class="card card-lil-stat">
+
+          <div class="card">
             <div class="card-body">
-              <ul class="nav">
-                <li class="nav-item">
-                  <h2>17</h2>
-                  <h6 class="text-muted text-uppercase"><small>match(s)</small></h6>
-                </li>
-                <li class="nav-item">
-                  <h2>1</h2>
-                  <h6 class="text-muted text-uppercase"><small>Parfait</small></h6>
-                </li>
-                <li class="nav-item">
-                  <h2>3</h2>
-                  <h6 class="text-muted text-uppercase"><small>Différence</small></h6>
-                </li>
-                <li class="nav-item">
-                  <h2>10</h2>
-                  <h6 class="text-muted text-uppercase"><small>Gagné</small></h6>
-                </li>
-                <li class="nav-item">
-                  <h2>3</h2>
-                  <h6 class="text-muted text-uppercase"><small>Perdu</small></h6>
-                </li>
-              </ul>
+
+              <h4 class="d-inline-block">Tous les matchs</h4>
+              <table class="table table-bordered mt-4 mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Championnat</th>
+                    <th scope="col" class="text-center">Date</th>
+                    <th scope="col">Domicile</th>
+                    <th scope="col" class="text-center">Score</th>
+                    <th scope="col" class="text-right">Extérieur</th>
+                    <th scope="col" class="text-center">Mon BB</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Serie A</td>
+                    <td class="text-center">31.08.2018</td>
+                    <td>Milan AC</td>
+                    <td class="text-center">2 – 1</td>
+                    <td class="text-right">AS Rome</td>
+                    <td class="text-center">2 – 1</td>
+                  </tr>
+                  <tr>
+                    <td>Premier League</td>
+                    <td class="text-center">27.08.2018</td>
+                    <td>Manchester United</td>
+                    <td class="text-center">0 – 3</td>
+                    <td class="text-right">Tottenham</td>
+                    <td class="text-center">2 – 3</td>
+                  </tr>
+                  <tr>
+                    <td>Liga</td>
+                    <td rowspan="2" class="text-center">26.08.2018</td>
+                    <td>Séville</td>
+                    <td class="text-center">0 – 0</td>
+                    <td class="text-right">Villareal</td>
+                    <td class="text-center">3 – 1</td>
+                  </tr>
+                  <tr>
+                    <td>Bundesliga</td>
+                    <td>B. Dortmund</td>
+                    <td class="text-center">3 – 1</td>
+                    <td class="text-right">RB Leipzig</td>
+                    <td class="text-center">2 – 1</td>
+                  </tr>
+                  <tr>
+                    <td>Serie A</td>
+                    <td class="text-center">25.08.2018</td>
+                    <td>Naples</td>
+                    <td class="text-center">3 – 2</td>
+                    <td class="text-right">Milan AC</td>
+                    <td class="text-center">0 – 1</td>
+                  </tr>
+                </tbody>
+              </table>
+
             </div>
           </div>
         </div>
       </div>
-
     </section>
+
   </main>
 </body>
 </html>
