@@ -1,181 +1,158 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <%- include('includes/head.inc.ejs') %>
 
-  <title>BB - Home page</title>
-  <!--
-  Au cas ou fdp:
+<div class="row">
+  <div class="col-md">
+    <h4 class="d-inline-block">Groupe</h4>
+    <nav aria-label="breadcrumb" class="float-right">
+      <ol class="breadcrumb pr-0">
+        <li class="breadcrumb-item"><a href="index">Binchbet</a></li>
+        <li class="breadcrumb-item"><a href="my-groups">Groupes</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Groupe</li>
+      </ol>
+    </nav>
+  </div>
+</div>
 
-  developer.sportradar.com
-  usr : KemarLAPI
-  pwd : Binchbet24
--->
-</head>
-<body>
-  <main class="container-fluid">
-    <%- include('includes/main_nav.inc.ejs'); %>
-
-    <section id="content">
-      <div class="row">
-        <div class="col-md">
-          <h4 class="d-inline-block">Groupe</h4>
-          <nav aria-label="breadcrumb" class="float-right">
-            <ol class="breadcrumb pr-0">
-              <li class="breadcrumb-item"><a href="index">Binchbet</a></li>
-              <li class="breadcrumb-item"><a href="my-groups">Groupes</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Groupe</li>
-            </ol>
-          </nav>
-        </div>
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card card-profile mb-4">
+      <div class="card-title text-center">
+        <h2>Original</h2>
       </div>
 
-      <div class="row mb-4">
-        <div class="col-md-4">
-          <div class="card card-profile mb-4">
-            <div class="card-title text-center">
-              <h2>Original</h2>
-            </div>
+      <div class="card-body">
+        <dl class="row">
+          <dt class="col-sm-6">Participants</dt>
+          <dd class="col-sm-6">2</dd>
 
-            <div class="card-body">
-              <dl class="row">
-                <dt class="col-sm-6">Participants</dt>
-                <dd class="col-sm-6">2</dd>
+          <dt class="col-sm-6">BinchBet(s)</dt>
+          <dd class="col-sm-6">18</dd>
+          <hr/>
+          <dt class="col-sm-6">Saison(s)</dt>
+          <dd class="col-sm-6">3</dd>
 
-                <dt class="col-sm-6">BinchBet(s)</dt>
-                <dd class="col-sm-6">18</dd>
-                <hr/>
-                <dt class="col-sm-6">Saison(s)</dt>
-                <dd class="col-sm-6">3</dd>
+          <dt class="col-sm-6">Date de création</dt>
+          <dd class="col-sm-6">Mars 2017</dd>
+        </dl>
+      </div>
+    </div>
 
-                <dt class="col-sm-6">Date de création</dt>
-                <dd class="col-sm-6">Mars 2017</dd>
-              </dl>
-            </div>
-          </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="d-inline-block">Classement</h4>
+        <button type="button" class="btn btn-default float-right">Détail</button>
+        <table class="table mt-4">
+          <thead>
+            <tr>
+              <th>Joueur</th>
+              <th>Binch(s)</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>KemarLePoulpe</td>
+            <td>19</td>
+          </tr>
+          <tr>
+            <td>Goat</td>
+            <td>17</td>
+          </tr>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-          <div class="card">
-            <div class="card-body">
-              <h4 class="d-inline-block">Classement</h4>
-              <button type="button" class="btn btn-default float-right">Détail</button>
-              <table class="table mt-4">
-                <thead>
-                  <tr>
-                    <th>Joueur</th>
-                    <th>Binch(s)</th>
-                  </tr>
-                </thead>
-                <tr>
-                  <td>KemarLePoulpe</td>
-                  <td>19</td>
-                </tr>
-                <tr>
-                  <td>Goat</td>
-                  <td>17</td>
-                </tr>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+  <div class="col-md-8">
 
-        <div class="col-md-8">
-
-          <div class="row mb-4">
-            <div class="col-md-3 pl-0">
-              <div class="card">
-                <div class="card-body">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <div class="card-body">
-                  <h2>Difference</h2>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <div class="card-body">
-                  <h2>Win</h2>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 pr-0">
-              <div class="card">
-                <div class="card-body">
-                  <h2>Loses</h2>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-body">
-
-              <h4 class="d-inline-block">Tous les matchs</h4>
-              <table class="table table-bordered mt-4 mb-0">
-                <thead>
-                  <tr>
-                    <th scope="col">Championnat</th>
-                    <th scope="col" class="text-center">Date</th>
-                    <th scope="col">Domicile</th>
-                    <th scope="col" class="text-center">Score</th>
-                    <th scope="col" class="text-right">Extérieur</th>
-                    <th scope="col" class="text-center">Mon BB</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Serie A</td>
-                    <td class="text-center">31.08.2018</td>
-                    <td>Milan AC</td>
-                    <td class="text-center">2 – 1</td>
-                    <td class="text-right">AS Rome</td>
-                    <td class="text-center">2 – 1</td>
-                  </tr>
-                  <tr>
-                    <td>Premier League</td>
-                    <td class="text-center">27.08.2018</td>
-                    <td>Manchester United</td>
-                    <td class="text-center">0 – 3</td>
-                    <td class="text-right">Tottenham</td>
-                    <td class="text-center">2 – 3</td>
-                  </tr>
-                  <tr>
-                    <td>Liga</td>
-                    <td rowspan="2" class="text-center">26.08.2018</td>
-                    <td>Séville</td>
-                    <td class="text-center">0 – 0</td>
-                    <td class="text-right">Villareal</td>
-                    <td class="text-center">3 – 1</td>
-                  </tr>
-                  <tr>
-                    <td>Bundesliga</td>
-                    <td>B. Dortmund</td>
-                    <td class="text-center">3 – 1</td>
-                    <td class="text-right">RB Leipzig</td>
-                    <td class="text-center">2 – 1</td>
-                  </tr>
-                  <tr>
-                    <td>Serie A</td>
-                    <td class="text-center">25.08.2018</td>
-                    <td>Naples</td>
-                    <td class="text-center">3 – 2</td>
-                    <td class="text-right">Milan AC</td>
-                    <td class="text-center">0 – 1</td>
-                  </tr>
-                </tbody>
-              </table>
-
-            </div>
+    <div class="row mb-4">
+      <div class="col-md-3 pl-0">
+        <div class="card">
+          <div class="card-body">
           </div>
         </div>
       </div>
-    </section>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h2>Difference</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h2>Win</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 pr-0">
+        <div class="card">
+          <div class="card-body">
+            <h2>Loses</h2>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  </main>
-</body>
-</html>
+    <div class="card">
+      <div class="card-body">
+
+        <h4 class="d-inline-block">Tous les matchs</h4>
+        <table class="table table-bordered mt-4 mb-0">
+          <thead>
+            <tr>
+              <th scope="col">Championnat</th>
+              <th scope="col" class="text-center">Date</th>
+              <th scope="col">Domicile</th>
+              <th scope="col" class="text-center">Score</th>
+              <th scope="col" class="text-right">Extérieur</th>
+              <th scope="col" class="text-center">Mon BB</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Serie A</td>
+              <td class="text-center">31.08.2018</td>
+              <td>Milan AC</td>
+              <td class="text-center">2 – 1</td>
+              <td class="text-right">AS Rome</td>
+              <td class="text-center">2 – 1</td>
+            </tr>
+            <tr>
+              <td>Premier League</td>
+              <td class="text-center">27.08.2018</td>
+              <td>Manchester United</td>
+              <td class="text-center">0 – 3</td>
+              <td class="text-right">Tottenham</td>
+              <td class="text-center">2 – 3</td>
+            </tr>
+            <tr>
+              <td>Liga</td>
+              <td rowspan="2" class="text-center">26.08.2018</td>
+              <td>Séville</td>
+              <td class="text-center">0 – 0</td>
+              <td class="text-right">Villareal</td>
+              <td class="text-center">3 – 1</td>
+            </tr>
+            <tr>
+              <td>Bundesliga</td>
+              <td>B. Dortmund</td>
+              <td class="text-center">3 – 1</td>
+              <td class="text-right">RB Leipzig</td>
+              <td class="text-center">2 – 1</td>
+            </tr>
+            <tr>
+              <td>Serie A</td>
+              <td class="text-center">25.08.2018</td>
+              <td>Naples</td>
+              <td class="text-center">3 – 2</td>
+              <td class="text-right">Milan AC</td>
+              <td class="text-center">0 – 1</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

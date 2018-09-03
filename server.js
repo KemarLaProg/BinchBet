@@ -12,38 +12,38 @@ app.set('view engine', 'ejs');
 
 // index
 app.get('/', function(req, res) {
-  res.redirect('/index')
+  res.render('main.ejs', {page: 'index.ejs'});
 });
 app.get('/index', function(req, res){
-  res.render('index.ejs');
+  res.render('main.ejs', {page: 'index.ejs'});
 });
 
+//account
+app.get('/account', function(req, res){
+  res.render('main.ejs', {page: 'account.ejs'});
+});
 app.get('/login', function(req, res) {
-  res.render('login.ejs');
+  res.render('main.ejs', {page: 'login.ejs'});
 });
 
 app.get('/registration', function(req, res) {
-  res.render('registration.ejs');
+  res.render('main.ejs', {page: 'registration.ejs'});
 });
 
+//groups
 app.get('/group', function(req, res) {
-  res.render('group.ejs');
+  res.render('main.ejs', {page: 'group.ejs'});
 });
-app.get('/my-groups', function(req, res) {
-  res.render('my-groups.ejs');
-});
-
-app.get('/bet', function(req, res) {
-  res.render('bet.ejs');
+app.get('/group-list', function(req, res) {
+  res.render('main.ejs', {page: 'group-list.ejs'});
 });
 
-
-app.get('/account', function(req, res){
-  //res.render('account.ejs', {idAccount: req.params.id});
-  res.render('account.ejs');
+//bets
+app.get('/bet-list', function(req, res) {
+  res.render('main.ejs', {page: 'bet-list.ejs'});
 });
 
-
+//other
 app.get('/fetch', function(req, res) {
   res.json({
     fetch: fetcher.getData()
@@ -51,12 +51,11 @@ app.get('/fetch', function(req, res) {
 //  res.render('select.ejs');
 });
 
-
-
 // relate to error 404
 app.use(function(req, res, next){
   res.setHeader('Content-Type', 'text/plain');
   res.status(404).send('Page introuvable !');
 });
 
+//launch server (listening on port: 8080)
 app.listen(8080);

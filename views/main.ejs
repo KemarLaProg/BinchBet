@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('includes/head.inc.ejs') %>
+
+  <title>BB - Home page</title>
+  <!--
+  Au cas ou fdp:
+
+  developer.sportradar.com
+  usr : KemarLAPI
+  pwd : Binchbet24
+-->
+</head>
+<body>
+  <main class="container-fluid">
+    <%- include('includes/main_nav.inc.ejs'); %>
+
+    <section id="content">
+      <%- include(page);%>
+    </section>
+
+  </main>
+</body>
+</html>
