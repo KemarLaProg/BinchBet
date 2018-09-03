@@ -13,17 +13,19 @@
 -->
 </head>
 <body>
-	<script>
+  <script>
 
-	'use strict';
+  'use strict';
   $.ajax({
-          url: "http://localhost:8080/",  // the local Node server
-          method: 'GET',
-          success: function(data){
-              console.log(data); //display data in cosole to see if I receive it
-          }
-        });
-
+    var data {};
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    url: 'http://localhost:8080/fetch',
+    success: function(data) {
+      console.log('success');
+      console.log(JSON.stringify(data));
+    }
+  });
   </script>
 
   <main class="container-fluid">
