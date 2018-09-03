@@ -53,6 +53,11 @@ app.get('/news', function(req, res) {
   res.render('main.ejs', {page: 'news/news.ejs'});
 });
 
+//help
+app.get('/help', function(req, res) {
+  res.render('main.ejs', {page: 'help.ejs'});
+});
+
 //other
 app.get('/fetch', function(req, res) {
   res.render('select.ejs');
