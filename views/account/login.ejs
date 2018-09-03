@@ -1,50 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <%- include('includes/head.inc.ejs'); %>
+<form class="form-signin">
+  <div class="text-center mb-4">
+    <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
+    <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element.
+      <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>
+    </div>
 
-  <title>BB - Connexion</title>
-  <!--
-  Au cas ou fdp:
+    <div class="form-label-group">
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputEmail">Email address</label>
+    </div>
 
-  developer.sportradar.com
-  usr : KemarLAPI
-  pwd : Binchbet24
--->
-</head>
-<body>
-  <main class="container-fluid ">
-<%- include('includes/main_nav.inc.ejs'); %>
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <label for="inputPassword">Password</label>
+    </div>
 
-    <section id="content">
-      <form class="form-signin">
-        <div class="text-center mb-4">
-          <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-          <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
-          <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element.
-            <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>
-        </div>
-
-        <div class="form-label-group">
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-          <label for="inputEmail">Email address</label>
-        </div>
-
-        <div class="form-label-group">
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-          <label for="inputPassword">Password</label>
-        </div>
-
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-default btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
-      </form>
-    </section>
-
-  </main>
-</body>
-</html>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-default btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+  </form>
+</section>

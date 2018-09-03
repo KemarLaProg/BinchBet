@@ -1,51 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <%- include('includes/head.inc.ejs') %>
+<div id="success" class="alert alert-success" role="alert">
+</div>
+<form id='connection' action="#" method="post">
+  <h2>Inscription</h2>
+  <hr>
+  <div class="alert alert-danger" role="alert">
+  </div>
+  <hr>
+  <div class="form-group">
+    <label for="user">Nom d'utilisateur</label>
+    <input type="text" class="form-control" name="user" placeholder="Nom d'utilisateur" value="">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Mot de passe</label>
+    <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" value="">
+  </div>
+  <div class="form-group">
+    <label for="pwd2">Retapez le mot de passe</label>
+    <input type="password" class="form-control" name="pwd2" placeholder="Mot de passe">
+  </div>
+  <div class="form-group">
+    <label for="bluetooth">Adresse Bluetooth</label>&nbsp;&nbsp;&nbsp;<small> Exemple: (AA:AA:AA:AA:AA:AA)</small>
+    <input type="text" class="form-control" name="bluetooth" placeholder="Bluetooth" value="">
+  </div>
+  <input type="submit" name="submit" value="Inscription">
+</form>
 
-  <title>BB - Inscription</title>
-  <!--
-  Au cas ou fdp:
-
-  developer.sportradar.com
-  usr : KemarLAPI
-  pwd : Binchbet24
--->
-</head>
-<body>
-  <main class="container-fluid">
-    <%- include('includes/main_nav.inc.ejs'); %>
-
-    <section id="content">
-      <div id="success" class="alert alert-success" role="alert">
-      </div>
-      <form id='connection' action="#" method="post">
-        <h2>Inscription</h2>
-        <hr>
-        <div class="alert alert-danger" role="alert">
-        </div>
-        <hr>
-        <div class="form-group">
-          <label for="user">Nom d'utilisateur</label>
-          <input type="text" class="form-control" name="user" placeholder="Nom d'utilisateur" value="">
-        </div>
-        <div class="form-group">
-          <label for="pwd">Mot de passe</label>
-          <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" value="">
-        </div>
-        <div class="form-group">
-          <label for="pwd2">Retapez le mot de passe</label>
-          <input type="password" class="form-control" name="pwd2" placeholder="Mot de passe">
-        </div>
-        <div class="form-group">
-          <label for="bluetooth">Adresse Bluetooth</label>&nbsp;&nbsp;&nbsp;<small> Exemple: (AA:AA:AA:AA:AA:AA)</small>
-          <input type="text" class="form-control" name="bluetooth" placeholder="Bluetooth" value="">
-        </div>
-        <input type="submit" name="submit" value="Inscription">
-      </form>
-
-    </section>
-
-  </main>
-</body>
-</html>
+</section>
