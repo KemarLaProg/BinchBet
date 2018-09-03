@@ -77,9 +77,10 @@ h1{
   font-size: 15px;
   padding: 0 20px;
   transition: 0.3s;
+  box-shadow: 0 0 7px lighten(@green, 20%);
   &:hover{
-    background-color: @green-lighter;
-    color: @green;
+    background-color: darken(@green, 7%);
+    color: @green-lighter;
     transition: 0.3s;
   }
 }
@@ -149,6 +150,16 @@ nav.nav{
     margin: 0 auto;
   }
 }
+input[type=text]{
+  background-color: @green-lighter;
+  color: @gray-light;
+}
+//remove outline on input
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 
 // ===== Login =====
 input[type=submit]{
@@ -214,6 +225,14 @@ input[type=submit]{
       color: @green-light;
     }
   }
+}
+.card-news{
+  height: 500px;
+}
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
 }
 
 // ===== Table =====
