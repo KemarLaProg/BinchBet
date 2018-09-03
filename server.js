@@ -20,27 +20,27 @@ app.get('/index', function(req, res){
 
 //account
 app.get('/account', function(req, res){
-  res.render('main.ejs', {page: 'account.ejs'});
+  res.render('main.ejs', {page: 'account/account.ejs'});
 });
 app.get('/login', function(req, res) {
-  res.render('main.ejs', {page: 'login.ejs'});
+  res.render('main.ejs', {page: 'account/login.ejs'});
 });
 
 app.get('/registration', function(req, res) {
-  res.render('main.ejs', {page: 'registration.ejs'});
+  res.render('main.ejs', {page: 'account/registration.ejs'});
 });
 
 //groups
 app.get('/group', function(req, res) {
-  res.render('main.ejs', {page: 'group.ejs'});
+  res.render('main.ejs', {page: 'groups/group.ejs'});
 });
 app.get('/group-list', function(req, res) {
-  res.render('main.ejs', {page: 'group-list.ejs'});
+  res.render('main.ejs', {page: 'groups/group-list.ejs'});
 });
 
 //bets
 app.get('/bet-list', function(req, res) {
-  res.render('main.ejs', {page: 'bet-list.ejs'});
+  res.render('main.ejs', {page: 'bets/bet-list.ejs'});
 });
 
 //other

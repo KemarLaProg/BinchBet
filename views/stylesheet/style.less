@@ -77,12 +77,14 @@ h1{
   font-size: 15px;
   padding: 0 20px;
   transition: 0.3s;
-  box-shadow: 0 0 7px lighten(@green, 20%);
   &:hover{
     background-color: darken(@green, 7%);
     color: @green-lighter;
     transition: 0.3s;
   }
+}
+.shadow-green{
+  box-shadow: 0 0 7px lighten(@green, 20%);
 }
 .link-green{
   color: @green;
@@ -230,9 +232,9 @@ input[type=submit]{
   height: 500px;
 }
 .line-clamp {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
 }
 
 // ===== Table =====
