@@ -25,7 +25,6 @@ app.get('/account', function(req, res){
 app.get('/login', function(req, res) {
   res.render('main.ejs', {page: 'account/login.ejs'});
 });
-
 app.get('/registration', function(req, res) {
   res.render('main.ejs', {page: 'account/registration.ejs'});
 });
@@ -41,6 +40,17 @@ app.get('/group-list', function(req, res) {
 //bets
 app.get('/bet-list', function(req, res) {
   res.render('main.ejs', {page: 'bets/bet-list.ejs'});
+});
+app.get('/bet', function(req, res) {
+  res.render('main.ejs', {page: 'bets/bet.ejs'});
+});
+
+//News
+app.get('/news-list', function(req, res) {
+  res.render('main.ejs', {page: 'news/news-list.ejs'});
+});
+app.get('/news', function(req, res) {
+  res.render('main.ejs', {page: 'news/news.ejs'});
 });
 
 //other

@@ -17,6 +17,22 @@
     <%- include('includes/main_nav.inc.ejs'); %>
 
     <section id="content">
+      <div class="row">
+        <div class="col-md">
+          <h4 class="d-inline-block">Page</h4>
+          <nav aria-label="breadcrumb" class="float-right">
+            <ol class="breadcrumb pr-0">
+              <li class="breadcrumb-item"><a href="index">Binchbet</a></li>
+              <li class="breadcrumb-item"><a href="group-list">Groups</a></li>
+              <li class="breadcrumb-item"><a href="group">Nom du groupe</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Paris</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <!--include the content of the page request
+      from server.js-->
       <%- include(page);%>
     </section>
 
