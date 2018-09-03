@@ -17,11 +17,12 @@
 
 	'use strict';
   $.ajax({
-  url: '/fetch',
-  complete: function(data) {
-    console.log(data);
-  }
-});
+          url: "http://localhost:8080/",  // the local Node server
+          method: 'GET',
+          success: function(data){
+              console.log(data); //display data in cosole to see if I receive it
+          }
+        });
 
   </script>
 

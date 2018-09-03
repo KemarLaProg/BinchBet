@@ -55,10 +55,10 @@ app.get('/news', function(req, res) {
 
 //other
 app.get('/fetch', function(req, res) {
+  res.render('select.ejs');
   res.json({
     fetch: fetcher.getData()
   });
-//  res.render('select.ejs');
 });
 
 // relate to error 404
