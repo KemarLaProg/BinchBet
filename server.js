@@ -2,6 +2,7 @@ var express = require('express');
 //var morgan = require('morgan'); // Charge le middleware de logging
 var bodyParser = require('body-parser');
 //var favicon = require('serve-favicon'); // Charge le middleware de favicon
+var fetcher = require('./views/javascript/fetcher.js');
 
 var app = express();
 
@@ -44,9 +45,11 @@ app.get('/account', function(req, res){
 
 
 app.get('/fetch', function(req, res) {
-  res.render('fetcher.ejs');
+  res.json({
+    fetch: fetcher.getData()
+  });
+//  res.render('select.ejs');
 });
-
 
 
 
