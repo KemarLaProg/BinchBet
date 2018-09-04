@@ -38,6 +38,9 @@ app.get('/group', function(req, res) {
 app.get('/group-list', function(req, res) {
   res.render('main.ejs', {page: 'groups/group-list.ejs'});
 });
+app.get('/group-add', function(req, res) {
+  res.render('main.ejs', {page: 'groups/group-add.ejs'});
+});
 app.get('/group-create', function(req, res) {
   res.render('main.ejs', {page: 'groups/group-create.ejs'});
 });
@@ -54,7 +57,7 @@ app.get('/bet', function(req, res) {
 app.get('/news-list', function(req, res) {
   res.render('main.ejs', {page: 'news/news-list.ejs'});
 });
-app.get('/news', function(req, res) {
+app.get('/newss', function(req, res) {
   res.render('main.ejs', {page: 'news/news.ejs'});
 });
 
@@ -96,10 +99,10 @@ var con = mysql.createConnection({
   database: "binchBet_db",
   socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 });
-
+/*
 con.connect(function(err) {
   if (err) throw err;
-});
+});*/
 
 
 //launch server (listening on port: 8080)
