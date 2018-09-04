@@ -9,8 +9,8 @@
   </div>
 
   <div class="col-md">
-    <button type="button" class="btn btn-default float-right"onClick="location.href='group-create'">Créer</button>
-    <button type="button" class="btn btn-default float-right mr-4"onClick="location.href='group-add'">Ajouter</button>
+    <button type="button" class="btn btn-default float-right" onClick="location.href='group-create'">Créer</button>
+    <button type="button" class="btn btn-default float-right mr-4" onClick="location.href='group-add'">Ajouter</button>
   </div>
 </div>
 
@@ -123,7 +123,10 @@
     <div class="card card-lil-stat">
       <a href="group">
         <div class="card-body">
-          <h6 class="text-muted text-uppercase mt-0"><small>Groupe</small></h6>
+          <div class="card-head">
+            <h6 class="text-muted text-uppercase mt-0 d-inline-block"><small>Groupe</small></h6>
+            <h6 class="text-muted text-uppercase mt-0 d-inline-block text-right"><small>02.09.2018</small></h6>
+          </div>
           <h2 class="text-truncate">Un autre</h2>
           <h6 class="text-muted text-uppercase"><small>22 participants</small></h6>
         </div>
@@ -145,24 +148,28 @@
       <div class="card-body">
         <ul class="nav">
           <li class="nav-item col-md">
+            <h6 class="text-muted text-uppercase"><small>Matchs</small></h6>
             <h2>22</h2>
-            <h6 class="text-muted text-uppercase"><small>match(s)</small></h6>
           </li>
           <li class="nav-item col-md">
-            <h2>0</h2>
             <h6 class="text-muted text-uppercase"><small>Parfait</small></h6>
+            <h2>0</h2>
+            <span class="badge badge-success">0%</span>
           </li>
           <li class="nav-item col-md">
-            <h2>2</h2>
             <h6 class="text-muted text-uppercase"><small>Différence</small></h6>
+            <h2>2</h2>
+            <span class="badge badge-primary">10%</span>
           </li>
           <li class="nav-item col-md">
-            <h2>3</h2>
             <h6 class="text-muted text-uppercase"><small>Gagné</small></h6>
+            <h2>3</h2>
+            <span class="badge badge-warning">13%</span>
           </li>
           <li class="nav-item col-md">
-            <h2>17</h2>
             <h6 class="text-muted text-uppercase"><small>Perdu</small></h6>
+            <h2>17</h2>
+            <span class="badge badge-danger">77%</span>
           </li>
         </ul>
       </div>
