@@ -16,22 +16,28 @@
   <script>
 
   'use strict';
-  $.ajax({
-    var data {};
-    data: JSON.stringify(data),
-    contentType: 'application/json',
-    url: 'http://localhost:8080/fetch',
-    success: function(data) {
-      console.log('success');
-      console.log(JSON.stringify(data));
-    }
-  });
+//  $.ajax({
+    // var data {};
+    // data: JSON.stringify(data),
+    // contentType: 'application/json',
+    $.ajax({
+      url: '/fetch.json',
+      complete: function(data) {
+      $("#tname").text(data.standings.groups.team_standings.team.name);
+      }
+    });
+    // success: function(data) {
+    //   console.log('success');
+    //   console.log(JSON.stringify(data));
+//    }
+//  });
   </script>
 
   <main class="container-fluid">
     <%- include('includes/main_nav.inc.ejs'); %>
 
-    <section id="content">
+    <section>
+      <h3 id='tname'></h3>
     </section>
 
   </main>

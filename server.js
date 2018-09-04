@@ -2,7 +2,8 @@ var express = require('express');
 //var morgan = require('morgan'); // Charge le middleware de logging
 var bodyParser = require('body-parser');
 //var favicon = require('serve-favicon'); // Charge le middleware de favicon
-var fetcher = require('./views/javascript/fetcher.js');
+const request = require('request');
+const https = require('https');
 
 var app = express();
 
@@ -61,9 +62,20 @@ app.get('/help', function(req, res) {
 //other
 app.get('/fetch', function(req, res) {
   res.render('select.ejs');
-  res.json({
-    fetch: fetcher.getData()
-  });
+});
+
+app.get('/fetch.json', function(req, app_res) {
+  const api = 'https://api.sportradar.us/soccer-t3/eu/fr/tournaments/sr:tournament:8/standings.json?api_key=myjru2suj5mcbs7fjduvxx2f';
+	request(api, function (err, res, body) {
+	  if (err) {
+	    console.log(err)
+	    return
+	  }else{
+      app_res.json({
+        fetch: body
+      });
+		}
+	});
 });
 
 // relate to error 404
