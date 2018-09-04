@@ -16,10 +16,6 @@
   <script>
 
   'use strict';
-//  $.ajax({
-    // var data {};
-    // data: JSON.stringify(data),
-    // contentType: 'application/json',
     $.ajax({
       url: '/fetch.json',
       complete: function(data) {
@@ -27,11 +23,6 @@
           document.getElementById("tname").innerHTML = data.responseJSON.fetch.standings[0].groups[0].team_standings[0].team.name;
       }
     });
-    // success: function(data) {
-    //   console.log('success');
-    //   console.log(JSON.stringify(data));
-//    }
-//  });
   </script>
 
   <main class="container-fluid">

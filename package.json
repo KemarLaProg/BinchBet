@@ -5,12 +5,14 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "nodemon": "^1.18.3"
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.3",
+    "request": "^2.88.0"
   },
   "description": "Friendly web application to bet on soccer's games.",
   "scripts": {
     "test": "nodemon server.js",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "author": "Marc Vachon",
   "license": "ISC",

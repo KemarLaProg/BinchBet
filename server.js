@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 //var favicon = require('serve-favicon'); // Charge le middleware de favicon
 const request = require('request');
 const https = require('https');
+const mysql = require('mysql');
 
 var app = express();
 
@@ -87,6 +88,19 @@ app.use(function(req, res, next){
   res.setHeader('Content-Type', 'text/plain');
   res.status(404).send('Page introuvable !');
 });
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "admin",
+  password: "1",
+  database: "binchBet_db",
+  socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+});
+
 
 //launch server (listening on port: 8080)
 app.listen(8080);
