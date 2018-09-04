@@ -16,7 +16,6 @@
 @body: darken(#fff, 3%);
 
 // =============== FONTS ===============
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900";
 @import "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,900";
 
@@ -28,7 +27,7 @@ html, body{
   padding: 0;
 }
 body{
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: @body;
   //color: lighten(@gray, 10%);
   color: @gray-light;
@@ -65,10 +64,15 @@ h1{
   top: 0;
   right: 0;
 }
-.space{
+.space, .space-2{
   border: none;
   margin: 0;
+}
+.space{
   height: 50px;
+}
+.space-2{
+  height: 100px;
 }
 .btn-default{
   background-color: @green-dark;
@@ -283,4 +287,23 @@ input[type=submit]{
 // ===== News =====
 .news-block{
   height: 500px;
+}
+.news{
+  .title, strong{
+    color: @gray-dark;
+  }
+  .title{
+    font-weight: 900;
+    font-size: 3em;
+  }
+  .subtitle{
+    font-weight: 400;
+  }
+  small{
+    font-weight: 300;
+  }
+  p{
+    font-size: 1em;
+    font-weight: 300;
+  }
 }
