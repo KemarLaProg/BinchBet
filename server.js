@@ -20,7 +20,7 @@ app.get('/index', function(req, res){
 });
 
 //account
-app.get('/account', function(req, res){
+app.get('/accounts', function(req, res){
   res.render('main.ejs', {page: 'account/account.ejs'});
 });
 app.get('/login', function(req, res) {
@@ -74,8 +74,9 @@ app.get('/fetch.json', function(req, app_res) {
 	    console.log(err)
 	    return
 	  }else{
+      var j_d = JSON.parse(body);
       app_res.json({
-        fetch: body
+        fetch: j_d
       });
 		}
 	});

@@ -23,7 +23,7 @@
     $.ajax({
       url: '/fetch.json',
       complete: function(data) {
-      $("#tname").text(data.standings.groups.team_standings.team.name);
+        $("#tname").text(data.fetch.standings.groups.team_standings.team.name);
       }
     });
     // success: function(data) {
