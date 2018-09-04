@@ -1,6 +1,6 @@
 var express = require('express');
 //var morgan = require('morgan'); // Charge le middleware de logging
-var bodyParser = require('body-parser');
+//var bodyParser = require('body-parser');
 //var favicon = require('serve-favicon'); // Charge le middleware de favicon
 const request = require('request');
 const https = require('https');

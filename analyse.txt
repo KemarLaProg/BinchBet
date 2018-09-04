@@ -1,0 +1,98 @@
+Nom du projet :   BinchBet
+Description   :   Site de paris entre utilisateur.
+Auteur        :   Marc Vachon & Mattias Mex
+Date          :   04 Septembre 2018
+
+
+RESUME DU PROJET
+
+  Notre projet est un site de paris sportifs compétitifs entre les différents utilisateurs, aucun crédit n'est nécessaire pour jouer. Chacun aura son propre score.
+
+  Les matchs à venir, les équipes et autres sont récuperé depuis une API : https://developer.sportradar.com , et ajoutés à notre propre base de données qui est utilisée par le site.
+
+  Chaque utilisateur à ses propres paris, il peut ensuite créer des groupes où il invitera d'autres utilisateurs. En tant que créateur/modérateur de ce groupe, il aura accès à l'ajout des compétitions, matchs et autres utilisateurs.
+
+  Les paris sportifs ce dérouleront par saisons.
+
+  Les utilisateurs auront accès à leur stats personnelles regroupant l'ensemble des saisons passées.
+
+  Les technologies utilisées sont du html, javascript, node.js, jquery, boostrap et less.
+
+
+FONCTIONNALITE
+
+  Liste des features à implémenter
+  Numérotées et classées dans l’ordre de priorité
+
+  Quelles features voulez vous mettre en place pour
+    la première démo ?
+
+  1) Créer toutes les pages du site.
+  2) Afficher les données de notre base de données:
+    - Compte utilisateur
+    - Match (Equipe, compétition, etc.)
+    - Groupe (Stats, Classement, etc.)
+    - Paris
+    - News
+  3) Inscription et connexion au site.
+  4) Parier sur des matchs.
+  5) Rejoindre des groupes (existant).
+  6) Créer des groupes.
+  7) En tant qu'admin de groupe:
+    - Ajouter utilisateurs
+    - Ajouter match
+  8) Récuperer données API externe.
+  9) Modifier son compte.
+
+  Les features minimales et pour la démo :
+
+  1, 2, 3, 4, 5.
+
+COMPOSANTS
+
+  1) Serveur NodeJs
+  2) Interface utiisateur (design site internet)
+  3) Base de données
+  4) Requêtes client -> serveur sur la base de données.
+
+
+LIBRAIRIES
+
+  SERVEUR :
+  - NodeJs :
+      Pour gérer les entrées sorties de notre serveur.
+  - Express :
+      Permet de créer des routes plus facilement.
+
+  BDD :
+  - mySql :
+      Création de base de données.
+
+  COTE CLIENT :
+  - Ejs :
+      Une des nombreuses templates NodeJs.
+  - jQuery :
+      Framwork javascipt permettant de faire des commandes js plus facilement.
+
+  DESIGN :
+    - Bootstrap :
+      C'est un framework css et js qui offre une logique de construction d'une page web, notament grâce à une structure responsive design.
+    - Less :
+      C'est un framework qui permet de faciliter la création de css avec des variables par exemples. Less est compilé en css grâce à un fichier js (less.js).
+
+
+EQUIPE
+
+  Chaque partie est faite en collaboration. Chacun crée une des parties du site pour ensuite se consulter et continuer le travail ensemble. Nous travaillons en collaboration sur tous le projet.
+
+  Mattias :
+    Récupérer les données sur l'API externe.
+    Connexion base de données.
+
+  Marc :
+    Base de données.
+    Design de l'interface utilisateur.
+
+  Les deux:
+    Serveur NodeJs.
+    Fonctionnalité du site (connexion, inscription, afficher les données, etc.)
