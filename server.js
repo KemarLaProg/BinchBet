@@ -37,6 +37,9 @@ app.get('/group', function(req, res) {
 app.get('/group-list', function(req, res) {
   res.render('main.ejs', {page: 'groups/group-list.ejs'});
 });
+app.get('/group-create', function(req, res) {
+  res.render('main.ejs', {page: 'groups/group-create.ejs'});
+});
 
 //bets
 app.get('/bet-list', function(req, res) {
