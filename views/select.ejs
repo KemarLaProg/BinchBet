@@ -23,7 +23,8 @@
     $.ajax({
       url: '/fetch.json',
       complete: function(data) {
-        $("#tname").text(data.fetch.standings.groups.team_standings.team.name);
+        console.log(data);
+          document.getElementById("tname").innerHTML = data.responseJSON.fetch.standings[0].groups[0].team_standings[0].team.name;
       }
     });
     // success: function(data) {
@@ -36,7 +37,7 @@
   <main class="container-fluid">
     <%- include('includes/main_nav.inc.ejs'); %>
 
-    <section>
+    <section id="content">
       <h3 id='tname'></h3>
     </section>
 
