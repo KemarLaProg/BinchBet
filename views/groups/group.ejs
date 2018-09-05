@@ -1,7 +1,13 @@
 <div class="row mb-4">
+  <div class="col-md">
+    <button type="button" class="btn btn-default float-right"onClick="location.href='group-list'">Retour à la liste</button>
+  </div>
+</div>
+
+<div class="row mb-4">
   <div class="col-md-4">
-    <div class="card card-green mb-4">
-      <div class="card-title text-center">
+    <div class="card mb-4 card-green">
+      <div class="card-header card-title text-center">
         <h2>Original</h2>
       </div>
 
@@ -10,10 +16,10 @@
           <dt class="col-sm-6">Participants</dt>
           <dd class="col-sm-6">2</dd>
 
-          <dt class="col-sm-6">BinchBet(s)</dt>
+          <dt class="col-sm-6">BinchBet</dt>
           <dd class="col-sm-6">18</dd>
           <hr/>
-          <dt class="col-sm-6">Saison(s)</dt>
+          <dt class="col-sm-6">Saison</dt>
           <dd class="col-sm-6">3</dd>
 
           <dt class="col-sm-6">Date de création</dt>
@@ -23,24 +29,26 @@
     </div>
 
     <div class="card">
-      <div class="card-body">
-        <h4 class="d-inline-block">Classement</h4>
+      <div class="card-header pb-0">
+        <h3 class="d-inline-block">Classement</h3>
         <button type="button" class="btn btn-default float-right">Détail</button>
-        <table class="table mt-4">
+      </div>
+      <div class="card-body">
+        <table class="table mb-0">
           <thead>
             <tr>
               <th>Joueur</th>
-              <th>Binch(s)</th>
+              <th class="text-center">Binch</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>KemarLePoulpe</td>
-              <td>19</td>
+              <td class="text-center">19</td>
             </tr>
             <tr>
               <td>Goat</td>
-              <td>17</td>
+              <td class="text-center">17</td>
             </tr>
           </tbody>
         </table>
@@ -49,42 +57,12 @@
   </div>
 
   <div class="col-md-8">
-
-    <div class="row mb-4">
-      <div class="col-md-3 pl-0">
-        <div class="card">
-          <div class="card-body">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-body">
-            <h2>Difference</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-body">
-            <h2>Win</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 pr-0">
-        <div class="card">
-          <div class="card-body">
-            <h2>Loses</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="card">
-      <div class="card-body">
-
+      <div class="card-header pb-0">
         <h4 class="d-inline-block">Tous les matchs</h4>
-        <table class="table table-bordered table-hover mt-4 mb-0">
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-hover mb-0">
           <thead>
             <tr>
               <th scope="col">Championnat</th>
@@ -96,15 +74,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <a href="bet">
-                <td>Serie A</td>
-                <td class="text-center">31.08.2018</td>
-                <td>Milan AC</td>
-                <td class="text-center">2 – 1</td>
-                <td class="text-right">AS Rome</td>
-                <td class="text-center">2 – 1</td>
-              </a>
+            <tr onclick="location.href='bet'">
+              <td>Serie A</td>
+              <td class="text-center">31.08.2018</td>
+              <td>Milan AC</td>
+              <td class="text-center">2 – 1</td>
+              <td class="text-right">AS Rome</td>
+              <td class="text-center">2 – 1</td>
             </tr>
             <tr>
               <td>Premier League</td>

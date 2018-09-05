@@ -8,3 +8,7 @@ $(document).ready(function () {
     $(this).addClass('active').siblings().removeClass('active');
   });*/
 });
+
+function goBack() {
+    window.history.back();
+}

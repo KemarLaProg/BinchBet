@@ -51,7 +51,7 @@ h1{
 // =============== CLASS ===============
 
 // ===== General =====
-.container-fluid, .row{
+.container-fluid{
   margin: 0;
   padding: 0;
 }
@@ -106,9 +106,14 @@ input[type=text]{
   background-color: @green-lighter;
   color: @gray-light;
 }
+//remove outline on input
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 
-
-// ===== Navbar =====
+// ===== sidebar =====
 nav.nav{
   width: 15%;
   position: fixed;
@@ -125,21 +130,32 @@ nav.nav{
   border-radius: 0;
   color: @green-light;
   font-weight: 200;
-  .sidebar-header{
-    padding: 30px 30px;
-    background-color: @green-dark;
+
+  .sidebar-header, .sidebar-body,
+  .sidebar-footer{
+    position: absolute;
+    width: 100%;
     h2{
       color: @green-light;
     }
   }
+  .sidebar-header{
+    background-color: @green-dark;
+    height: 15%;
+  }
   .sidebar-title{
     padding: 30px 30px 10px 30px;
   }
+  .sidebar-body{
+    overflow: auto;
+    top: 15%;
+    height: 70%;
+  }
   .sidebar-footer{
-    position: absolute;
+    background-color: @green-dark;
     bottom: 0;
-    width: 100%;
     padding: 20px 20px;
+    height: 15%;
   }
   li{
     border-radius: 0;
@@ -167,11 +183,16 @@ nav.nav{
   }
 }
 
-//remove outline on input
-.form-control:focus {
-  border-color: inherit;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+// ===== Footer =====
+.sidebar-footer{
+  a{
+    font-size: 0.7em;
+    color: @green-light;
+    text-decoration: underline;
+    &:hover{
+      color: @green-lighter;
+    }
+  }
 }
 
 // ===== Login =====
@@ -218,38 +239,33 @@ input[type=submit]{
 
 
 // ===== Card =====
-.card{
-  background-color: white;
-  border-radius: 2px;
+.card, .card-header, .card-body,
+.card-footer{
   border: none;
   width: 100%;
-  &.card-lil-stat{
-    min-height: 140px;
-  }
+  background-color: white;
 }
+.card{
+  border-radius: 2px;
+}
+
 .card-green{
-  background-color: @green;
-  color: @green-light;
-  h2{
-    color: @green-lighter;
-  }
-  small{
+  .card-header, .card-body, .card-footer{
+    background-color: @green;
     color: @green-light;
+    h1, h2, h3, h4, h5, h6{
+      color: @green-lighter !important;
+    }
+    small{
+      color: @green-light;
+    }
   }
 }
 .card-title{
-  height: 200px;
-  width: 100%;
   padding: 90px 1.25rem;
 }
-.card-head{
-  width: 100%;
-}
-.card-foot{
-  width: 100%;
-}
-.card-news{
-  height: 400px;
+.card-lil-stat{
+  min-height: 140px;
 }
 .card-group{
   height: 290px;
@@ -286,9 +302,9 @@ input[type=submit]{
 
 // ===== News =====
 .news-block{
-  height: 500px;
+  height: 400px;
 }
-.news{
+.news, .news-block{
   .title, strong{
     color: @gray-dark;
   }
