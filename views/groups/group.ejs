@@ -1,6 +1,18 @@
 <div class="row mb-4">
   <div class="col-md">
-    <button type="button" class="btn btn-default float-right"onClick="location.href='group-list'">Retour à la liste</button>
+    <button type="button" class="btn btn-default" onClick="location.href='group-list'">Retour à la liste</button>
+  </div>
+  <div class="col-md">
+    <div class="dropdown float-right">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        2018/2019
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -74,7 +86,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr onclick="location.href='bet'">
+            <tr onclick="location.href='bet'" style="cursor: pointer;">
               <td>Serie A</td>
               <td class="text-center">31.08.2018</td>
               <td>Milan AC</td>

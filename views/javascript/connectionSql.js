@@ -1,3 +1,5 @@
+'use strict';
+
 const mysql = require('mysql');
 
 var con = mysql.createConnection({
@@ -8,4 +10,4 @@ var con = mysql.createConnection({
   socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 });
 
-expor
+exports.con = con;

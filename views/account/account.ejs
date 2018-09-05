@@ -1,33 +1,30 @@
 <div class="row">
 
   <div class="col-md-4">
+    <div class="card card-green mb-4">
+      <div class=" card-header card-title text-center">
+        <h2><script>getUsername(3)</script></h2>
+      </div>
 
-    <div class="row mb-4">
-      <div class="card card-green">
-        <div class=" card-header card-title text-center">
-          <h2><script>getUsername(3)</script></h2>
-        </div>
+      <div class="card-body">
+        <dl class="row">
+          <dt class="col-sm-4">Prénom</dt>
+          <dd class="col-sm-8">Marc</dd>
 
-        <div class="card-body">
-          <dl class="row">
-            <dt class="col-sm-6">Prénom</dt>
-            <dd class="col-sm-6">Marc</dd>
+          <dt class="col-sm-4">Nom</dt>
+          <dd class="col-sm-8">Vachon</dd>
 
-            <dt class="col-sm-6">Nom</dt>
-            <dd class="col-sm-6">Vachon</dd>
-
-            <dt class="col-sm-6">Email</dt>
-            <dd class="col-sm-6">vachon.marc@outlook.com</dd>
-            <hr/>
-            <dt class="col-sm-6">Date d'inscription</dt>
-            <dd class="col-sm-6">30 août 2018</dd>
-          </dl>
-        </div>
+          <dt class="col-sm-4">Email</dt>
+          <dd class="col-sm-8">vachon.marc@outlook.com</dd>
+          <hr/>
+          <dt class="col-sm-4">Inscription</dt>
+          <dd class="col-sm-8">30 août 2018</dd>
+        </dl>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6 pl-0 mb-4">
+    <div class="row mb-4">
+      <div class="col-md-6">
         <div class="card card-lil-stat">
           <div class="card-body">
             <h6 class="text-uppercase mt-0"><small>Niveau</small></h6>
@@ -36,7 +33,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 pr-0 mb-4">
+      <div class="col-md-6">
         <div class="card card-lil-stat">
           <div class="card-body">
             <h6 class="text-uppercase mt-0"><small>XP</small></h6>
@@ -45,8 +42,10 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-6 pl-0 mb-4">
+    <div class="row mb-4">
+      <div class="col-md-6">
         <div class="card card-lil-stat">
           <div class="card-body">
             <h6 class="text-muted text-uppercase mt-0"><small>BB cette année</small></h6>
@@ -57,7 +56,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 pr-0 mb-4">
+      <div class="col-md-6">
         <div class="card card-lil-stat">
           <div class="card-body">
             <h6 class="text-muted text-uppercase mt-0"><small>BB total</small></h6>
@@ -67,11 +66,34 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12 pl-0 pr-0">
+    <div class="row mb-4">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <h2><a href="my-groups" class="link-green">Mes groupes</a></h2>
+            <h2 class="link-green"><a href="group-list">Mes groupes</a></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-lil-stat">
+          <div class="card-body">
+            <h6 class="text-muted text-uppercase mt-0"><small>Ratio p/m</small></h6>
+            <h2>1.15</h2>
+            <span class="badge badge-success">32</span>
+            <span class="text-muted">ème mondial</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-lil-stat">
+          <div class="card-body">
+            <h6 class="text-muted text-uppercase mt-0"><small>Classement </small></h6>
+            <h2>1er</h2>
+            <span class="badge badge-success"></span>
+            <span class="text-muted">mondial</span>
           </div>
         </div>
       </div>
@@ -99,13 +121,7 @@
       <div class="col-md-3">
         <div class="card">
           <div class="card-body">
-            <div class="col-md-4 py-1">
-              <div class="card">
-                <div class="card-body">
-                  <canvas id="chDonut1"></canvas>
-                </div>
-              </div>
-            </div>
+            <h2>Parfait</h2>
           </div>
         </div>
       </div>
@@ -147,7 +163,7 @@
           <div class="card-body">
 
             <h4 class="d-inline-block">Mes derniers BinchBet</h4>
-            <button type="button" class="btn btn-default float-right">Tout afficher</button>
+            <button type="button" class="btn btn-default float-right" onclick="location.href='bet-list'">Tout afficher</button>
             <table class="table table-bordered mt-4 mb-0">
               <thead>
                 <tr>

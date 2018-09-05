@@ -81,7 +81,7 @@ h1{
   font-size: 15px;
   padding: 0 20px;
   transition: 0.3s;
-  &:hover{
+  &:hover, &.active{
     background-color: darken(@green, 7%);
     color: @green-lighter;
     transition: 0.3s;
@@ -96,10 +96,13 @@ h1{
 .text-gray{
   color: @gray-light;
 }
-.link-green{
+.link-green a{
   color: @green;
   &:hover{
     color: lighten(@green, 15%);
+  }
+  &.active{
+    text-decoration: underline;
   }
 }
 input[type=text]{
@@ -141,15 +144,15 @@ nav.nav{
   }
   .sidebar-header{
     background-color: @green-dark;
-    height: 15%;
+    height: 10%;
   }
   .sidebar-title{
     padding: 30px 30px 10px 30px;
   }
   .sidebar-body{
     overflow: auto;
-    top: 15%;
-    height: 70%;
+    top: 10%;
+    height: 75%;
   }
   .sidebar-footer{
     background-color: @green-dark;
@@ -180,6 +183,18 @@ nav.nav{
   #imgNav{
     width: 60px;
     margin: 0 auto;
+  }
+}
+.nav-pills{
+  .nav-item .active{
+    background-color: @green;
+    color: @green-lighter;
+  }
+  a{
+    color: @green;
+    &:hover{
+      color: lighten(@green, 15%);
+    }
   }
 }
 

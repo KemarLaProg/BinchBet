@@ -60,9 +60,20 @@ app.get('/newss', function(req, res) {
   res.render('main.ejs', {page: 'news/news.ejs'});
 });
 
+//admin
+app.get('/add-data', function(req, res) {
+  res.render('main.ejs', {page: 'admin/add-data.ejs'});
+});
+
 //help
-app.get('/help', function(req, res) {
-  res.render('main.ejs', {page: 'help.ejs'});
+app.get('/faq', function(req, res) {
+  res.render('main.ejs', {page: 'other/faq.ejs'});
+});
+app.get('/about', function(req, res) {
+  res.render('main.ejs', {page: 'other/about.ejs'});
+});
+app.get('/contact', function(req, res) {
+  res.render('main.ejs', {page: 'other/contact.ejs'});
 });
 
 //other

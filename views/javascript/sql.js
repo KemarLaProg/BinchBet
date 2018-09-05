@@ -1,3 +1,5 @@
+'use strict';
+
 function getUsername(id){
   con.connect(function(err) {
     if (err) throw err;
