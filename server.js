@@ -68,7 +68,6 @@ app.get('/accounts', function(req, res){
   page_to_load.page = "account/account.ejs";
 
   res.render('main.ejs', {page_to_load});
-  res.sendfile('localhost:8080/account/account.ejs');
 
   empty_ptl();
 });
@@ -230,6 +229,19 @@ app.get('/fetch.json', function(req, app_res) {
 app.use(function(req, res, next){
   res.setHeader('Content-Type', 'text/plain');
   res.status(404).send('Page introuvable !');
+});
+
+io.sockets.on('connection', function (socket, pseudo) {
+    // Dès qu'on nous donne un pseudo, on le stocke en variable de session et on informe les autres personnes
+    socket.on('nouveau_client', function(pseudo) {
+        pseudo = ent.encode(pseudo);
+        socket.pseudo = pseudo;
+        socket.broadcast.emit('nouveau_client', pseudo);
+    });
+    socket.on('message', function (message) {
+        message = ent.encode(message);
+        socket.broadcast.emit('message', {pseudo: socket.pseudo, message: message});
+    });
 });
 
 
