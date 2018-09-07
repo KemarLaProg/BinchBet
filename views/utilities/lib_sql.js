@@ -1,7 +1,4 @@
 'use strict';
-const connection = require('connection_db');
-
-
 
 
 // ACCOUNT
@@ -46,7 +43,7 @@ function getBet(id){
 
 }
 
-function getBetList(id, array()){
+function getBetList(id, array){
 
 }
 
@@ -76,3 +73,5 @@ function getNews(id){
     });
   });
 }
+
+module.exports = result;

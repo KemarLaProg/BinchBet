@@ -1,26 +1,32 @@
-var express = require('express');
+// var config = require('./views/utilities/connection_db.js')
+// var dbOptions = {
+// host:         config.database.host,
+// user:         config.database.user,
+// password:     config.database.password,
+// database:     config.database.database,
+// socketPath:   config.database.socketPath
+// }
+//
+// app.use(myConnection(mysql, dbOptions, 'pool'));
+
+var express = require('express'),
 //var morgan = require('morgan'); // Charge le middleware de logging
 //var bodyParser = require('body-parser');
 //var favicon = require('serve-favicon'); // Charge le middleware de favicon
-var request = require('request');
-var mysql = require('mysql');
-var https = require('https');
-var myConnection = require('express-myconnection')
+request = require('request'),
+//var mysql = require('mysql');
+https = require('https'),
+http = require('http'),
+//var myConnection = require('express-myconnection')
 
-var app = express();
+app = express(),
 
-/*
-var config = require('./views/utilities/connection_db.js')
-var dbOptions = {
-host:         config.database.host,
-user:         config.database.user,
-password:     config.database.password,
-database:     config.database.database,
-socketPath:   config.database.socketPath
-}
+server = require('http').createServer(app),
+io = require('socket.io').listen(server);
 
-app.use(myConnection(mysql, dbOptions, 'pool'));
-*/
+io.sockets.on('connection', function (socket) {
+    console.log('Un client est connecté !');
+});
 
 
 app.use(express.static(__dirname + "/views"));
@@ -62,6 +68,7 @@ app.get('/accounts', function(req, res){
   page_to_load.page = "account/account.ejs";
 
   res.render('main.ejs', {page_to_load});
+  res.sendfile('localhost:8080/account/account.ejs');
 
   empty_ptl();
 });
