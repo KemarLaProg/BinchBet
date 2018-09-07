@@ -2,10 +2,24 @@ var express = require('express');
 //var morgan = require('morgan'); // Charge le middleware de logging
 //var bodyParser = require('body-parser');
 //var favicon = require('serve-favicon'); // Charge le middleware de favicon
-const request = require('request');
-const https = require('https');
+var request = require('request');
+var mysql = require('mysql');
+var https = require('https');
+var myConnection = require('express-myconnection')
 
 var app = express();
+
+var config = require('./views/utilities/connection_db.js')
+var dbOptions = {
+    host:         config.database.host,
+    user:         config.database.user,
+    password:     config.database.password,
+    database:     config.database.database,
+    socketPath:   config.database.socketPath
+}
+
+app.use(myConnection(mysql, dbOptions, 'pool'));
+
 
 app.use(express.static(__dirname + "/views"));
 app.set('view engine', 'ejs');
