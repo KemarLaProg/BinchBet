@@ -17,23 +17,32 @@
     <%- include('includes/main_nav.inc.ejs'); %>
 
     <section id="content">
-      <div class="row">
+      <% if(page_to_load.title !== ''){ %>
+      <div class="row mb-4">
         <div class="col-md">
-          <h4 class="d-inline-block">Page</h4>
-          <nav aria-label="breadcrumb" class="float-right">
-            <ol class="breadcrumb pr-0">
-              <li class="breadcrumb-item"><a href="index">Binchbet</a></li>
-              <li class="breadcrumb-item"><a href="group-list">Groups</a></li>
-              <li class="breadcrumb-item"><a href="group">Nom du groupe</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Paris</li>
-            </ol>
-          </nav>
+          <h4 class="d-inline-block"><%- page_to_load.title%></h4>
+
+          <!-- If there's a path -->
+          <% if(page_to_load.path.length != 0){ %>
+            <nav aria-label="breadcrumb" class="float-right">
+              <ol class="breadcrumb p-0">
+                <% for(var i = 0; i < page_to_load.path.length; i++) { %>
+                  <li class="breadcrumb-item">
+                    <a href="<%= page_to_load.path[i] %>">
+                      <%= page_to_load.path[i] %>
+                    </a>
+                  </li>
+                <% } %>
+              </ol>
+            </nav>
+          <% } %>
         </div>
       </div>
+      <% } %>
 
       <!--include the content of the page request
       from server.js-->
-      <%- include(page);%>
+      <%- include(page_to_load.page);%>
     </section>
 
   </main>

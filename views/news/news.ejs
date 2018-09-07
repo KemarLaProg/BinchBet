@@ -22,18 +22,26 @@ function btn_init(w, h){
   $('#back-top').css('left', w*85/100 );
   $('#back-top').css('top', h*85/100);
   $('#back-top').css('z-index', '1');
+  $('#back-top').css('opacity', '0.8');
 }
 
 function btn_appear(s, h) {
   if (s < h) {
-    $('#back-top').hide();
+    $('#back-top').fadeOut('slow');
   } else {
-    $('#back-top').show();
+    $('#back-top').fadeIn('slow');
   }
 }
+
+
+function back_top(){
+  $('html, body').animate({scrollTop:0}, 300);
+}
+
+
 </script>
 
-<button type="button" id="back-top" class="btn btn-default position-fixed" onClick="$(window).scrollTop(0);">On monte</button>
+<button type="button" id="back-top" class="btn btn-default position-fixed" onClick="back_top();">On monte</button>
 
 <div class="row mb-4">
   <div class="col-md">
