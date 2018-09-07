@@ -1,4 +1,4 @@
- 'use strict';
+'use strict';
 
 const mysql = require('mysql');
 
@@ -12,7 +12,7 @@ var con = mysql.createConnection({
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected!");
+  console.log("SQL: Connected!");
 });
 
 exports.con = con;
