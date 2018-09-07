@@ -14,7 +14,7 @@ $ cat .git/info/exclude
 # ignore objects and archives, anywhere in the tree.
 
 # Folder:
-node_modules/
+# node_modules/
 
 # Files :
 .DS_Store
