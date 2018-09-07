@@ -14,7 +14,7 @@ var express = require('express'),
 //var bodyParser = require('body-parser');
 //var favicon = require('serve-favicon'); // Charge le middleware de favicon
 request = require('request'),
-//var mysql = require('mysql');
+mysql = require('mysql'),
 https = require('https'),
 http = require('http'),
 //var myConnection = require('express-myconnection')
@@ -22,7 +22,8 @@ http = require('http'),
 app = express(),
 
 server = require('http').createServer(app),
-io = require('socket.io').listen(server);
+io = require('socket.io').listen(server)
+bdd = require('./views/utilities/connection_db.js').con;
 
 io.sockets.on('connection', function (socket) {
     console.log('Un client est connecté !');
