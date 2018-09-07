@@ -17,5 +17,5 @@ $ cat .git/info/exclude
 node_modules/
 
 # Files :
-.DS_Store
-./package-lock.json
+*.DS_Store
+package-lock.json
