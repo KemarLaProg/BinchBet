@@ -9,17 +9,17 @@
 //
 // app.use(myConnection(mysql, dbOptions, 'pool'));
 
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var express = require('express'),
+    app = express(),
+    http = require('http').Server(app),
+    io = require('socket.io')(http),
 //var morgan = require('morgan'); // Charge le middleware de logging
 //var favicon = require('serve-favicon'); // Charge le middleware de favicon
-var request = require('request');
-var mysql = require('mysql');
-var https = require('https');
+    request = require('request'),
+    mysql = require('mysql'),
+    https = require('https'),
 //var myConnection = require('express-myconnection')
-var bdd = require('./mysql_utilities/connection_db').con;
+    bdd = require('./views/mysql_utilities/connection_db');
 
 app.use(express.static(__dirname + "/views"));
 app.set('view engine', 'ejs');

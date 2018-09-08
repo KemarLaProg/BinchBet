@@ -2,7 +2,7 @@
 
 const mysql = require('mysql');
 
-var con = mysql.createConnection({
+var db = mysql.createConnection({
   host: "localhost",
   user: "admin",
   password: "1",
@@ -10,9 +10,9 @@ var con = mysql.createConnection({
   socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 });
 
-con.connect(function(err) {
+db.connect(function(err) {
   if (err) throw err;
   console.log("SQL: Connected!");
 });
 
-exports.con = con;
+exports.db = db;
