@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Testing socket.io</title>
+  </head>
+  <body>
+    <h1 id="socketio"> not connected </h1>
+    <div id="display"> </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('connect', function() {
+        document.getElementById("socketio").innerHTML = "socket connected";
+      });
+      socket.on('showrows', function(rows) {
+        var html='';
+        for (var i=0; i<rows.length; i++) {
+          html += rows[i].username + ' ' + rows[i].password + '<br>';
+        }
+        document.getElementById("display").innerHTML = html;
+        console.log(rows);
+      });
+    </script>
+
+<p id="display">
+</p>
+
+
+  </body>
+</html>
