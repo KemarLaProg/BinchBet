@@ -1,7 +1,22 @@
 'use strict';
 //import {db} from './connection_db';
+const mysql = require('mysql');
+const request = require('request');
 
-var db = require('./connect_db'),
+var db = mysql.createConnection({
+  host: "localhost",
+  user: "admin",
+  password: "1",
+  database: "binchBet_db",
+  port: 8889
+});
+
+db.connect(function(err) {
+  if (err) throw err;
+  console.log("SQL: Connected!");
+});
+
+
 // ACCOUNT
 
 function login(usr, pwd){
@@ -12,16 +27,15 @@ function registration(){
 
 }
 
-function getUsername(id){
-  db.con.connect(function(err) {
-    if (err) throw err;
-    db.con.query("SELECT * FROM t_user WHERE id_user = " + id, function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-      return result;
-    });
+function getUsername(id, callback){
+  db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result, fields) {
+    if(err) throw err;
+  //  console.log(result);
+    callback(result);
   });
 }
+
+
 
 
 // GROUPS

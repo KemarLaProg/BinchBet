@@ -4,23 +4,44 @@
     <title>Testing socket.io</title>
   </head>
   <body>
-    <h1 id="socketio"> not connected </h1>
-    <div id="display"> </div>
+    <h1 id="socketio"> Not connected </h1>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io();
+      var socket = io.connect('http://localhost:3000');
+
+      // emmit event
+      socket.emit('getUsername', 3);
+
+      // receive event
       socket.on('connect', function() {
         document.getElementById("socketio").innerHTML = "socket connected";
       });
-      socket.on('showrows', function(rows) {
+      socket.on('getUsername', function(data){
+        document.getElementById("display").innerHTML = data[0].username;
+        console.log(data[0].username);
+      });
+
+
+
+
+/*
+
+            socket.on('echo', function(data){
+              console.log(data);
+            });
+            socket.emit('echo', 'this is a message');
+*/
+      /*
+      socket.on('usr', function(data) {
         var html='';
         for (var i=0; i<rows.length; i++) {
           html += rows[i].username + ' ' + rows[i].password + '<br>';
         }
         document.getElementById("display").innerHTML = html;
         console.log(rows);
-      });
+      });*/
     </script>
+    <p id="display"> </p>
 
 
   </body>
