@@ -37,19 +37,11 @@ app.get('/accounts', function(req, res){
   empty_ptl();
 });
 app.get('/login', function(req, res) {
-  page_to_load.page = "account/login.ejs";
 
-  res.render('main.ejs', {page_to_load});
-
-  empty_ptl();
-
+  res.render('account/login.ejs');
 });
 app.get('/registration', function(req, res) {
-  page_to_load.page = "account/registration.ejs";
-
-  res.render('main.ejs', {page_to_load});
-
-  empty_ptl();
+  res.render('account/registration.ejs');
 });
 
 //groups

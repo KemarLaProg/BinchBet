@@ -1,35 +1,42 @@
 <script>
 $(document).ready(function(){
 
+  // Set trigger and container variables
+  var trigger = $('#nav_api li a'),
+  container = $('#show_content');
 
+  // Fire on click
+  trigger.on('click', function(){
+    // Set $this for re-use. Set target from data attribute
+    var $this = $(this),
+    target = $this.data('target');
 
+    //$(this).addClass('active').siblings().removeClass('active');
+
+    // Load target page into container
+    container.load('admin/data/' + target + '.ejs');
+
+    // Stop normal link behavior
+    return false;
+  });
 });
 
-// Load content c at position p.
-// c = content
-// p = position (id)
-function load_content(c, p){
-  $(p).show(c);
-}
 </script>
 <div class="row mb-4">
   <div class="col-md-4 text-right" style="padding: .5em">
     <span class="badge badge-danger">100</span>
     <span>requêtes restantes</span>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4" id="nav_api">
     <ul class="nav nav-pills justify-content-center">
       <li class="nav-item">
-        <a class="nav-link" href="#">Equipe</a>
+        <a class="nav-link" href="#" data-target="teams">Equipe</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Compétition</a>
+        <a class="nav-link" href="#" data-target="competitions">Compétition</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Match</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Disabled</a>
+        <a class="nav-link" href="#" data-target="games">Match</a>
       </li>
     </ul>
   </div>
@@ -49,187 +56,8 @@ function load_content(c, p){
       </div>
     </div>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-8" id="show_content">
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="title">Equipes</h2>
-          </div>
-          <div class="card-body">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th class="text-center">id</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Milan AC</td>
-                  <td class="text-center">8</td>
-                </tr>
-                <tr>
-                  <td>Real Madrid</td>
-                  <td class="text-center"></td>
-                </tr>
-                <tr>
-                  <td>Manchester United</td>
-                  <td class="text-center"></td>
-                </tr>
-                <tr>
-                  <td>Juventus</td>
-                  <td class="text-center"></td>
-                </tr>
-                <tr>
-                  <td>Bayern</td>
-                  <td class="text-center"></td>
-                </tr>
-                <tr>
-                  <td>PSG</td>
-                  <td class="text-center"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="title">Compétitions</h2>
-          </div>
-          <div class="card-body">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th class="text-center">id</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Premier League</td>
-                  <td class="text-center">7</td>
-                </tr>
-                <tr>
-                  <td>Liga</td>
-                  <td class="text-center">8</td>
-                </tr>
-                <tr>
-                  <td>Serie A</td>
-                  <td class="text-center"></td>
-                </tr>
-                <tr>
-                  <td>Bundesliga</td>
-                  <td class="text-center"></td>
-                </tr>
-                <tr>
-                  <td>Lique 1</td>
-                  <td class="text-center"></td>
-                </tr>
-                <tr>
-                  <td>Champions League</td>
-                  <td class="text-center"></td>
-                </tr>
-                <tr>
-                  <td>Europa League</td>
-                  <td class="text-center"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="tite">Filtres</h2>
-          </div>
-          <div class="card-body">
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="title">Compétitions</h2>
-          </div>
-          <div class="card-body">
-            <table class="table table-bordered mb-0">
-              <thead>
-                <tr>
-                  <th scope="col">Championnat</th>
-                  <th scope="col" class="text-center">Date</th>
-                  <th scope="col" class="text-center">Heures</th>
-                  <th scope="col">Domicile</th>
-                  <th scope="col" class="text-center">Score</th>
-                  <th scope="col" class="text-right">Extérieur</th>
-                  <th scope="col" class="text-center">Mon BB</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr onclick="location.href='bet'">
-                  <td>Serie A</td>
-                  <td class="text-center">31.08.2018</td>
-                  <td class="text-center">20h30</td>
-                  <td>Milan AC</td>
-                  <td class="text-center">2 – 1</td>
-                  <td class="text-right">AS Rome</td>
-                  <td class="text-center">2 – 1</td>
-                </tr>
-                <tr>
-                  <td>Premier League</td>
-                  <td class="text-center">27.08.2018</td>
-                  <td class="text-center">20h30</td>
-                  <td>Manchester United</td>
-                  <td class="text-center">0 – 3</td>
-                  <td class="text-right">Tottenham</td>
-                  <td class="text-center">2 – 3</td>
-                </tr>
-                <tr>
-                  <td>Liga</td>
-                  <td rowspan="2" class="text-center">26.08.2018</td>
-                  <td class="text-center">20h30</td>
-                  <td>Séville</td>
-                  <td class="text-center">0 – 0</td>
-                  <td class="text-right">Villareal</td>
-                  <td class="text-center">3 – 1</td>
-                </tr>
-                <tr>
-                  <td>Bundesliga</td>
-                  <td class="text-center">20h30</td>
-                  <td>B. Dortmund</td>
-                  <td class="text-center">3 – 1</td>
-                  <td class="text-right">RB Leipzig</td>
-                  <td class="text-center">2 – 1</td>
-                </tr>
-                <tr>
-                  <td>Serie A</td>
-                  <td class="text-center">25.08.2018</td>
-                  <td class="text-center">20h30</td>
-                  <td>Naples</td>
-                  <td class="text-center">3 – 2</td>
-                  <td class="text-right">Milan AC</td>
-                  <td class="text-center">0 – 1</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
 </div>
