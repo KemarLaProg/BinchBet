@@ -3,6 +3,12 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var bdd = require('./connect_db'),
+sql_func = require('./lib_sql');
+
+
+
+
 app.get('/', function(req, res){
   res.sendfile('index.html');
   //res.sendfile('/login/');
@@ -10,15 +16,18 @@ app.get('/', function(req, res){
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "admin",
-  password: "1",
-  database: "binchBet_db",
-  port: 8889
+
+
+io.on('connection', function(){
+  sql_func.getUsername(3);
+
 });
 
 
+
+
+
+/*
 io.on('connection', function (socket) {
 
   console.log('a client connected');
@@ -31,3 +40,4 @@ io.on('connection', function (socket) {
   });
 
 });
+*/
