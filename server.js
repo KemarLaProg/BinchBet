@@ -30,10 +30,8 @@ var route = require('./route')(app);
 
 io.on('connection', function(socket){
   console.log("SERVER: Mex t'as vu ! j'ai chargé la page.");
-  socket.on('getUsername', function(data){
     var name = getUsername(3);
-    io.sockets.emit('getUsername', name)
-  });
+    socket.emit('getUsername', name)
   socket.on('disconnect', function(){
     console.log("SERVER: Mex t'as vu ! j'ai quitté la page.");
   });
