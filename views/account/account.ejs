@@ -5,11 +5,12 @@
       <div class=" card-header card-title text-center">
          <script>
           $(document).ready(function(){
-            var socket = io.connect('http://localhost:8080');
-            socket.on('getUsername', function(data){
-              $('#name').print(data);
-            })
-          })
+            var socket = io();
+            socket.on('getUsername', function(name){
+              document.getElementById("name").innerHTML = name;
+              console.log(name);
+            });
+          });
          </script>
         <h2 id="name"></h2>
       </div>
