@@ -6,9 +6,8 @@ function empty_ptl(){
   page_to_load.page = '';
 }
 
-
 module.exports = function(app){
-  
+
 // index
 app.get('/', function(req, res) {
   page_to_load.title = "Accueil";
