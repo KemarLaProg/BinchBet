@@ -1,6 +1,5 @@
 'use strict';
-var db = require('./connection_db');
-
+import {db} from './connection_db';
 // ACCOUNT
 
 function login(usr, pwd){
@@ -73,5 +72,3 @@ function getNews(id){
     });
   });
 }
-
-module.exports = result;
