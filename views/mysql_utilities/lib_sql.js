@@ -11,10 +11,20 @@ function registration(){
 
 }
 
+function getUserId(username, callback){
+
+}
+
 function getUsername(id, callback){
-    bdd.db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result, fields) {
+    bdd.db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result) {
       if(err) throw err;
-    //  console.log(result);
+      callback(result);
+    });
+}
+
+function getUser(id, callback){
+    bdd.db.query("SELECT * FROM t_user WHERE id_user = " + id, function (err, result) {
+      if(err) throw err;
       callback(result);
     });
 }

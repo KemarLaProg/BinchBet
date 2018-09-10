@@ -5,12 +5,25 @@
       <div class=" card-header card-title text-center">
          <script>
          var socket = io.connect('http://localhost:8080');
+
+         // emmit event
+         socket.emit('getUsername', 3);
+
+         // receive event
+         socket.on('getUsername', function(data){
+           document.getElementById("name").innerHTML = data[0].username;
+           console.log(data[0].username);
+         });
+
+
+         /*
+         var socket = io.connect('http://localhost:8080');
          $(document).ready(function () {
               socket.on('getUsername', function(name){
                 console.log(name[0].username);
                 document.getElementById("name").innerHTML = name[0].username;
               });
-          });
+          });*/
          </script>
         <h2 id="name"></h2>
       </div>
