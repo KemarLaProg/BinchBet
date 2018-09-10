@@ -1,6 +1,7 @@
 'use strict';
-//import {db} from './connection_db';
+var bdd = require('./connection_db');
 // ACCOUNT
+
 
 function login(usr, pwd){
 
@@ -10,15 +11,12 @@ function registration(){
 
 }
 
-function getUsername(id){
-  db.con.connect(function(err) {
-    if (err) throw err;
-    db.con.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-      return result;
+function getUsername(id, callback){
+    bdd.db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result, fields) {
+      if(err) throw err;
+    //  console.log(result);
+      callback(result);
     });
-  });
 }
 
 
@@ -72,3 +70,5 @@ function getNews(id){
     });
   });
 }
+
+exports.getUsername = getUsername;

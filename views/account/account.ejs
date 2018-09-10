@@ -4,12 +4,12 @@
     <div class="card card-green mb-4">
       <div class=" card-header card-title text-center">
          <script>
-          $(document).ready(function(){
-            var socket = io();
-            socket.on('getUsername', function(name){
-              document.getElementById("name").innerHTML = name;
-              console.log(name);
-            });
+         var socket = io.connect('http://localhost:8080');
+         $(document).ready(function () {
+              socket.on('getUsername', function(name){
+                console.log(name[0].username);
+                document.getElementById("name").innerHTML = name[0].username;
+              });
           });
          </script>
         <h2 id="name"></h2>

@@ -22,24 +22,25 @@ var express = require('express'),
     bdd = require('./views/mysql_utilities/connection_db'),
     sql_func = require('./views/mysql_utilities/lib_sql');
 
+    //launch server (listening on port: 8080)
+    http.listen(8080, function(){
+      console.log('SERVER: listening on localhost:8080');
+    });
+
 app.use(express.static(__dirname + "/views"));
 app.set('view engine', 'ejs');
 
 
 var route = require('./route')(app);
+var name;
 
 io.on('connection', function(socket){
   console.log("SERVER: Mex t'as vu ! j'ai chargé la page.");
-    var name = getUsername(3);
-    socket.emit('getUsername', name)
+    sql_func.getUsername(3, function(result){
+      console.log(result);
+      socket.emit('getUsername', result);
+    });
   socket.on('disconnect', function(){
     console.log("SERVER: Mex t'as vu ! j'ai quitté la page.");
   });
-});
-
-
-
-//launch server (listening on port: 8080)
-http.listen(8080, function(){
-  console.log('SERVER: listening on localhost:8080');
 });
