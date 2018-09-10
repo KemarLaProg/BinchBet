@@ -19,7 +19,8 @@ var express = require('express'),
     mysql = require('mysql'),
     https = require('https'),
 //var myConnection = require('express-myconnection')
-    bdd = require('./views/mysql_utilities/connection_db');
+    bdd = require('./views/mysql_utilities/connection_db'),
+    sql_func = require('./views/mysql_utilities/lib_sql');
 
 app.use(express.static(__dirname + "/views"));
 app.set('view engine', 'ejs');
@@ -29,6 +30,10 @@ var route = require('./route')(app);
 
 io.on('connection', function(socket){
   console.log("SERVER: Mex t'as vu ! j'ai chargé la page.");
+  socket.on('getUsername', function(data){
+    var name = getUsername(3);
+    io.sockets.emit('getUsername', name)
+  });
   socket.on('disconnect', function(){
     console.log("SERVER: Mex t'as vu ! j'ai quitté la page.");
   });

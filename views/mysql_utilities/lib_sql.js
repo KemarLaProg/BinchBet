@@ -1,5 +1,5 @@
 'use strict';
-import {db} from './connection_db';
+//import {db} from './connection_db';
 // ACCOUNT
 
 function login(usr, pwd){
