@@ -16,17 +16,17 @@ function getUserId(username, callback){
 }
 
 function getUsername(id, callback){
-    bdd.db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result) {
-      if(err) throw err;
-      callback(result);
-    });
+  bdd.db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result) {
+    if(err) throw err;
+    callback(result[0].username);
+  });
 }
 
-function getUser(id, callback){
-    bdd.db.query("SELECT * FROM t_user WHERE id_user = " + id, function (err, result) {
-      if(err) throw err;
-      callback(result);
-    });
+exports.getUser = function(id, callback){
+  bdd.db.query("SELECT * FROM t_user WHERE id_user = " + id, function (err, result) {
+    if(err) throw err;
+    callback(result[0]);
+  });
 }
 
 
@@ -80,15 +80,12 @@ function searchGame(){
 
 // NEWS
 
-function getNews(id){
-  con.connect(function(err) {
-    if (err) throw err;
-    con.query("SELECT * FROM t_news WHERE id_news = " + id, function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-      return result;
+exports.getNews = function(id, callback){
+  bdd.db.query("SELECT * FROM t_news WHERE id_news = " + id, function (err, result) {
+    if(err) throw err;
+    getUsername(result[0].author, function(username){
+      result[0].author = username;
+      callback(result[0]);
     });
   });
 }
-
-exports.getUsername = getUsername;

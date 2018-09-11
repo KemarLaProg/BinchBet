@@ -137,7 +137,7 @@ module.exports = function(app){
   app.get('/faq', function(req, res) {
     page_to_load.title = "FAQ";
     page_to_load.path.push('BinchBet', 'Help', 'FAQ');
-    page_to_load.page = "other/faq.ejs";
+    page_to_load.page = "help/faq.ejs";
 
     res.render('main.ejs', {page_to_load});
 
@@ -146,7 +146,7 @@ module.exports = function(app){
   app.get('/about', function(req, res) {
     page_to_load.title = "A propos";
     page_to_load.path.push('BinchBet', 'Help', 'A propos');
-    page_to_load.page = "other/about.ejs";
+    page_to_load.page = "help/about.ejs";
 
     res.render('main.ejs', {page_to_load});
 
@@ -155,7 +155,7 @@ module.exports = function(app){
   app.get('/contact', function(req, res) {
     page_to_load.title = "Contact";
     page_to_load.path.push('BinchBet', 'Help', 'Contact');
-    page_to_load.page = "other/contact.ejs";
+    page_to_load.page = "help/contact.ejs";
 
     res.render('main.ejs', {page_to_load});
 

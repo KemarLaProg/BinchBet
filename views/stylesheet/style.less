@@ -317,7 +317,14 @@ input[type=submit]{
 
 // ===== News =====
 .news-block{
-  height: 400px;
+  min-height: 400px;
+  .card-text{
+    height: 188px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
 }
 .news, .news-block{
   .title, strong{
