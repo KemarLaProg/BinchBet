@@ -3,8 +3,11 @@ var bdd = require('./connection_db');
 // ACCOUNT
 
 
-function login(usr, pwd){
-
+exports.login = function(usr, pwd){
+  bdd.db.query("SELECT id_user FROM t_user WHERE username = " + usr + " AND password = " + pwd, function (err, result) {
+    if(err) throw err;
+    callback(true);
+  });
 }
 
 function registration(){
@@ -35,16 +38,18 @@ exports.getUser = function(id, callback){
 function getGroup(id){
   bdd.db.query("SELECT * FROM t_group WHERE id = " + id , function (err, result) {
     if(err) throw err;
-    callback(result);
+    callback(result[0]);
   });
 }
 
 function getUsersFromGroup(id){
-  bdd.db.query("SELECT COUNT(id_user) FROM g_users WHERE id_group = " + id , function (err, result) {
+  bdd.db.query("SELECT COUNT(id_user) as number FROM g_users WHERE id_group = " + id , function (err, result) {
     if(err) throw err;
-    callback(result);
+    callback(result[0].number);
   });
 }
+
+
 
 function getGroupList(){
 

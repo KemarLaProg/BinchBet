@@ -23,6 +23,18 @@ module.exports = function(server){
       });
     });
 
+    socket.on('connectUser', function(usr,pwd){
+      sql.login(usr,pwd, function(result){
+        var destination = "./account.ejs";
+        if(result == true){
+          socket.emit('redirect', destination);
+        }
+        else{
+          socket.emit('redirect', false);
+        }
+      });
+    });
+
     socket.on('disconnect', function(){
       console.log("SOCKET: Mex t'as vu ! j'ai quitté la page.");
     });

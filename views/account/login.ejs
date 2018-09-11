@@ -13,9 +13,19 @@
 -->
 </head>
 <body>
-  <script src="/socket.io/socket.io.js"></script>
   <script>
   var socket = io.connect('http://localhost:8080');
+  $( "#btn" ).click(function() {
+    socket.emit('connectUser', $('#inputUsername').val(), $('#inputPassword').val());
+    socket.on('redirect', function(destination){
+    if(destination != false){
+      window.location.href = destination;
+    } else{
+
+    }
+    });
+
+  });
   </script>
   <main class="container-fluid">
     <form class="form-signin mt-5">
@@ -27,8 +37,8 @@
         </div>
 
         <div class="form-label-group">
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-          <label for="inputEmail">Email address</label>
+          <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+          <label for="inputUsername">Username</label>
         </div>
 
         <div class="form-label-group">
@@ -41,8 +51,8 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-default btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+        <button class="btn btn-lg btn-default btn-block" type="submit" id="btn">Sign in</button>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
       </form>
   </main>
 </body>
