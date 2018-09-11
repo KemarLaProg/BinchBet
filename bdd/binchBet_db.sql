@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 11, 2018 at 11:12 AM
+-- Generation Time: Sep 11, 2018 at 02:56 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -33,7 +33,7 @@ CREATE TABLE `g_games` (
 
 CREATE TABLE `g_users` (
   `id_group` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `username` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -58,7 +58,7 @@ CREATE TABLE `t_bet` (
   `id_bet` int(11) NOT NULL,
   `h_goal` int(2) NOT NULL COMMENT 'Home team goal(s).',
   `a_goal` int(2) NOT NULL COMMENT 'Away team goal(s).',
-  `id_user` int(11) NOT NULL,
+  `username` varchar(25) NOT NULL,
   `id_game` int(11) NOT NULL,
   `result` int(11) DEFAULT NULL COMMENT 'Id of the result''s rule.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -101,7 +101,9 @@ CREATE TABLE `t_game` (
 --
 
 CREATE TABLE `t_group` (
-  `id_group` int(11) NOT NULL
+  `id_group` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -116,7 +118,7 @@ CREATE TABLE `t_news` (
   `subtitle` varchar(40) DEFAULT NULL,
   `text` text NOT NULL,
   `date` date NOT NULL,
-  `author` int(11) NOT NULL
+  `author` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -124,7 +126,7 @@ CREATE TABLE `t_news` (
 --
 
 INSERT INTO `t_news` (`id_news`, `title`, `subtitle`, `text`, `date`, `author`) VALUES
-(1, 'Bienvenue', 'BinchBet ouvre ses portes, enfin.', '<p>Fusce ultricies eleifend enim, sit amet posuere ligula aliquam ut. Donec mattis diam quis ex molestie, ut volutpat neque rhoncus. Donec ullamcorper suscipit lorem dapibus ornare. Aliquam erat volutpat. Donec auctor, arcu ut porttitor rhoncus, nulla purus sollicitudin ante, quis faucibus velit ipsum et justo. Quisque at sagittis urna, vitae ultrices libero. Nullam tempor ultricies  velit, eu vehicula turpis aliquet sollicitudin. Morbi nec magna sollicitudin, hendrerit leo vel, pellentesque mi. Aliquam blandit lectus orci, in consectetur dolor dictum non. Sed gravida ipsum vitae ornare tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin vitae nulla pretium, aliquam mi eget, suscipit massa. Etiam molestie, felis eget aliquam maximus, turpis erat porttitor risus, ac aliquam enim tellus sit amet nunc.</p><p>Vivamus dapibus, velit non ultrices molestie, quam magna porta lacus, ut porttitor ipsum libero nec ipsum. Duis nibh nisl, egestas id aliquam nec, commodo scelerisque nibh. Aliquam quis sapien in ex gravida aliquam. Aliquam erat volutpat. Pellentesque varius, arcu et suscipit blandit, nibh libero imperdiet enim, nec lacinia velit neque ac tellus. Sed convallis quam sed sapien volutpat euismod. Integer suscipit orci non volutpat fringilla. Nam aliquet, arcu et gravida sollicitudin, leo enim consectetur nisl, vel hendrerit est magna a nisi. Nam tempus ipsum convallis eleifend fermentum. Nullam interdum urna justo, nec pretium ligula hendrerit sed. Sed pharetra, augue vitae interdum pharetra, ex erat consectetur odio, quis blandit nisi dolor in massa. Ut a mi vitae est pretium iaculis ac sit amet mi. Proin tempor justo magna.</p><p>Phasellus ac viverra nulla, vel congue dolor. Cras condimentum, urna quis consequat imperdiet, lacus mauris pharetra ligula, a laoreet orci eros in nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius blandit nisi porta eleifend. Vestibulum lobortis nunc ac accumsan pellentesque. Nullam condimentum cursus tortor, et laoreet turpis placerat at. Phasellus ac nunc finibus, vehicula risus ut, pellentesque tellus. Suspendisse congue lectus malesuada enim feugiat, id fermentum metus venenatis. Proin sed mi sem. Suspendisse potenti. Mauris tortor sem, ornare eget ex nec, molestie sollicitudin enim. Praesent et est molestie, posuere augue eu, fermentum ante. Maecenas sit amet rhoncus neque, ac ultricies ipsum. Aliquam sit amet elementum turpis. Integer sit amet laoreet nisl. Sed gravida at dui quis rutrum.</p><p>Mauris tempor, augue non pulvinar elementum, turpis dolor sagittis odio, vitae tristique sem enim eget lorem. In lobortis bibendum erat eget tincidunt. Nullam a ipsum finibus, dignissim tortor id, rutrum lacus. Donec at dignissim mi. Donec sit amet tincidunt quam, rhoncus placerat felis. Suspendisse ac sollicitudin urna, at tempus magna. Etiam suscipit ut tortor vitae facilisis. Sed rutrum nisi in ex convallis elementum. Mauris quis risus turpis. In laoreet mi ac euismod suscipit. Vivamus gravida sapien enim, eu venenatis mauris rhoncus in. Aliquam convallis vulputate nibh. Etiam sit amet fringilla nisi, in eleifend odio.</p><p>Mauris gravida, tortor a rutrum blandit, dolor felis rhoncus lorem, vitae auctor ante augue vitae felis. Fusce porta placerat metus. Cras scelerisque neque nec pulvinar placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer mollis sapien mattis, lacinia enim pharetra, ullamcorper tortor. Suspendisse rhoncus, quam at cursus consequat, nunc dolor eleifend mauris, at efficitur nisl urna nec justo. Vestibulum ligula velit, ornare a tristique in, ullamcorper vitae mi. Nullam facilisis urna in gravida fringilla.</p>', '2018-09-23', 3);
+(1, 'Bienvenue', 'BinchBet ouvre ses portes, enfin.', '<p>Fusce ultricies eleifend enim, sit amet posuere ligula aliquam ut. Donec mattis diam quis ex molestie, ut volutpat neque rhoncus. Donec ullamcorper suscipit lorem dapibus ornare. Aliquam erat volutpat. Donec auctor, arcu ut porttitor rhoncus, nulla purus sollicitudin ante, quis faucibus velit ipsum et justo. Quisque at sagittis urna, vitae ultrices libero. Nullam tempor ultricies  velit, eu vehicula turpis aliquet sollicitudin. Morbi nec magna sollicitudin, hendrerit leo vel, pellentesque mi. Aliquam blandit lectus orci, in consectetur dolor dictum non. Sed gravida ipsum vitae ornare tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin vitae nulla pretium, aliquam mi eget, suscipit massa. Etiam molestie, felis eget aliquam maximus, turpis erat porttitor risus, ac aliquam enim tellus sit amet nunc.</p><p>Vivamus dapibus, velit non ultrices molestie, quam magna porta lacus, ut porttitor ipsum libero nec ipsum. Duis nibh nisl, egestas id aliquam nec, commodo scelerisque nibh. Aliquam quis sapien in ex gravida aliquam. Aliquam erat volutpat. Pellentesque varius, arcu et suscipit blandit, nibh libero imperdiet enim, nec lacinia velit neque ac tellus. Sed convallis quam sed sapien volutpat euismod. Integer suscipit orci non volutpat fringilla. Nam aliquet, arcu et gravida sollicitudin, leo enim consectetur nisl, vel hendrerit est magna a nisi. Nam tempus ipsum convallis eleifend fermentum. Nullam interdum urna justo, nec pretium ligula hendrerit sed. Sed pharetra, augue vitae interdum pharetra, ex erat consectetur odio, quis blandit nisi dolor in massa. Ut a mi vitae est pretium iaculis ac sit amet mi. Proin tempor justo magna.</p><p>Phasellus ac viverra nulla, vel congue dolor. Cras condimentum, urna quis consequat imperdiet, lacus mauris pharetra ligula, a laoreet orci eros in nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius blandit nisi porta eleifend. Vestibulum lobortis nunc ac accumsan pellentesque. Nullam condimentum cursus tortor, et laoreet turpis placerat at. Phasellus ac nunc finibus, vehicula risus ut, pellentesque tellus. Suspendisse congue lectus malesuada enim feugiat, id fermentum metus venenatis. Proin sed mi sem. Suspendisse potenti. Mauris tortor sem, ornare eget ex nec, molestie sollicitudin enim. Praesent et est molestie, posuere augue eu, fermentum ante. Maecenas sit amet rhoncus neque, ac ultricies ipsum. Aliquam sit amet elementum turpis. Integer sit amet laoreet nisl. Sed gravida at dui quis rutrum.</p><p>Mauris tempor, augue non pulvinar elementum, turpis dolor sagittis odio, vitae tristique sem enim eget lorem. In lobortis bibendum erat eget tincidunt. Nullam a ipsum finibus, dignissim tortor id, rutrum lacus. Donec at dignissim mi. Donec sit amet tincidunt quam, rhoncus placerat felis. Suspendisse ac sollicitudin urna, at tempus magna. Etiam suscipit ut tortor vitae facilisis. Sed rutrum nisi in ex convallis elementum. Mauris quis risus turpis. In laoreet mi ac euismod suscipit. Vivamus gravida sapien enim, eu venenatis mauris rhoncus in. Aliquam convallis vulputate nibh. Etiam sit amet fringilla nisi, in eleifend odio.</p><p>Mauris gravida, tortor a rutrum blandit, dolor felis rhoncus lorem, vitae auctor ante augue vitae felis. Fusce porta placerat metus. Cras scelerisque neque nec pulvinar placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer mollis sapien mattis, lacinia enim pharetra, ullamcorper tortor. Suspendisse rhoncus, quam at cursus consequat, nunc dolor eleifend mauris, at efficitur nisl urna nec justo. Vestibulum ligula velit, ornare a tristique in, ullamcorper vitae mi. Nullam facilisis urna in gravida fringilla.</p>', '2018-09-23', 'KemarLePoulpe');
 
 -- --------------------------------------------------------
 
@@ -180,7 +182,6 @@ CREATE TABLE `t_team` (
 --
 
 CREATE TABLE `t_user` (
-  `id_user` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(40) NOT NULL,
   `firstname` varchar(25) DEFAULT NULL,
@@ -193,9 +194,9 @@ CREATE TABLE `t_user` (
 -- Dumping data for table `t_user`
 --
 
-INSERT INTO `t_user` (`id_user`, `username`, `password`, `firstname`, `lastname`, `email`, `rank`) VALUES
-(3, 'KemarLePoulpe', 'Super', 'Marc', 'Vachon', 'vachon.marc@outlook.com', 1),
-(4, 'Goat', 'Super', NULL, NULL, NULL, 1);
+INSERT INTO `t_user` (`username`, `password`, `firstname`, `lastname`, `email`, `rank`) VALUES
+('Goat', 'Super', 'Mattias', 'Mex', NULL, 1),
+('KemarLePoulpe', 'Super', 'Marc', 'Vachon', 'vachon.marc@outlook.com', 1);
 
 -- --------------------------------------------------------
 
@@ -232,7 +233,7 @@ ALTER TABLE `g_games`
 --
 ALTER TABLE `g_users`
   ADD KEY `id_group` (`id_group`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `username` (`username`) USING BTREE;
 
 --
 -- Indexes for table `s_rules`
@@ -247,9 +248,9 @@ ALTER TABLE `s_rules`
 --
 ALTER TABLE `t_bet`
   ADD PRIMARY KEY (`id_bet`),
-  ADD KEY `id_user` (`id_user`),
   ADD KEY `id_game` (`id_game`),
-  ADD KEY `result` (`result`);
+  ADD KEY `result` (`result`),
+  ADD KEY `username` (`username`);
 
 --
 -- Indexes for table `t_competition`
@@ -279,7 +280,7 @@ ALTER TABLE `t_group`
 --
 ALTER TABLE `t_news`
   ADD PRIMARY KEY (`id_news`),
-  ADD KEY `author` (`author`) USING BTREE;
+  ADD KEY `author` (`author`);
 
 --
 -- Indexes for table `t_prolongation`
@@ -309,7 +310,7 @@ ALTER TABLE `t_team`
 -- Indexes for table `t_user`
 --
 ALTER TABLE `t_user`
-  ADD PRIMARY KEY (`id_user`),
+  ADD PRIMARY KEY (`username`),
   ADD KEY `rank` (`rank`);
 
 --
@@ -383,12 +384,6 @@ ALTER TABLE `t_team`
   MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `t_user`
---
-ALTER TABLE `t_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `t_user_rank`
 --
 ALTER TABLE `t_user_rank`
@@ -409,8 +404,8 @@ ALTER TABLE `g_games`
 -- Constraints for table `g_users`
 --
 ALTER TABLE `g_users`
-  ADD CONSTRAINT `g_users_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`),
-  ADD CONSTRAINT `g_users_ibfk_2` FOREIGN KEY (`id_group`) REFERENCES `t_group` (`id_group`);
+  ADD CONSTRAINT `g_users_ibfk_2` FOREIGN KEY (`id_group`) REFERENCES `t_group` (`id_group`),
+  ADD CONSTRAINT `g_users_ibfk_3` FOREIGN KEY (`username`) REFERENCES `t_user` (`username`);
 
 --
 -- Constraints for table `s_rules`
@@ -423,7 +418,7 @@ ALTER TABLE `s_rules`
 -- Constraints for table `t_bet`
 --
 ALTER TABLE `t_bet`
-  ADD CONSTRAINT `t_bet_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`);
+  ADD CONSTRAINT `t_bet_ibfk_1` FOREIGN KEY (`username`) REFERENCES `t_user` (`username`);
 
 --
 -- Constraints for table `t_game`
@@ -440,7 +435,7 @@ ALTER TABLE `t_game`
 -- Constraints for table `t_news`
 --
 ALTER TABLE `t_news`
-  ADD CONSTRAINT `t_news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `t_user` (`id_user`);
+  ADD CONSTRAINT `t_news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `t_user` (`username`);
 
 --
 -- Constraints for table `t_user`
