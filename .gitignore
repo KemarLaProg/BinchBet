@@ -15,6 +15,7 @@ $ cat .git/info/exclude
 
 # Folder:
 node_modules/
+test/
 
 # Files :
 *.DS_Store
