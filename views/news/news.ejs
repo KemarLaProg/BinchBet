@@ -1,5 +1,42 @@
+<button type="button" id="back-top" class="btn btn-default position-fixed" onClick="back_top();">On monte</button>
+
+<div class="row mb-4">
+  <div class="col-md">
+    <button type="button" class="btn btn-default float-right"onClick="location.href='news-list'">Retour aux news</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5 offset-md-2">
+    <div class="news">
+      <h1 class="title"></h1>
+      <h4 class="subtitle"></h4>
+      <hr class="space-2">
+      <h6 class="mb-3"><strong id="author"></strong></h6>
+      <h6 class="mb-3"><small id="date"></small></h6>
+      <div id="text">
+    </div>
+      <hr>
+      <div class="news-conclusion">
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 $(document).ready(function () {
+
+  getNews(1, function(news){
+    $('.title').html(news.title);
+    $('.subtitle').html(news.subtitle);
+    $('#date').html(news.date);
+    $('#text').html(news.text);
+
+    getUsername(news.author, function(username){
+      $('#author').html("by " + username);
+      });
+  });
+
+
 
   var doc_height = $(window).height();
   var doc_width = $(window).width();
@@ -22,7 +59,6 @@ function btn_init(w, h){
   $('#back-top').css('left', w*85/100 );
   $('#back-top').css('top', h*85/100);
   $('#back-top').css('z-index', '1');
-  $('#back-top').css('opacity', '0.8');
 }
 
 function btn_appear(s, h) {
@@ -33,48 +69,7 @@ function btn_appear(s, h) {
   }
 }
 
-
 function back_top(){
   $('html, body').animate({scrollTop:0}, 300);
 }
-
-
 </script>
-
-<button type="button" id="back-top" class="btn btn-default position-fixed" onClick="back_top();">On monte</button>
-
-<div class="row mb-4">
-  <div class="col-md">
-    <button type="button" class="btn btn-default float-right"onClick="location.href='news-list'">Retour aux news</button>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-5 offset-md-2">
-    <div class="news">
-      <h1 class="title">Bienvenue.</h1>
-      <h4 class="subtitle">BinchBet ouvre ses portes, enfin!</h4>
-      <hr class="space-2">
-      <h6 class="mb-3"><strong>By KemarLePoulpe</strong></h6>
-      <h6 class="mb-3"><small>4 Septembre 2018</small></h6>
-      <p>
-        Fusce ultricies eleifend enim, sit amet posuere ligula aliquam ut. Donec mattis diam quis ex molestie, ut volutpat neque rhoncus. Donec ullamcorper suscipit lorem dapibus ornare. Aliquam erat volutpat. Donec auctor, arcu ut porttitor rhoncus, nulla purus sollicitudin ante, quis faucibus velit ipsum et justo. Quisque at sagittis urna, vitae ultrices libero. Nullam tempor ultricies  velit, eu vehicula turpis aliquet sollicitudin. Morbi nec magna sollicitudin, hendrerit leo vel, pellentesque mi. Aliquam blandit lectus orci, in consectetur dolor dictum non. Sed gravida ipsum vitae ornare tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin vitae nulla pretium, aliquam mi eget, suscipit massa. Etiam molestie, felis eget aliquam maximus, turpis erat porttitor risus, ac aliquam enim tellus sit amet nunc.
-      </p>
-      <p>
-        Vivamus dapibus, velit non ultrices molestie, quam magna porta lacus, ut porttitor ipsum libero nec ipsum. Duis nibh nisl, egestas id aliquam nec, commodo scelerisque nibh. Aliquam quis sapien in ex gravida aliquam. Aliquam erat volutpat. Pellentesque varius, arcu et suscipit blandit, nibh libero imperdiet enim, nec lacinia velit neque ac tellus. Sed convallis quam sed sapien volutpat euismod. Integer suscipit orci non volutpat fringilla. Nam aliquet, arcu et gravida sollicitudin, leo enim consectetur nisl, vel hendrerit est magna a nisi. Nam tempus ipsum convallis eleifend fermentum. Nullam interdum urna justo, nec pretium ligula hendrerit sed. Sed pharetra, augue vitae interdum pharetra, ex erat consectetur odio, quis blandit nisi dolor in massa. Ut a mi vitae est pretium iaculis ac sit amet mi. Proin tempor justo magna.
-      </p>
-      <p>
-        Phasellus ac viverra nulla, vel congue dolor. Cras condimentum, urna quis consequat imperdiet, lacus mauris pharetra ligula, a laoreet orci eros in nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius blandit nisi porta eleifend. Vestibulum lobortis nunc ac accumsan pellentesque. Nullam condimentum cursus tortor, et laoreet turpis placerat at. Phasellus ac nunc finibus, vehicula risus ut, pellentesque tellus. Suspendisse congue lectus malesuada enim feugiat, id fermentum metus venenatis. Proin sed mi sem. Suspendisse potenti. Mauris tortor sem, ornare eget ex nec, molestie sollicitudin enim. Praesent et est molestie, posuere augue eu, fermentum ante. Maecenas sit amet rhoncus neque, ac ultricies ipsum. Aliquam sit amet elementum turpis. Integer sit amet laoreet nisl. Sed gravida at dui quis rutrum.
-      </p>
-      <p>
-        Mauris tempor, augue non pulvinar elementum, turpis dolor sagittis odio, vitae tristique sem enim eget lorem. In lobortis bibendum erat eget tincidunt. Nullam a ipsum finibus, dignissim tortor id, rutrum lacus. Donec at dignissim mi. Donec sit amet tincidunt quam, rhoncus placerat felis. Suspendisse ac sollicitudin urna, at tempus magna. Etiam suscipit ut tortor vitae facilisis. Sed rutrum nisi in ex convallis elementum. Mauris quis risus turpis. In laoreet mi ac euismod suscipit. Vivamus gravida sapien enim, eu venenatis mauris rhoncus in. Aliquam convallis vulputate nibh. Etiam sit amet fringilla nisi, in eleifend odio.
-      </p>
-      <p>
-        Mauris gravida, tortor a rutrum blandit, dolor felis rhoncus lorem, vitae auctor ante augue vitae felis. Fusce porta placerat metus. Cras scelerisque neque nec pulvinar placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer mollis sapien mattis, lacinia enim pharetra, ullamcorper tortor. Suspendisse rhoncus, quam at cursus consequat, nunc dolor eleifend mauris, at efficitur nisl urna nec justo. Vestibulum ligula velit, ornare a tristique in, ullamcorper vitae mi. Nullam facilisis urna in gravida fringilla.
-      </p>
-      <hr>
-      <div class="news-conclusion">
-      </div>
-    </div>
-  </div>
-</div>
