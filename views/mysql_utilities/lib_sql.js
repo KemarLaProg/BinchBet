@@ -39,6 +39,13 @@ function getGroup(id){
   });
 }
 
+function getUsersFromGroup(id){
+  bdd.db.query("SELECT COUNT(id_user) FROM g_users WHERE id_group = " + id , function (err, result) {
+    if(err) throw err;
+    callback(result);
+  });
+}
+
 function getGroupList(){
 
 }
