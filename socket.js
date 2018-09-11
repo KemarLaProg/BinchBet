@@ -1,4 +1,5 @@
-var socket = require('socket.io');
+var sql = require('./views/mysql_utilities/lib_sql'),
+socket = require('socket.io');
 
 module.exports = function(server){
   var io = socket(server);
@@ -10,14 +11,14 @@ module.exports = function(server){
     //receive event
     socket.on('getUser', function(uid){
       console.log('SERVER: Received an id equal to ' + uid);
-      sql_func.getUser(uid, function(result){
+      sql.getUser(uid, function(result){
         socket.emit('getUser',result);
       });
     });
 
     socket.on('getNews', function(nid){
       console.log('SERVER: Received an id equal to ' + nid);
-      sql_func.getNews(nid, function(result){
+      sql.getNews(nid, function(result){
         socket.emit('getNews',result);
       });
     });

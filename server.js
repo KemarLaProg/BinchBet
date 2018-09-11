@@ -19,6 +19,6 @@ app.set('view engine', 'ejs');
 
 
 var bdd = require('./views/mysql_utilities/connection_db'),
-sql_func = require('./views/mysql_utilities/lib_sql'),
+sql = require('./views/mysql_utilities/lib_sql'),
 socket = require('./socket.js')(server),
 route = require('./route')(app);

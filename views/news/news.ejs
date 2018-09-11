@@ -8,7 +8,7 @@ $(document).ready(function () {
   socket.on('getNews', function(news){
     $(".news .title").html(news.title);
     $(".news .subtitle").html(news.subtitle);
-        $(".news #author").html(news.author);
+    $(".news #author").html("by " + news.author);
     $(".news #date").html(news.date);
     $(".news .card-text").html(news.text);
   });
