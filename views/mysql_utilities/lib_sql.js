@@ -16,24 +16,27 @@ function getUserId(username, callback){
 }
 
 function getUsername(id, callback){
-  bdd.db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result) {
-    if(err) throw err;
-    callback(result[0].username);
-  });
+    bdd.db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result) {
+      if(err) throw err;
+      callback(result);
+    });
 }
 
-exports.getUser = function(id, callback){
-  bdd.db.query("SELECT * FROM t_user WHERE id_user = " + id, function (err, result) {
-    if(err) throw err;
-    callback(result[0]);
-  });
+function getUser(id, callback){
+    bdd.db.query("SELECT * FROM t_user WHERE id_user = " + id, function (err, result) {
+      if(err) throw err;
+      callback(result);
+    });
 }
 
 
 // GROUPS
 
-function getGroup(id, season){
-
+function getGroup(id){
+  bdd.db.query("SELECT * FROM t_group WHERE id = " + id , function (err, result) {
+    if(err) throw err;
+    callback(result);
+  });
 }
 
 function getGroupList(){
@@ -70,12 +73,15 @@ function searchGame(){
 
 // NEWS
 
-exports.getNews = function(id, callback){
-  bdd.db.query("SELECT * FROM t_news WHERE id_news = " + id, function (err, result) {
-    if(err) throw err;
-    getUsername(result[0].author, function(username){
-      result[0].author = username;
-      callback(result[0]);
+function getNews(id){
+  con.connect(function(err) {
+    if (err) throw err;
+    con.query("SELECT * FROM t_news WHERE id_news = " + id, function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+      return result;
     });
   });
 }
+
+exports.getUsername = getUsername;
