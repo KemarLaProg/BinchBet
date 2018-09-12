@@ -5,11 +5,10 @@ var js_func = require('./js_func.inc.js');
 
 
 exports.login = function(usr, pwd, callback){
-  bdd.db.query("SELECT id_user FROM t_user WHERE username = '" + usr + "' AND password = '" + pwd + "'", function (err, result) {
+  bdd.db.query("SELECT username FROM t_user WHERE username = '" + usr + "' AND password = '" + pwd + "'", function (err, result) {
     if(err) throw err;
-    console.log(result);
     if(result[0] !== undefined){
-      callback(result[0].id_user);
+      callback(1);
     } else {
       callback(0);
     }

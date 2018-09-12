@@ -42,13 +42,10 @@ module.exports = function(app){
   });
 
   app.post('/login', function(req,res){
-  //   let sess = req.session;
+     let sess = req.session;
       sql.login(req.body.inputUsername, req.body.inputPassword, function(logged){
-        console.log(logged);
-        if (logged >= 1) {
-          var newUser = {id: req.body.inputUsername, password: req.body.inputPassword};
-          Users.push(newUser);
-          req.session.user = newUser;
+          if (logged >= 1) {
+            console.log("Logged");
           res.redirect('/accounts');
         }
         else res.redirect('/signin?failed=true');

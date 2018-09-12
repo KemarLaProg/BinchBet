@@ -6,7 +6,7 @@ mysql = require('mysql'),
 https = require('https'),
 bodyParser = require("body-parser"),
 session = require('express-session'),
-cookieParser = require('cookie-parser'),
+//cookieParser = require('cookie-parser'),
 app = express();
 
 
@@ -15,8 +15,14 @@ var server = app.listen(8080, function(){
   console.log('SERVER: listening on localhost:8080');
 });
 
-app.use(cookieParser()),
-app.use(session({secret: "KemarLeSegpa"})),
+//app.use(cookieParser());
+app.use(session({
+  secret: "KemarLeSegpa",
+  cookie:{ maxAge: 600000},
+  resave: true,
+  saveUninitialized: true,
+  store: express-mysql-session
+}));
 app.use(express.static(__dirname + "/views"));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
