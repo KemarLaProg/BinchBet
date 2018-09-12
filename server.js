@@ -20,14 +20,12 @@ app.use(session({
   secret: "KemarLeSegpa",
   cookie:{ maxAge: 600000},
   resave: true,
-  saveUninitialized: true,
-  store: express-mysql-session
+  saveUninitialized: true
 }));
+
 app.use(express.static(__dirname + "/views"));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-
-var Users = [];
 
 var bdd = require('./views/mysql_utilities/connection_db'),
 sql = require('./views/mysql_utilities/lib_sql'),

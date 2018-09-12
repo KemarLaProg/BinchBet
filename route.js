@@ -33,7 +33,10 @@ module.exports = function(app){
     page_to_load.path.push('BinchBet', 'Account');
     page_to_load.page = "account/account.ejs";
 
-    res.render('main.ejs', {page_to_load});
+    res.render('main.ejs', {
+      page_to_load
+  //    session : sess
+      });
 
     empty_ptl();
   });
@@ -42,7 +45,7 @@ module.exports = function(app){
   });
 
   app.post('/login', function(req,res){
-     let sess = req.session;
+    let sess = req.session;
       sql.login(req.body.inputUsername, req.body.inputPassword, function(logged){
           if (logged >= 1) {
             console.log("Logged");

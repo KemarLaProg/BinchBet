@@ -1,6 +1,6 @@
 var sql = require('./views/mysql_utilities/lib_sql'),
-socket = require('socket.io');
-
+    socket = require('socket.io')
+    
 module.exports = function(server){
   var io = socket(server);
 
@@ -22,7 +22,6 @@ module.exports = function(server){
         socket.emit('getNews',result);
       });
     });
-
     // socket.on('connectUser', function(usr,pwd){
     //   console.log('SERVER: Received ' + usr + ' + ' + pwd);
     //   sql.login(usr,pwd, function(result){
