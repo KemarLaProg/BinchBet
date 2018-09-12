@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 12, 2018 at 01:14 PM
+-- Generation Time: Sep 12, 2018 at 01:52 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -188,7 +188,7 @@ CREATE TABLE `t_user` (
   `lastname` varchar(25) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
   `registration` date NOT NULL,
-  `rank` int(11) NOT NULL
+  `rank` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -206,7 +206,7 @@ INSERT INTO `t_user` (`username`, `password`, `firstname`, `lastname`, `email`, 
 --
 
 CREATE TABLE `t_user_rank` (
-  `id_user_rank` int(11) NOT NULL,
+  `id_rank` int(2) NOT NULL,
   `rank` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -214,9 +214,10 @@ CREATE TABLE `t_user_rank` (
 -- Dumping data for table `t_user_rank`
 --
 
-INSERT INTO `t_user_rank` (`id_user_rank`, `rank`) VALUES
+INSERT INTO `t_user_rank` (`id_rank`, `rank`) VALUES
 (1, 'Admin'),
-(2, 'Gest');
+(3, 'Writer'),
+(5, 'Gest');
 
 --
 -- Indexes for dumped tables
@@ -318,7 +319,7 @@ ALTER TABLE `t_user`
 -- Indexes for table `t_user_rank`
 --
 ALTER TABLE `t_user_rank`
-  ADD PRIMARY KEY (`id_user_rank`);
+  ADD PRIMARY KEY (`id_rank`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -385,12 +386,6 @@ ALTER TABLE `t_team`
   MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `t_user_rank`
---
-ALTER TABLE `t_user_rank`
-  MODIFY `id_user_rank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- Constraints for dumped tables
 --
 
@@ -442,4 +437,4 @@ ALTER TABLE `t_news`
 -- Constraints for table `t_user`
 --
 ALTER TABLE `t_user`
-  ADD CONSTRAINT `t_user_ibfk_1` FOREIGN KEY (`rank`) REFERENCES `t_user_rank` (`id_user_rank`);
+  ADD CONSTRAINT `t_user_ibfk_1` FOREIGN KEY (`rank`) REFERENCES `t_user_rank` (`id_rank`);
