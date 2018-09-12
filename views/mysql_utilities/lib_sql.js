@@ -1,5 +1,6 @@
 'use strict';
 var bdd = require('./connection_db');
+var js_func = require('./js_func.inc.js');
 // ACCOUNT
 
 
@@ -26,16 +27,10 @@ function getUserId(username, callback){
 
 }
 
-function getUsername(id, callback){
-  bdd.db.query("SELECT username FROM t_user WHERE id_user = " + id, function (err, result) {
+exports.getUser = function(usr, callback){
+  bdd.db.query("SELECT * FROM t_user WHERE username = '" + usr + "'", function (err, result) {
     if(err) throw err;
-    callback(result[0].username);
-  });
-}
-
-exports.getUser = function(id, callback){
-  bdd.db.query("SELECT * FROM t_user WHERE id_user = " + id, function (err, result) {
-    if(err) throw err;
+    result[0].registration = js_func.changeDate(result[0].registration, 'month');
     callback(result[0]);
   });
 }
@@ -96,9 +91,7 @@ function searchGame(){
 exports.getNews = function(id, callback){
   bdd.db.query("SELECT * FROM t_news WHERE id_news = " + id, function (err, result) {
     if(err) throw err;
-    getUsername(result[0].author, function(username){
-      result[0].author = username;
-      callback(result[0]);
-    });
+    result[0].date = js_func.changeDate(result[0].date, 'month');
+    callback(result[0]);
   });
 }

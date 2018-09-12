@@ -9,9 +9,9 @@ module.exports = function(server){
     console.log('SOCKET: The socket is ', socket.id);
 
     //receive event
-    socket.on('getUser', function(uid){
-      console.log('SERVER: Received an id equal to ' + uid);
-      sql.getUser(uid, function(result){
+    socket.on('getUser', function(usr){
+      console.log('SERVER: Received an id equal to ' + usr);
+      sql.getUser(usr, function(result){
         socket.emit('getUser',result);
       });
     });

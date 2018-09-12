@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 11, 2018 at 02:56 PM
+-- Generation Time: Sep 12, 2018 at 01:14 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -187,6 +187,7 @@ CREATE TABLE `t_user` (
   `firstname` varchar(25) DEFAULT NULL,
   `lastname` varchar(25) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
+  `registration` date NOT NULL,
   `rank` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -194,9 +195,9 @@ CREATE TABLE `t_user` (
 -- Dumping data for table `t_user`
 --
 
-INSERT INTO `t_user` (`username`, `password`, `firstname`, `lastname`, `email`, `rank`) VALUES
-('Goat', 'Super', 'Mattias', 'Mex', NULL, 1),
-('KemarLePoulpe', 'Super', 'Marc', 'Vachon', 'vachon.marc@outlook.com', 1);
+INSERT INTO `t_user` (`username`, `password`, `firstname`, `lastname`, `email`, `registration`, `rank`) VALUES
+('Goat', 'Super', 'Mattias', 'Mex', NULL, '2018-09-01', 1),
+('KemarLePoulpe', 'Super', 'Marc', 'Vachon', 'vachon.marc@outlook.com', '2018-09-01', 1);
 
 -- --------------------------------------------------------
 

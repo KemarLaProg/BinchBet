@@ -6,22 +6,16 @@
          <script>
 
          // emmit event
-         socket.emit('getUser', 3);
+         socket.emit('getUser', 'KemarLePoulpe');
 
          // receive event
          socket.on('getUser', function(user){
            $("#user .title").html(user.username);
+           $("#firstname").html(user.firstname);
+           $("#lastname").html(user.lastname);
+           $("#email").html(user.email);
+           $("#registration").html(user.registration);
          });
-
-
-         /*
-         var socket = io.connect('http://localhost:8080');
-         $(document).ready(function () {
-              socket.on('getUsername', function(name){
-                console.log(name[0].username);
-                document.getElementById("name").innerHTML = name[0].username;
-              });
-          });*/
          </script>
         <h2 class="title"></h2>
       </div>
@@ -29,16 +23,16 @@
       <div class="card-body">
         <dl class="row">
           <dt class="col-sm-4">Prénom</dt>
-          <dd class="col-sm-8">Marc</dd>
+          <dd class="col-sm-8" id="firstname"></dd>
 
           <dt class="col-sm-4">Nom</dt>
-          <dd class="col-sm-8">Vachon</dd>
+          <dd class="col-sm-8" id="lastname"></dd>
 
           <dt class="col-sm-4">Email</dt>
-          <dd class="col-sm-8">vachon.marc@outlook.com</dd>
+          <dd class="col-sm-8" id="email"></dd>
           <hr/>
           <dt class="col-sm-4">Inscription</dt>
-          <dd class="col-sm-8">30 août 2018</dd>
+          <dd class="col-sm-8" id="registration"></dd>
         </dl>
       </div>
     </div>
