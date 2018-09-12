@@ -24,13 +24,14 @@ module.exports = function(server){
     });
 
     socket.on('connectUser', function(usr,pwd){
+      console.log('SERVER: Received ' + usr + ' + ' + pwd);
       sql.login(usr,pwd, function(result){
-        var destination = "./account.ejs";
+        var destination = "./accounts";
         if(result == true){
+          console.log("SERVER: Connection made");
           socket.emit('redirect', destination);
-        }
-        else{
-          socket.emit('redirect', false);
+        } else{
+        //  socket.emit('redirect', false);
         }
       });
     });

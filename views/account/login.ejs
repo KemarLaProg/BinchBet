@@ -13,20 +13,6 @@
 -->
 </head>
 <body>
-  <script>
-  var socket = io.connect('http://localhost:8080');
-  $( "#btn" ).click(function() {
-    socket.emit('connectUser', $('#inputUsername').val(), $('#inputPassword').val());
-    socket.on('redirect', function(destination){
-    if(destination != false){
-      window.location.href = destination;
-    } else{
-
-    }
-    });
-
-  });
-  </script>
   <main class="container-fluid">
     <form class="form-signin mt-5">
       <div class="text-center mb-4">
@@ -57,3 +43,19 @@
   </main>
 </body>
 </html>
+<script>
+var socket = io.connect('http://localhost:8080');
+$( "#btn" ).click(function() {
+  socket.emit('connectUser', $('#inputUsername').val(), $('#inputPassword').val());
+});
+socket.on('redirect', function(destination){
+  alert("FDP");
+  console.log("Fdp");
+//  if(destination =){
+    window.location.href = destination;
+//  } else{
+  //  console.log("ERROR");
+  //}
+});
+
+</script>

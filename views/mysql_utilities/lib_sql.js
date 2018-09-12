@@ -3,8 +3,8 @@ var bdd = require('./connection_db');
 // ACCOUNT
 
 
-exports.login = function(usr, pwd){
-  bdd.db.query("SELECT id_user FROM t_user WHERE username = " + usr + " AND password = " + pwd, function (err, result) {
+exports.login = function(usr, pwd, callback){
+  bdd.db.query("SELECT id_user FROM t_user WHERE username = '" + usr + "' AND password = '" + pwd + "'", function (err, result) {
     if(err) throw err;
     callback(true);
   });
