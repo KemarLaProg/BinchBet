@@ -1,21 +1,38 @@
 <script>
+$(document).ready(function () {
+
+  // emmit event
+  socket.emit('getNewsList', 1);
+
+  // receive event
+  socket.on('getNewsList', function(newsList){
+
+    newsList.forEach(function(news){
+
+      console.log(news.title);
+
+      $('#newsList').append("<div class='col-md-4 mb-4'>"+
+      "<div class='card news-block'>" +
+      "<div class='card-header pb-0'>" +
+      "<h2 class='title'>" + news.title + "</h2>" +
+      "<h5 class='subtitle'>" + news.subtitle + "</h5>" +
+      "</div>" +
+      "<div class='card-body'>" +
+      "<div class='card-text text-justify'>" +
+      "<p>" + news.text + "</p>" +
+      "</div>" +
+      "</div>" +
+      "<div class='card-footer'>" +
+      "<h6 class='text-muted text-uppercase d-inline-block'><small>" + news.date + "<small></h6>" +
+      "<button type='button' class='btn btn-default float-right' onClick=\"location.href='http://localhost:8080/newss/" + news.id_news + "'\">Lire en entier</button>" +
+      "</div>" +
+      "</div>" +
+      "</div>"
+    );
+
+  });
+});
+});
 </script>
-<div class="row">
-  <div class="col-md-4 mb-4">
-    <div class="card news-block">
-      <div class="card-header pb-0">
-        <h2 class="title">Bienvenue.</h2>
-        <h5 class="subtitle">BinchBet ouvre ses portes, enfin.</h5>
-      </div>
-      <div class="card-body">
-        <div class="card-text text-justify">
-          <p>Fusce ultricies eleifend enim, sit amet posuere ligula aliquam ut. Donec mattis diam quis ex molestie, ut volutpat neque rhoncus. Donec ullamcorper suscipit lorem dapibus ornare. Aliquam erat volutpat. Donec auctor, arcu ut porttitor rhoncus, nulla purus sollicitudin ante, quis faucibus velit ipsum et justo. Fusce ultricies eleifend enim, sit amet posuere ligula aliquam ut. Donec mattis diam quis ex molestie, ut volutpat neque rhoncus. Donec ullamcorper suscipit lorem dapibus ornare. Aliquam erat volutpat. Donec auctor, arcu ut porttitor rhoncus, nulla purus sollicitudin ante, quis faucibus velit ipsum et justo.</p>
-        </div>
-      </div>
-      <div class="card-footer">
-        <h6 class="text-muted text-uppercase d-inline-block"><small>02.09.2018<small></h6>
-          <button type="button" class="btn btn-default float-right" onClick="location.href='http://localhost:8080/newss'">Lire en entier</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="row" id="newsList">
+</div>

@@ -1,8 +1,13 @@
 'use strict';
 var bdd = require('./connection_db');
 var js_func = require('./js_func.inc.js');
-// ACCOUNT
 
+
+
+
+
+
+// ACCOUNT
 
 exports.login = function(usr, pwd, callback){
   bdd.db.query("SELECT username FROM t_user WHERE username = '" + usr + "' AND password = '" + pwd + "'", function (err, result) {
@@ -16,7 +21,7 @@ exports.login = function(usr, pwd, callback){
 }
 
 exports.register = function(usr,mail,pwd,callback){
-  bdd.db.query("INSERT INTO `t_user` (`username`, `password`, `email`, `rank`) VALUES ('" + usr + "','" + pwd + "','" + mail + "','2')", function (err, result) {
+  bdd.db.query("INSERT INTO `t_user` (`username`, `password`, `email`, `rank`) VALUES ('" + usr + "','" + pwd + "','" + mail + "','5')", function (err, result) {
     if(err) throw err;
     callback(true);
   });
@@ -38,7 +43,7 @@ exports.getUser = function(usr, callback){
 // GROUPS
 
 function getGroup(id){
-  bdd.db.query("SELECT * FROM t_group WHERE id = " + id , function (err, result) {
+  bdd.db.query("SELECT * FROM `t_group` WHERE id = " + id , function (err, result) {
     if(err) throw err;
     callback(result[0]);
   });
@@ -86,6 +91,19 @@ function searchGame(){
 
 
 // NEWS
+exports.getNewsList = function( callback){
+  bdd.db.query("SELECT * FROM t_news", function (err, result) {
+    if(err) throw err;
+
+    result.forEach(function(e){
+
+      e.date = js_func.changeDate(e.date, 'month');
+
+    });
+    console.log(result);
+    callback(result);
+  });
+}
 
 exports.getNews = function(id, callback){
   bdd.db.query("SELECT * FROM t_news WHERE id_news = " + id, function (err, result) {
