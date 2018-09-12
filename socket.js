@@ -23,18 +23,30 @@ module.exports = function(server){
       });
     });
 
-    socket.on('connectUser', function(usr,pwd){
-      console.log('SERVER: Received ' + usr + ' + ' + pwd);
-      sql.login(usr,pwd, function(result){
-        var destination = "./accounts";
-        if(result == true){
-          console.log("SERVER: Connection made");
-          socket.emit('redirect', destination);
-        } else{
-        //  socket.emit('redirect', false);
-        }
-      });
-    });
+    // socket.on('connectUser', function(usr,pwd){
+    //   console.log('SERVER: Received ' + usr + ' + ' + pwd);
+    //   sql.login(usr,pwd, function(result){
+    //     var destination = "./accounts";
+    //     if(result == true){
+    //       console.log("SERVER: Connection made");
+    //       socket.emit('redirect', destination);
+    //     } else{
+    //     //  socket.emit('redirect', false);
+    //     }
+    //   });
+    // });
+    //
+    // socket.on('registerUser', function(usr,mail,pwd){
+    //   sql.register(usr,mail,pwd,function(result){
+    //   var destination = "./accounts";
+    //     if(result == true){
+    //       console.log("SERVER: Register made");
+    //       socket.emit('redirect', destination);
+    //     } else{
+    //     //  socket.emit('redirect', false);
+    //     }
+    //   });
+    // });
 
     socket.on('disconnect', function(){
       console.log("SOCKET: Mex t'as vu ! j'ai quitté la page.");

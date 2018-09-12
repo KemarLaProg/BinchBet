@@ -10,8 +10,11 @@ exports.login = function(usr, pwd, callback){
   });
 }
 
-function registration(){
-
+exports.register = function(usr,mail,pwd,callback){
+  bdd.db.query("INSERT INTO `t_user` (`username`, `password`, `email`, `rank`) VALUES ('" + usr + "','" + pwd + "','" + mail + "','2')", function (err, result) {
+    if(err) throw err;
+    callback(true);
+  });
 }
 
 function getUserId(username, callback){

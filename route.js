@@ -37,9 +37,9 @@ module.exports = function(app){
     empty_ptl();
   });
   app.get('/login', function(req, res) {
-
     res.render('account/login.ejs');
   });
+
   app.get('/registration', function(req, res) {
     res.render('account/registration.ejs');
   });
