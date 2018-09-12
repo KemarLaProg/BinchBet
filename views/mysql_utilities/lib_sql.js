@@ -6,7 +6,12 @@ var bdd = require('./connection_db');
 exports.login = function(usr, pwd, callback){
   bdd.db.query("SELECT id_user FROM t_user WHERE username = '" + usr + "' AND password = '" + pwd + "'", function (err, result) {
     if(err) throw err;
-    callback(true);
+    console.log(result);
+    if(result[0] !== undefined){
+      callback(result[0].id_user);
+    } else {
+      callback(0);
+    }
   });
 }
 

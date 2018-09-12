@@ -14,7 +14,7 @@
 </head>
 <body>
   <main class="container-fluid">
-    <form class="form-signin mt-5">
+    <form action="/login" method="POST" class="form-signin mt-5">
       <div class="text-center mb-4">
         <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
@@ -23,12 +23,12 @@
         </div>
 
         <div class="form-label-group">
-          <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+          <input type="text" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
           <label for="inputUsername">Username</label>
         </div>
 
         <div class="form-label-group">
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
           <label for="inputPassword">Password</label>
         </div>
 
@@ -43,10 +43,3 @@
   </main>
 </body>
 </html>
-<script>
-//var socket = io.connect('http://localhost:8080');
-$( "#btn" ).click(function() {
-//  socket.emit('connectUser', $('#inputUsername').val(), $('#inputPassword').val());
-});
-
-</script>

@@ -1,4 +1,5 @@
-var page_to_load = {title:"", path: [], page:""};
+var sql = require('./views/mysql_utilities/lib_sql'),
+    page_to_load = {title:"", path: [], page:""};
 
 function empty_ptl(){
   page_to_load.title = '';
@@ -40,8 +41,26 @@ module.exports = function(app){
     res.render('account/login.ejs');
   });
 
+  app.post('/login', function(req,res){
+  //   let sess = req.session;
+      sql.login(req.body.inputUsername, req.body.inputPassword, function(logged){
+        console.log(logged);
+        if (logged >= 1) {
+          var newUser = {id: req.body.inputUsername, password: req.body.inputPassword};
+          Users.push(newUser);
+          req.session.user = newUser;
+          res.redirect('/accounts');
+        }
+        else res.redirect('/signin?failed=true');
+      });
+  });
+
   app.get('/registration', function(req, res) {
     res.render('account/registration.ejs');
+  });
+
+  app.post('/registration', function(req,res){
+
   });
 
   //groups
