@@ -12,8 +12,6 @@ exports.changeDate = function(dateSQL, format){
   var month_cut = ["Janv", "Févr", "Mars", "Avr", "Mai", "Juin",
   "Juil", "Août", "Sept", "Oct", "Nov", "Déc"][mydate.getMonth()];
 
-  console.log(mydate.getDate());
-
   switch(format) {
       case 'month':
         return date = mydate.getDate() + ' ' + month + ' ' + mydate.getFullYear();
