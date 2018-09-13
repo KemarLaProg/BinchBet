@@ -21,9 +21,6 @@ $(document).ready(function () {
   $(window).scroll(function () {
     scroll = $(window).scrollTop();
 
-    console.log('Height = ' + doc_height);
-    console.log('Scroll = ' + scroll);
-
     btn_appear(scroll + doc_height*75/100, doc_height);
   });
 });
