@@ -1,4 +1,5 @@
 var sql = require('./views/mysql_utilities/lib_sql'),
+    request = require('request'),
     page_to_load = {title:"", path: [], page:""};
 
 function empty_ptl(){
