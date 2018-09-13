@@ -7,18 +7,29 @@ function empty_ptl(){
   page_to_load.page = '';
 }
 
+function isAuthenticated(req, res, next) {
+  // do any checks you want to in here
+
+  // CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
+  // you can do this however you want with whatever variables you set up
+  if (req.session.username != undefined)
+      return next();
+    // IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
+    res.redirect('/login');
+}
+
 module.exports = function(app){
 
   // index
-  app.get('/', function(req, res) {
-    page_to_load.title = "Accueil";
-    page_to_load.page = "index.ejs";
+  app.get('/', isAuthenticated, function(req, res) {
+      page_to_load.title = "Accueil";
+      page_to_load.page = "index.ejs";
 
-    res.render('main.ejs', {page_to_load});
+      res.render('main.ejs', {page_to_load});
 
     empty_ptl();
   });
-  app.get('/index', function(req, res){
+  app.get('/index', isAuthenticated, function(req, res){
     page_to_load.title = "Accueil";
     page_to_load.page = "index.ejs";
 
@@ -28,7 +39,7 @@ module.exports = function(app){
   });
 
   //account
-  app.get('/accounts', function(req, res){
+  app.get('/accounts', isAuthenticated, function(req, res){
     let sess = req.session;
     page_to_load.title = "Accueil";
     page_to_load.path.push('BinchBet', 'Account');
@@ -72,7 +83,7 @@ module.exports = function(app){
   });
 
   //groups
-  app.get('/group', function(req, res) {
+  app.get('/group', isAuthenticated, function(req, res) {
     page_to_load.title = "Groupe";
     page_to_load.path.push('BinchBet', 'Groups', 'Group');
     page_to_load.page = "groups/group.ejs";
@@ -81,7 +92,7 @@ module.exports = function(app){
 
     empty_ptl();
   });
-  app.get('/group-list', function(req, res) {
+  app.get('/group-list', isAuthenticated, function(req, res) {
     page_to_load.title = "Mes groupes";
     page_to_load.path.push('BinchBet', 'Groups', 'Group');
     page_to_load.page = "groups/group-list.ejs";
@@ -90,7 +101,7 @@ module.exports = function(app){
 
     empty_ptl();
   });
-  app.get('/group-add', function(req, res) {
+  app.get('/group-add', isAuthenticated, function(req, res) {
     page_to_load.title = "Ajouter des groupes";
     page_to_load.path.push('BinchBet', 'Groups', 'Group-add');
     page_to_load.page = "groups/group-add.ejs";
@@ -99,7 +110,7 @@ module.exports = function(app){
 
     empty_ptl();
   });
-  app.get('/group-create', function(req, res) {
+  app.get('/group-create', isAuthenticated, function(req, res) {
     page_to_load.title = "Créer un groupe";
     page_to_load.path.push('BinchBet', 'Groups', 'Créer groupe');
     page_to_load.page = "groups/group-add.ejs";
@@ -110,7 +121,7 @@ module.exports = function(app){
   });
 
   //bets
-  app.get('/bet-list', function(req, res) {
+  app.get('/bet-list', isAuthenticated, function(req, res) {
     page_to_load.title = "Liste des matchs";
     page_to_load.path.push('BinchBet', 'Pronostic', 'Match');
     page_to_load.page = "bets/bet-list.ejs";
@@ -119,7 +130,7 @@ module.exports = function(app){
 
     empty_ptl();
   });
-  app.get('/bet', function(req, res) {
+  app.get('/bet', isAuthenticated, function(req, res) {
     page_to_load.title = "Pronostic";
     page_to_load.path.push('BinchBet', 'Pronostic', 'Match');
     page_to_load.page = "bets/bet.ejs";
@@ -130,7 +141,7 @@ module.exports = function(app){
   });
 
   //News
-  app.get('/news-list', function(req, res) {
+  app.get('/news-list', isAuthenticated, function(req, res) {
     page_to_load.title = "Liste des news";
     page_to_load.path.push('BinchBet', 'Liste news');
     page_to_load.page = "news/news-list.ejs";
@@ -139,7 +150,7 @@ module.exports = function(app){
 
     empty_ptl();
   });
-  app.get('/newss', function(req, res) {
+  app.get('/newss', isAuthenticated, function(req, res) {
     page_to_load.title = "Article";
     page_to_load.path.push('BinchBet', 'Liste news', 'News');
     page_to_load.page = "news/news.ejs";
@@ -150,7 +161,7 @@ module.exports = function(app){
   });
 
   //admin
-  app.get('/add-data', function(req, res) {
+  app.get('/add-data', isAuthenticated, function(req, res) {
     page_to_load.title = "Ajouter des données";
     page_to_load.path.push('BinchBet', 'Admin', 'Ajouter données');
     page_to_load.page = "admin/add-data.ejs";
@@ -161,7 +172,7 @@ module.exports = function(app){
   });
 
   //help
-  app.get('/faq', function(req, res) {
+  app.get('/faq', isAuthenticated, function(req, res) {
     page_to_load.title = "FAQ";
     page_to_load.path.push('BinchBet', 'Help', 'FAQ');
     page_to_load.page = "help/faq.ejs";
@@ -170,7 +181,7 @@ module.exports = function(app){
 
     empty_ptl();
   });
-  app.get('/about', function(req, res) {
+  app.get('/about', isAuthenticated, function(req, res) {
     page_to_load.title = "A propos";
     page_to_load.path.push('BinchBet', 'Help', 'A propos');
     page_to_load.page = "help/about.ejs";
@@ -179,7 +190,7 @@ module.exports = function(app){
 
     empty_ptl();
   });
-  app.get('/contact', function(req, res) {
+  app.get('/contact', isAuthenticated, function(req, res) {
     page_to_load.title = "Contact";
     page_to_load.path.push('BinchBet', 'Help', 'Contact');
     page_to_load.page = "help/contact.ejs";
@@ -190,11 +201,11 @@ module.exports = function(app){
   });
 
   //other
-  app.get('/fetch', function(req, res) {
+  app.get('/fetch', isAuthenticated, function(req, res) {
     res.render('select.ejs');
   });
 
-  app.get('/fetch.json', function(req, app_res) {
+  app.get('/fetch.json', isAuthenticated, function(req, app_res) {
     const api = 'https://api.sportradar.us/soccer-t3/eu/fr/tournaments/sr:tournament:8/standings.json?api_key=myjru2suj5mcbs7fjduvxx2f';
     request(api, function (err, res, body) {
       if (err) {
