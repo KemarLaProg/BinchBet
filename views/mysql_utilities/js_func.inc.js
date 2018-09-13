@@ -24,6 +24,22 @@ exports.changeDate = function(dateSQL, format){
   }
 }
 
+/**
+* Description : Check if a string is undefined, return '' in that case
+* n : string
+**/
+exports.checkNull = function(n){
+  if(n == undefined){
+    console.log('undefined');
+    return '';
+  } else{
+    console.log('defined');
+    return n;
+  }
+}
+
+
+
 exports.getDate = function(){
   var now = new Date();
     y = now.getFullYear(),

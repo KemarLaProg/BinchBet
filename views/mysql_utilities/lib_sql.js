@@ -87,9 +87,14 @@ exports.groupGameList = function(id, callback){
     if(err) throw err;
     result.forEach(function(e){
       e.date = js_func.changeDate(e.date);
+
+      e.h_goal = js_func.checkNull(e.h_goal);
+      e.a_goal = js_func.checkNull(e.a_goal);
+
+
     });
     console.log(result);
-      callback(result);
+    callback(result);
   });
 }
 
