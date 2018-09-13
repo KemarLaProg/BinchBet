@@ -15,7 +15,7 @@ module.exports = function(server){
         socket.emit('getUser',result);
       });
     });
-    
+
     socket.on('getNewsList', function(){
       console.log('SERVER: Sending all the news');
       sql.getNewsList(function(result){
@@ -23,12 +23,25 @@ module.exports = function(server){
       });
     });
 
-    socket.on('getNews', function(nid){
-      console.log('SERVER: Received an id equal to ' + nid);
-      sql.getNews(nid, function(result){
+    socket.on('getNews', function(newsid){
+      console.log('SERVER: Received an id equal to ' + newsid);
+      sql.getNews(newsid, function(result){
         socket.emit('getNews',result);
       });
     });
+
+    socket.on('groupGameList', function(groupid){
+      console.log('SOCKET: Received an id equal to ' + groupid);
+      sql.groupGameList(groupid, function(result){
+        console.log(result);
+        console.log('SOCKET: I give back the result');
+        socket.emit('groupGameList',result);
+      });
+    });
+
+
+
+
     // socket.on('connectUser', function(usr,pwd){
     //   console.log('SERVER: Received ' + usr + ' + ' + pwd);
     //   sql.login(usr,pwd, function(result){

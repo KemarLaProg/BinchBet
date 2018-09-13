@@ -82,9 +82,45 @@ function getBetList(id, array){
 
 // GAME
 
+exports.groupGameList = function(id, callback){
+  bdd.db.query("SELECT * FROM t_game AS tg JOIN g_games AS gg WHERE gg.id_group = " + id , function (err, result) {
+    if(err) throw err;
+    result.forEach(function(e){
+      e.date = js_func.changeDate(e.date);
+      getTeam(e.h_team, function(r){
+        e.h_team = r;
+      });
+      getTeam(e.a_team, function(r){
+        e.a_team = r;
+      });
+      getCompetition(e.id_competition, function(r){
+        e.id_competition = r;
+      });
+    });
+    callback(result);
+  });
+}
+
 function searchGame(){
 
 }
+
+// TEAM
+function getTeam(id, callback){
+  bdd.db.query("SELECT name FROM t_team WHERE id_team = " + id , function (err, result) {
+    if(err) throw err;
+    callback(result[0]);
+  });
+}
+
+// COMPETITION
+function getCompetition(id, callback){
+  bdd.db.query("SELECT name FROM t_competition WHERE id_competition = " + id , function (err, result) {
+    if(err) throw err;
+    callback(result[0]);
+  });
+}
+
 
 // STATS
 
@@ -112,6 +148,14 @@ exports.getNews = function(id, callback){
   bdd.db.query("SELECT * FROM t_news WHERE id_news = " + id, function (err, result) {
     if(err) throw err;
     result[0].date = js_func.changeDate(result[0].date, 'month');
+    callback(result[0]);
+  });
+}
+
+// other
+function getProl(id, callback){
+  bdd.db.query("SELECT * FROM t_prolongation WHERE id_prolongation = " + id, function (err, result) {
+    if(err) throw err;
     callback(result[0]);
   });
 }

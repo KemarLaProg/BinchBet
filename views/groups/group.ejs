@@ -1,3 +1,30 @@
+<script>
+$(document).ready(function () {
+
+  // emmit event
+  socket.emit('groupGameList', 1);
+
+  // receive event
+  socket.on('groupGameList', function(groupGameList){
+    console.log('I\'m the user and i received : ')
+    console.log(groupGameList);
+
+    groupGameList.forEach(function(game){
+      $('#groupGameList').html(
+        "<tr onclick=\"location.href='bet'\" style='cursor: pointer;'>" +
+        "<td>" + game.id_competition + "</td>" +
+        "<td class=\"text-center\">" + game.id_competition + "</td>" +
+        "<td>" + game.h_team + "</td>" +
+        "<td class=\"text-center\">" + game.h_goal + " – " + game.a_goal + "</td>" +
+        "<td class=\"text-right\">" + game.a_team + "</td>" +
+        "<td class=\"text-center\">" + "mon paris"+ "</td>" +
+        "</tr>"
+      );
+
+    });
+  });
+});
+</script>
 <div class="row mb-4">
   <div class="col-md">
     <button type="button" class="btn btn-default" onClick="location.href='group-list'">Retour à la liste</button>
@@ -85,46 +112,8 @@
               <th scope="col" class="text-center">Mon BB</th>
             </tr>
           </thead>
-          <tbody>
-            <tr onclick="location.href='bet'" style="cursor: pointer;">
-              <td>Serie A</td>
-              <td class="text-center">31.08.2018</td>
-              <td>Milan AC</td>
-              <td class="text-center">2 – 1</td>
-              <td class="text-right">AS Rome</td>
-              <td class="text-center">2 – 1</td>
-            </tr>
-            <tr>
-              <td>Premier League</td>
-              <td class="text-center">27.08.2018</td>
-              <td>Manchester United</td>
-              <td class="text-center">0 – 3</td>
-              <td class="text-right">Tottenham</td>
-              <td class="text-center">2 – 3</td>
-            </tr>
-            <tr>
-              <td>Liga</td>
-              <td rowspan="2" class="text-center">26.08.2018</td>
-              <td>Séville</td>
-              <td class="text-center">0 – 0</td>
-              <td class="text-right">Villareal</td>
-              <td class="text-center">3 – 1</td>
-            </tr>
-            <tr>
-              <td>Bundesliga</td>
-              <td>B. Dortmund</td>
-              <td class="text-center">3 – 1</td>
-              <td class="text-right">RB Leipzig</td>
-              <td class="text-center">2 – 1</td>
-            </tr>
-            <tr>
-              <td>Serie A</td>
-              <td class="text-center">25.08.2018</td>
-              <td>Naples</td>
-              <td class="text-center">3 – 2</td>
-              <td class="text-right">Milan AC</td>
-              <td class="text-center">0 – 1</td>
-            </tr>
+          <tbody id="#groupGameList">
+
           </tbody>
         </table>
 
