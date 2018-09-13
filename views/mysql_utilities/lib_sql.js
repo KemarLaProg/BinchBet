@@ -60,8 +60,11 @@ function getNbrUsersFromGroup(id_group,callback){
   });
 }
 
-function getRankingInGroup(id_group,id_user,callback){
-
+function getRankByUserInGroup(id_group,id_user,callback){
+  bdd.db.query("SELECT FIND_IN_SET('" + id_user + "',(SELECT gu.username AS points FROM t_bet AS tb JOIN g_games AS gg ON tb.id_game = gg.id_game JOIN g_users AS gu ON gu.id_group = gg.id_group AND gu.username = tb.username WHERE gg.id_group = '" + id_group + "' GROUP BY gu.username ORDER BY SUM(tb.points) DESC) ) as Rank", function(err, result){
+    if(err) throw err;
+    callback(result[0]);
+  });
 }
 
 function getTotalPointsInGroup(id_group,id_user,callback){
@@ -84,27 +87,27 @@ function getStatsInGroupByUser(id_group,id_user,callback){
     callback(result);
  });
 }
-/*
-exports.getDataGroupListOfUser = function(id_group,id_user,callback){
-  //Group name
-  //Nombre participants - ok
-  //classement perso
-  //nombre de Points
-  //stats de matchs (nbr,victoire,parfait,perdu,diff,gagné)
-  stats = getStatsInGroupByUser(id_group,id_user,callback)
-  let groupData = {
-    name: getNameOfGroup(id_group,callback)
-    nbrUser: getUsersFromGroup(id_group,callback)
-    ranking: getRankingInGroup(id_group,id_user,callback)
-    nbrPoints: getTotalPointsInGroup(id_group,id_user,callback)
-    nbrMatchs: getNbrOfMatchInGroup(id_group,callback)
-    nbrLoose: stats[0]
-    nbrWin: stats[1]
-    nbrDiff: stats[2]
-    nbrPerfect: stats[3]
-  }
-  callback(groupData);
-}*/
+
+// exports.getDataGroupListOfUser = function(id_group,id_user,callback){
+//   //Group name
+//   //Nombre participants - ok
+//   //classement perso
+//   //nombre de Points
+//   //stats de matchs (nbr,victoire,parfait,perdu,diff,gagné)
+//   stats = getStatsInGroupByUser(id_group,id_user,callback)
+//   let groupData = {
+//     name: getNameOfGroup(id_group,callback)
+//     nbrUser: getUsersFromGroup(id_group,callback)
+//     ranking: getRankingInGroup(id_group,id_user,callback)
+//     nbrPoints: getTotalPointsInGroup(id_group,id_user,callback)
+//     nbrMatchs: getNbrOfMatchInGroup(id_group,callback)
+//     nbrLoose: stats[0]
+//     nbrWin: stats[1]
+//     nbrDiff: stats[2]
+//     nbrPerfect: stats[3]
+//   }
+//   callback(groupData)
+// }
 
 exports.getGroup = function(id){
   bdd.db.query("SELECT * FROM `t_group` WHERE id = " + id , function (err, result) {
@@ -155,6 +158,7 @@ exports.groupGameList = function(id, callback){
       e.h_goal = js_func.checkNull(e.h_goal);
       e.a_goal = js_func.checkNull(e.a_goal);
 
+
     });
     console.log(result);
     callback(result);
@@ -193,6 +197,7 @@ exports.getGroupRanking = function(gid, callback){
   });
 
 }
+// STATS
 
 
 
