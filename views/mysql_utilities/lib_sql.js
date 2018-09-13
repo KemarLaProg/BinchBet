@@ -59,6 +59,12 @@ function getUsersFromGroup(id){
   });
 }
 
+exports.getGroupsOfUser = function(username,callback){
+  bdd.db.query("SELECT id_group FROM `g_users` WHERE username = '" + username + "'" , function (err, result) {
+    if(err) throw err;
+    callback(result[0]);
+  });
+}
 
 
 function getGroupList(){
@@ -82,8 +88,14 @@ function getBetList(id, array){
 
 // GAME
 
-exports.groupGameList = function(id, callback){
-  bdd.db.query("SELECT tc.compet_name AS competition, tg.date, tg.hour, ht.team_name AS h_team, tg.h_goal, tg.a_goal, at.team_name AS a_team FROM g_games AS gg LEFT JOIN t_game AS tg ON gg.id_game = tg.id_game LEFT JOIN t_team AS ht ON tg.h_team = ht.id_team LEFT JOIN t_team AS at ON tg.a_team = at.id_team LEFT JOIN t_competition AS tc ON tg.id_competition = tc.id_competition LEFT JOIN t_season AS ts ON tg.id_season = ts.id_season WHERE gg.id_group = '" + id + "' AND ts.id_season = 1 ORDER BY tg.date DESC, tg.hour ASC", function (err, result) {
+exports.groupGameList = function(groupBy = '', idBy = ''
+id_season = 1, callback){
+
+  var groupGameList = "SELECT tc.compet_name AS competition, tg.date, tg.hour, ht.team_name AS h_team, tg.h_goal, tg.a_goal, at.team_name AS a_team FROM g_games AS gg LEFT JOIN t_game AS tg ON gg.id_game = tg.id_game LEFT JOIN t_team AS ht ON tg.h_team = ht.id_team LEFT JOIN t_team AS at ON tg.a_team = at.id_team LEFT JOIN t_competition AS tc ON tg.id_competition = tc.id_competition LEFT JOIN t_season AS ts ON tg.id_season = ts.id_season WHERE gg.id_group = '?' AND ts.id_season = 1 ORDER BY tg.date DESC, tg.hour ASC",
+  groupList = "";
+
+
+  bdd.db.query(, function (err, result) {
     if(err) throw err;
     result.forEach(function(e){
       e.date = js_func.changeDate(e.date);
@@ -98,13 +110,13 @@ exports.groupGameList = function(id, callback){
   });
 }
 
-  function searchGame(){
+function searchGame(){
 
-  }
+}
 
-  // TEAM
-  function getTeam(id, callback){
-    bdd.db.query("SELECT name FROM t_team WHERE id_team = " + id , function (err, result) {
+// TEAM
+function getTeam(id, callback){
+  bdd.db.query("SELECT name FROM t_team WHERE id_team = " + id , function (err, result) {
     if(err) throw err;
     callback(result[0]);
   });
