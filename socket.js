@@ -39,6 +39,18 @@ module.exports = function(server){
       });
     });
 
+    socket.on('getGroupsOfUser', function(usr){
+      sql.getGroupsOfUser(usr, function(result){
+        socket.emit('getGroupsOfUser',result);
+      });
+    });
+
+    socket.on('getDataFromGroup', function(id){
+      sql.getGroup(id, function(result){
+        socket.emit('getDataFromGroup',result);
+      });
+    });
+
 
 
 

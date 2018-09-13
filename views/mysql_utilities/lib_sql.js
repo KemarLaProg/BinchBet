@@ -45,23 +45,76 @@ exports.getUser = function(usr, callback){
 
 // GROUPS
 
-function getGroup(id){
+
+function getNameOfGroup(id_group,callback){
+  bdd.db.query("SELECT name FROM `t_group` WHERE id_group = '" + id_group + "'" , function (err, result) {
+    if(err) throw err;
+    callback(result[0]);
+  });
+}
+
+function getNbrUsersFromGroup(id_group,callback){
+  bdd.db.query("SELECT COUNT(id_user) as number FROM g_users WHERE id_group = " + id_group , function (err, result) {
+    if(err) throw err;
+    callback(result[0]);
+  });
+}
+
+function getRankingInGroup(id_group,id_user,callback){
+
+}
+
+function getTotalPointsInGroup(id_group,id_user,callback){
+  bdd.db.query("SELECT SUM(points) as points FROM t_bet as b JOIN g_games as gg WHERE b.id_game = gg.id_game AND gg.id_group = " + id_group + " AND b.username = '" + id_user + "'", function (err, result){
+    if(err) throw err;
+      callback(result[0]);
+  });
+}
+
+function getNbrOfMatchInGroup(id_group,callback){
+  bdd.db.query("SELECT COUNT(`id_game`) as nbrmatchs FROM g_games WHERE id_group = '" + id_group + "'", function (err,result){
+    if(err) throw err;
+    callback(result[0]);
+  });
+}
+
+function getStatsInGroupByUser(id_group,id_user,callback){
+ bdd.db.query("SELECT COUNT(b.points) as nbrbets, b.points FROM t_bet as b JOIN g_games as gg WHERE b.id_game = gg.id_game AND gg.id_group = " + id_group + " AND b.username = '" + id_user + "'GROUP BY b.points", function (err,result){
+   if(err) throw err;
+    callback(result);
+ });
+}
+
+exports.getDataGroupListOfUser = function(id_group,id_user,callback){
+  //Group name
+  //Nombre participants - ok
+  //classement perso
+  //nombre de Points
+  //stats de matchs (nbr,victoire,parfait,perdu,diff,gagné)
+  stats = getStatsInGroupByUser(id_group,id_user,callback)
+  let groupData = {
+    name: getNameOfGroup(id_group,callback)
+    nbrUser: getUsersFromGroup(id_group,callback)
+    ranking: getRankingInGroup(id_group,id_user,callback)
+    nbrPoints: getTotalPointsInGroup(id_group,id_user,callback)
+    nbrMatchs: getNbrOfMatchInGroup(id_group,callback)
+    nbrLoose: stats[0]
+    nbrWin: stats[1]
+    nbrDiff: stats[2]
+    nbrPerfect: stats[3]
+  }
+  callback(groupData);
+}
+
+exports.getGroup = function(id){
   bdd.db.query("SELECT * FROM `t_group` WHERE id = " + id , function (err, result) {
     if(err) throw err;
     callback(result[0]);
   });
 }
 
-function getUsersFromGroup(id){
-  bdd.db.query("SELECT COUNT(id_user) as number FROM g_users WHERE id_group = " + id , function (err, result) {
-    if(err) throw err;
-    callback(result[0].number);
-  });
-}
-
 exports.getGroupsOfUser = function(username,callback){
   bdd.db.query("SELECT id_group FROM `g_users` WHERE username = '" + username + "'" , function (err, result) {
-
     if(err) throw err;
     callback(result[0]);
   });

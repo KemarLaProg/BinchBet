@@ -20,7 +20,13 @@
       url: '/fetch.json',
       complete: function(data) {
         console.log(data);
-          document.getElementById("tname").innerHTML = data.responseJSON.fetch.standings[0].groups[0].team_standings[0].team.name;
+        for(var i in data.responseJSON.fetch.standings[0].groups[0].team_standings){
+          console.log(data.responseJSON.fetch.standings[0].groups[0].team_standings[i].team.name);
+            $('#team').append(
+            "<td>" + data.responseJSON.fetch.standings[0].groups[0].team_standings[i].team.name + "</td>"
+        //    document.getElementById("team").innerHTML = data.responseJSON.fetch.standings[0].groups[0].team_standings[k].team.name;
+            );
+        }
       }
     });
   </script>
@@ -29,7 +35,8 @@
     <%- include('includes/main_nav.inc.ejs'); %>
 
     <section id="content">
-      <h3 id='tname'></h3>
+      <tbody id='team'>
+      </tbody>
     </section>
 
   </main>

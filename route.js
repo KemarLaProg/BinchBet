@@ -94,11 +94,12 @@ module.exports = function(app){
     empty_ptl();
   });
   app.get('/group-list', isAuthenticated, function(req, res) {
+    let sess = req.session;
     page_to_load.title = "Mes groupes";
     page_to_load.path.push('BinchBet', 'Groups', 'Group');
     page_to_load.page = "groups/group-list.ejs";
 
-    res.render('main.ejs', {page_to_load});
+    res.render('main.ejs', {page_to_load, user: sess.username});
 
     empty_ptl();
   });

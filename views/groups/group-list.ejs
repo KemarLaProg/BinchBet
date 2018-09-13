@@ -1,6 +1,78 @@
 <div class="row mb-4">
   <div class="col-md">
     <div class="input-group">
+      <script>
+      socket.emit('getGroupsOfUser', <%- JSON.stringify(user) %>);
+
+      // receive event
+      socket.on('getGroupsOfUser', function(groups){
+        groups.forEach(function(group){
+          socket.emit('getDataFromGroup', group.id_group);
+          socket.on('getDataFromGroup', function(data){
+
+          // $('#groupGameList').append("<tr onclick=\"location.href='bet'\" style='cursor: pointer;'>" +
+          //   "<td>" + game.competition + "</td>" +
+          //   "<td class=\"text-center\">" + game.date + "</td>" +
+          //   "<td>" + game.h_team + "</td>" +
+          //   "<td class=\"text-center\">" + game.h_goal + " – " + game.a_goal + "</td>" +
+          //   "<td class=\"text-right\">" + game.a_team + "</td>" +
+          //   "<td class=\"text-center\">" + "mon paris"+ "</td>" +
+          //   "</tr>"
+          $('.container').append("<div class=\"row mb-4\">" +
+            "<div class=\"col-md-3\">" +
+              "<div class=\"card card-lil-stat\">" +
+                "<a href=\"group\">" +
+                  "<div class=\"card-body\">" +
+                    "<h6 class=\"text-muted text-uppercase mt-0\"><small>Groupe</small></h6>" +
+                    "<h2 class=\"text-truncate\">" + data.name + "</h2>" +
+                    "<h6 class=\"text-muted text-uppercase\"><small>3 participants</small></h6>" +
+                  "</div>" +
+                "</a>" +
+              "</div>" +
+            "</div>" +
+            "<div class=\"col-md-2\">" +
+              "<div class=\"card card-lil-stat\">" +
+                "<div class=\"card-body\">" +
+                  "<h6 class=\"text-muted text-uppercase mt-0\"><small>Classement</small></h6>" +
+                  "<h2>1</h2>" +
+                  "<span class=\"badge badge-success\">15</span>" +
+                  "<span class=\"text-muted\">Points</span>" +
+                "</div>" +
+              "</div>" +
+            "</div>" +
+            "<div class=\"col-md-7\">" +
+              "<div class=\"card card-lil-stat\">" +
+                "<div class=\"card-body\">" +
+                  "<ul class=\"nav\">" +
+                    "<li class=\"nav-item col-md\">" +
+                      "<h2>12</h2>" +
+                      "<h6 class=\"text-muted text-uppercase\"><small>match(s)</small></h6>" +
+                    "</li>" +
+                    "<li class=\"nav-item col-md\">" +
+                      "<h2>2</h2>" +
+                      "<h6 class=\"text-muted text-uppercase\"><small>Parfait</small></h6>" +
+                    "</li>" +
+                    "<li class=\"nav-item col-md\">" +
+                      "<h2>2</h2>" +
+                      "<h6 class=\"text-muted text-uppercase\"><small>Différence</small></h6>" +
+                    "</li>" +
+                    "<li class=\"nav-item col-md\">" +
+                      "<h2>5</h2>" +
+                      "<h6 class=\"text-muted text-uppercase\"><small>Gagné</small></h6>" +
+                    "</li>" +
+                    "<li class=\"nav-item col-md\">" +
+                      "<h2>3</h2>" +
+                      "<h6 class=\"text-muted text-uppercase\"><small>Perdu</small></h6>" +
+                    "</li>" +
+                  "</ul>" +
+                "</div>" +
+              "</div>" +
+            "</div>" +
+          "</div>"
+          );
+        });
+      });
+      </script>
       <input type="text" class="form-control border-0" placeholder="Recherche..." style="width: 250px; flex: none; height: 40px;">
       <div class="input-group-append">
         <button type="button" class="btn btn-default shadow-green">Recherche</button>
@@ -13,8 +85,9 @@
     <button type="button" class="btn btn-default float-right mr-4" onClick="location.href='group-add'">Ajouter</button>
   </div>
 </div>
-
-<div class="row mb-4">
+<div class="container">
+</div>
+<!-- <div class="row mb-4">
   <div class="col-md-3">
     <div class="card card-lil-stat">
       <a href="group">
@@ -136,7 +209,7 @@
   <div class="col-md-2">
     <div class="card card-lil-stat">
       <div class="card-body">
-        <h6 class="text-muted text-uppercase mt-0"><small>Classment</small></h6>
+        <h6 class="text-muted text-uppercase mt-0"><small>Classement</small></h6>
         <h2>19</h2>
         <span class="badge badge-danger">7 </span>
         <span class="text-muted">Points</span>
@@ -175,4 +248,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
