@@ -6,21 +6,18 @@ $(document).ready(function () {
 
   // receive event
   socket.on('groupGameList', function(groupGameList){
-    console.log('I\'m the user and i received : ')
-    console.log(groupGameList);
+
 
     groupGameList.forEach(function(game){
-      $('#groupGameList').append(
-        "<tr onclick=\"location.href='bet'\" style='cursor: pointer;'>" +
-        "<td>" + game.id_competition + "</td>" +
-        "<td class=\"text-center\">" + game.id_competition + "</td>" +
+      $('#groupGameList').append("<tr onclick=\"location.href='bet'\" style='cursor: pointer;'>" +
+        "<td>" + game.competition + "</td>" +
+        "<td class=\"text-center\">" + game.date + "</td>" +
         "<td>" + game.h_team + "</td>" +
         "<td class=\"text-center\">" + game.h_goal + " – " + game.a_goal + "</td>" +
         "<td class=\"text-right\">" + game.a_team + "</td>" +
         "<td class=\"text-center\">" + "mon paris"+ "</td>" +
         "</tr>"
       );
-
     });
   });
 });
@@ -112,7 +109,7 @@ $(document).ready(function () {
               <th scope="col" class="text-center">Mon BB</th>
             </tr>
           </thead>
-          <tbody id="#groupGameList">
+          <tbody id="groupGameList">
 
           </tbody>
         </table>
