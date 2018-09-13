@@ -10,7 +10,7 @@ $(document).ready(function () {
     console.log(groupGameList);
 
     groupGameList.forEach(function(game){
-      $('#groupGameList').html(
+      $('#groupGameList').append(
         "<tr onclick=\"location.href='bet'\" style='cursor: pointer;'>" +
         "<td>" + game.id_competition + "</td>" +
         "<td class=\"text-center\">" + game.id_competition + "</td>" +
