@@ -10,28 +10,34 @@ $(document).ready(function () {
 
 
     groupGameList.forEach(function(game){
-      $('#groupGameList').append("<tr onclick=\"location.href='bet'\" style='cursor: pointer;'>" +
-        "<td>" + game.competition + "</td>" +
-        "<td class=\"text-center\">" + game.date + "</td>" +
-        "<td>" + game.h_team + "</td>" +
-        "<td class=\"text-center\">" + game.h_goal + " – " + game.a_goal + "</td>" +
-        "<td class=\"text-right\">" + game.a_team + "</td>" +
-        "<td class=\"text-center\">" + "mon paris"+ "</td>" +
-        "</tr>"
-      );
-    });
-  });
-
-
-  socket.on('getGroupRanking', function(getGroupRanking){
-    getGroupRanking.forEach(function(rank){
-      $('#groupRanking').append("<tr>" +
-        "<td>" + rank.username + "</td>"+
-        "<td class=\"text-center\">" + rank.points + "</td>" +
+      $('#groupGameList').append("<tr <!--onclick=\"location.href='bet/" + game.id_game +"'\" style='cursor: pointer;'-->>" +
+      "<td>" + game.competition + "</td>" +
+      "<td class=\"text-center\">" + game.date + "</td>" +
+      "<td>" + game.h_team + "</td>" +
+      "<td class=\"text-center\">" + game.h_goal + " – " + game.a_goal + "</td>" +
+      "<td class=\"text-right\">" + game.a_team + "</td>" +
+      "<td class=\"text-center\" style=\"width: 150px;\">" +
+      "<div class=\"input-group mb-3\" style=\"margin: auto;\">" +
+      "<input type=\"text\" class=\"form-control\">" +
+      "<input disabled type=\"text\" class=\"form-control text-center p-0\" value=\"—\" style=\"max-width: 30px;\">" +
+      "<input type=\"text\" class=\"form-control\">" +
+      "</div>"+
+      "</td>" +
       "</tr>"
-      );
-    });
+    );
   });
+});
+
+
+socket.on('getGroupRanking', function(getGroupRanking){
+  getGroupRanking.forEach(function(rank){
+    $('#groupRanking').append("<tr>" +
+    "<td>" + rank.username + "</td>"+
+    "<td class=\"text-center\">" + rank.points + "</td>" +
+    "</tr>"
+  );
+});
+});
 
 
 //alert(test_params({uid: 1, gid: 3}));
@@ -46,11 +52,11 @@ $(document).ready(function () {
 
 function test_params(params = new array()){
   var a = "Params : ";
-    params.forEach(function(p){
-      a.push(p);
-    });
-console.log(a);
-    return a;
+  params.forEach(function(p){
+    a.push(p);
+  });
+  console.log(a);
+  return a;
 }
 
 </script>

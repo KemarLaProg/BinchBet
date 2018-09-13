@@ -38,7 +38,13 @@ exports.checkNull = function(n){
   }
 }
 
-
+exports.scoreForm = function(h_goal, a_goal){
+  if(h_goal == undefined || a_goal == undefined){
+    return "";
+  }else{
+    return h_goal + " — " + a_goal;
+  }
+}
 
 exports.getDate = function(){
   var now = new Date();

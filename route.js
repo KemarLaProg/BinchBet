@@ -132,12 +132,12 @@ module.exports = function(app){
 
     empty_ptl();
   });
-  app.get('/bet', isAuthenticated, function(req, res) {
+  app.get('/bet/:id_bet', isAuthenticated, function(req, res) {
     page_to_load.title = "Pronostic";
     page_to_load.path.push('BinchBet', 'Pronostic', 'Match');
     page_to_load.page = "bets/bet.ejs";
 
-    res.render('main.ejs', {page_to_load});
+    res.render('main.ejs', {page_to_load, bet_id: req.params.id_bet});
 
     empty_ptl();
   });
