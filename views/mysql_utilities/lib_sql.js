@@ -84,7 +84,7 @@ function getStatsInGroupByUser(id_group,id_user,callback){
     callback(result);
  });
 }
-
+/*
 exports.getDataGroupListOfUser = function(id_group,id_user,callback){
   //Group name
   //Nombre participants - ok
@@ -104,7 +104,7 @@ exports.getDataGroupListOfUser = function(id_group,id_user,callback){
     nbrPerfect: stats[3]
   }
   callback(groupData);
-}
+}*/
 
 exports.getGroup = function(id){
   bdd.db.query("SELECT * FROM `t_group` WHERE id = " + id , function (err, result) {
@@ -155,7 +155,6 @@ exports.groupGameList = function(id, callback){
       e.h_goal = js_func.checkNull(e.h_goal);
       e.a_goal = js_func.checkNull(e.a_goal);
 
-
     });
     console.log(result);
     callback(result);
@@ -183,7 +182,17 @@ function getCompetition(id, callback){
 }
 
 
-// STATS
+// RANKING
+
+exports.getGroupRanking = function(gid, callback){
+  var sql_ranking = "SELECT gu.username, SUM(tb.points) AS points FROM t_bet AS tb JOIN g_games AS gg ON tb.id_game = gg.id_game JOIN g_users AS gu ON gu.id_group = gg.id_group AND gu.username = tb.username WHERE gg.id_group = ? GROUP BY gu.username ORDER BY SUM(tb.points) DESC";
+
+  bdd.db.query(sql_ranking, gid, function (err, result) {
+    if(err) throw err;
+    callback(result);
+  });
+
+}
 
 
 

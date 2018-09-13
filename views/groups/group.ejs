@@ -3,6 +3,7 @@ $(document).ready(function () {
 
   // emmit event
   socket.emit('groupGameList', 1);
+  socket.emit('getGroupRanking', 1);
 
   // receive event
   socket.on('groupGameList', function(groupGameList){
@@ -22,7 +23,18 @@ $(document).ready(function () {
   });
 
 
-//test_params({uid: 1, gid: 3});
+  socket.on('getGroupRanking', function(getGroupRanking){
+    getGroupRanking.forEach(function(rank){
+      $('#groupRanking').append("<tr>" +
+        "<td>" + rank.username + "</td>"+
+        "<td class=\"text-center\">" + rank.points + "</td>" +
+      "</tr>"
+      );
+    });
+  });
+
+
+//alert(test_params({uid: 1, gid: 3}));
 
 
 
@@ -32,13 +44,13 @@ $(document).ready(function () {
 
 
 
-function test_params(params){
+function test_params(params = new array()){
   var a = "Params : ";
     params.forEach(function(p){
       a.push(p);
     });
-
-    alert(a);
+console.log(a);
+    return a;
 }
 
 </script>
@@ -97,15 +109,7 @@ function test_params(params){
               <th class="text-center">Binch</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>KemarLePoulpe</td>
-              <td class="text-center">19</td>
-            </tr>
-            <tr>
-              <td>Goat</td>
-              <td class="text-center">17</td>
-            </tr>
+          <tbody id="groupRanking">
           </tbody>
         </table>
       </div>
