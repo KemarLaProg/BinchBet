@@ -6,7 +6,7 @@
          <script>
 
          // emmit event
-         socket.emit('getUser', 'KemarLePoulpe');
+         socket.emit('getUser', <%- JSON.stringify(user) %>);
 
          // receive event
          socket.on('getUser', function(user){

@@ -29,13 +29,14 @@ module.exports = function(app){
 
   //account
   app.get('/accounts', function(req, res){
+    let sess = req.session;
     page_to_load.title = "Accueil";
     page_to_load.path.push('BinchBet', 'Account');
     page_to_load.page = "account/account.ejs";
 
     res.render('main.ejs', {
-      page_to_load
-  //    session : sess
+      page_to_load,
+      user: sess.username
       });
 
     empty_ptl();
@@ -46,7 +47,7 @@ module.exports = function(app){
 
   app.post('/login', function(req,res){
     let sess = req.session;
-      sql.login(req.body.inputUsername, req.body.inputPassword, function(logged){
+      sql.login(req.body.inputUsername, req.body.inputPassword, sess , function(logged){
           if (logged >= 1) {
             console.log("Logged");
           res.redirect('/accounts');
@@ -60,7 +61,15 @@ module.exports = function(app){
   });
 
   app.post('/registration', function(req,res){
-
+    let sess = req.session;
+    var date = new Date(year, month, day);
+      sql.register(req.body.username, req.body.email, req.body.password, date ,sess , function(signup){
+          if (signup == true) {
+            console.log("Signup and logged");
+          res.redirect('/accounts');
+        }
+        else res.redirect('/signup?failed=true');
+      });
   });
 
   //groups

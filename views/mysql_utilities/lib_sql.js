@@ -9,10 +9,11 @@ var js_func = require('./js_func.inc.js');
 
 // ACCOUNT
 
-exports.login = function(usr, pwd, callback){
+exports.login = function(usr, pwd, sess, callback){
   bdd.db.query("SELECT username FROM t_user WHERE username = '" + usr + "' AND password = '" + pwd + "'", function (err, result) {
     if(err) throw err;
     if(result[0] !== undefined){
+      sess.username = result[0].username;
       callback(1);
     } else {
       callback(0);
@@ -20,9 +21,10 @@ exports.login = function(usr, pwd, callback){
   });
 }
 
-exports.register = function(usr,mail,pwd,callback){
-  bdd.db.query("INSERT INTO `t_user` (`username`, `password`, `email`, `rank`) VALUES ('" + usr + "','" + pwd + "','" + mail + "','5')", function (err, result) {
+exports.register = function(usr,mail,pwd,date,sess,callback){
+  bdd.db.query("INSERT INTO `t_user` (`username`, `password`, `email`, `rank`, 'registration') VALUES ('" + usr + "','" + pwd + "','" + mail + "','5', '" + date +"')", function (err, result) {
     if(err) throw err;
+    sess.username = usr;
     callback(true);
   });
 }
