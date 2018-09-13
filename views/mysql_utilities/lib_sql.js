@@ -21,8 +21,9 @@ exports.login = function(usr, pwd, sess, callback){
   });
 }
 
-exports.register = function(usr,mail,pwd,date,sess,callback){
-  bdd.db.query("INSERT INTO `t_user` (`username`, `password`, `email`, `rank`, 'registration') VALUES ('" + usr + "','" + pwd + "','" + mail + "','5', '" + date +"')", function (err, result) {
+exports.register = function(usr,mail,pwd,sess,callback){
+  var date = js_func.getDate();
+  bdd.db.query("INSERT INTO `t_user` (`username`, `password`, `email`, `rank`, `registration`) VALUES ('" + usr + "','" + pwd + "','" + mail + "','5', '" + date +"')", function (err, result) {
     if(err) throw err;
     sess.username = usr;
     callback(true);

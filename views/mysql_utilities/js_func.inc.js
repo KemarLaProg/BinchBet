@@ -23,3 +23,13 @@ exports.changeDate = function(dateSQL, format){
           return date = mydate.getDate() + '.' + mydate.getMonth() + '.' + mydate.getFullYear();
   }
 }
+
+exports.getDate = function(){
+  var now = new Date();
+    y = now.getFullYear(),
+    m = now.getMonth() + 1,
+    d = now.getDate(),
+    mm = m < 10 ? '0' + m : m,
+    dd = d < 10 ? '0' + d : d;
+  return date = y + '-' + mm + '-' + dd;
+}

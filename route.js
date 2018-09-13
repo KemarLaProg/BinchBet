@@ -62,8 +62,7 @@ module.exports = function(app){
 
   app.post('/registration', function(req,res){
     let sess = req.session;
-    var date = new Date(year, month, day);
-      sql.register(req.body.username, req.body.email, req.body.password, date ,sess , function(signup){
+      sql.register(req.body.username, req.body.email, req.body.pwd1 ,sess , function(signup){
           if (signup == true) {
             console.log("Signup and logged");
           res.redirect('/accounts');
