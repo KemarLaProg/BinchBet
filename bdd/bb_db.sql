@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 13, 2018 at 12:03 PM
--- Server version: 5.7.23
--- PHP Version: 7.2.8
+-- Generation Time: Sep 13, 2018 at 12:52 PM
+-- Server version: 5.7.21
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -59,12 +59,22 @@ INSERT INTO `g_users` (`id_group`, `username`) VALUES
 
 CREATE TABLE `t_bet` (
   `id_bet` int(11) NOT NULL,
-  `h_goal` int(2) NOT NULL COMMENT 'Home team goal(s).',
-  `a_goal` int(2) NOT NULL COMMENT 'Away team goal(s).',
+  `h_goal` int(2) DEFAULT NULL COMMENT 'Home team goal(s).',
+  `a_goal` int(2) DEFAULT NULL COMMENT 'Away team goal(s).',
   `username` varchar(25) NOT NULL,
   `id_game` int(11) NOT NULL,
-  `points` int(1) DEFAULT '0'
+  `points` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `t_bet`
+--
+
+INSERT INTO `t_bet` (`id_bet`, `h_goal`, `a_goal`, `username`, `id_game`, `points`) VALUES
+(17, 2, 1, 'Goat', 1, 3),
+(18, 2, 3, 'Goat', 5, 3),
+(19, NULL, NULL, 'Goat', 6, NULL),
+(20, NULL, NULL, 'Goat', 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,8 +111,8 @@ CREATE TABLE `t_game` (
   `id_game` int(11) NOT NULL,
   `date` date NOT NULL,
   `hour` time NOT NULL,
-  `h_goal` int(2) NOT NULL,
-  `a_goal` int(2) NOT NULL,
+  `h_goal` int(2) DEFAULT NULL,
+  `a_goal` int(2) DEFAULT NULL,
   `id_original` int(11) DEFAULT NULL,
   `h_team` int(11) NOT NULL COMMENT 'Home team.',
   `a_team` int(11) NOT NULL COMMENT 'Away team.',
@@ -116,7 +126,10 @@ CREATE TABLE `t_game` (
 --
 
 INSERT INTO `t_game` (`id_game`, `date`, `hour`, `h_goal`, `a_goal`, `id_original`, `h_team`, `a_team`, `id_competition`, `id_season`, `id_prolongation`) VALUES
-(1, '2018-08-30', '20:30:00', 2, 1, NULL, 1, 5, 1, 1, 1);
+(1, '2018-08-30', '20:30:00', 2, 1, NULL, 1, 5, 1, 1, 1),
+(5, '2018-09-10', '20:00:00', 2, 3, NULL, 5, 1, 1, 1, 1),
+(6, '2018-09-18', '19:00:00', NULL, NULL, NULL, 2, 8, 6, 1, 1),
+(7, '2018-09-20', '22:00:00', NULL, NULL, NULL, 11, 10, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -389,7 +402,7 @@ ALTER TABLE `t_user_rank`
 -- AUTO_INCREMENT for table `t_bet`
 --
 ALTER TABLE `t_bet`
-  MODIFY `id_bet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `t_competition`
@@ -401,7 +414,7 @@ ALTER TABLE `t_competition`
 -- AUTO_INCREMENT for table `t_game`
 --
 ALTER TABLE `t_game`
-  MODIFY `id_game` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_game` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `t_group`
