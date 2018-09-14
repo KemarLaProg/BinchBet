@@ -175,10 +175,10 @@ exports.insertGameBet = function(hgoal,agoal,id_game,user,callback){
   });
 }
 
-exports.updateGameBet = function(hgoal,agoal,id_bet,user,callback){
-  var sql_updateGameBet = "UPDATE `t_bet` SET `h_goal` = ?, `a_goal` = ? WHERE `t_bet`.`id_bet` = ? AND `t_bet`.`username` = ?";
+exports.updateGameBet = function(hgoal,agoal,id_game,user,callback){
+  var sql_updateGameBet = "UPDATE `t_bet` SET `h_goal` = ?, `a_goal` = ? WHERE `t_bet`.`id_game` = ? AND `t_bet`.`username` = ?";
 
-  bdd.db.query(sql_updateGameBet,[ hgoal, agoal,id_bet,user], function (err, result) {
+  bdd.db.query(sql_updateGameBet,[ hgoal, agoal,id_game,user], function (err, result) {
     if(err) throw err;
     callback(result);
   });

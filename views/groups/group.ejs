@@ -12,10 +12,11 @@ function send(id,bh,ba,name) {
       if(bh != "" && ba != ""){
         socket.emit('lookIfBetExist',id,name);
         socket.on('lookIfBetExist', function(betexist){
-          if(betexist[0].verif != undefined){
-            socket.emit('updateBet',id,bh,ba,name);
+          if(betexist[0] != undefined){
+            socket.emit('updateBet',bh,ba,id,name);
           }else{
-            socket.emit('sendBet',id,bh,ba,name);
+            alert('bip');
+            socket.emit('sendBet',bh,ba,id,name);
         }
         });
       }else{
