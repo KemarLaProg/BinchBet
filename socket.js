@@ -43,6 +43,12 @@ module.exports = function(server){
         socket.emit('getGameBet',result);
       });
     });
+    socket.on('getUserBet', function(uid){
+      sql.getUserBet(uid, function(result){
+        console.log(result);
+        socket.emit('getUserBet',result);
+      });
+    });
     socket.on('getGroupBet', function(uid, groupid){
       sql.getGroupBet(uid, groupid, function(result){
         console.log(result);

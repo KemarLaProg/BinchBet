@@ -95,9 +95,9 @@
 <script>
 var monthName = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
 var month = 0;
-
-socket.emit('getBetByUser', <%- JSON.stringify(user) %>);
-socket.emit('getGroupBet', 'KemarLePoulpe', 1);
+var uid = <%- JSON.stringify(user) %>;
+socket.emit('getBetByUser', uid);
+socket.emit('getUserBet', uid);
 
 
 socket.on('getBetByUser', function(bets){
@@ -147,7 +147,7 @@ socket.on('getBetByUser', function(bets){
   });
 });
 
-socket.on('getGroupBet', function(groupBet){
+socket.on('getUserBet', function(groupBet){
   console.log(groupBet);
 groupBet.forEach(function(bet){
   if(bet !== undefined){

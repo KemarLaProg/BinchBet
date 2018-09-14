@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 14, 2018 at 07:54 AM
+-- Generation Time: Sep 14, 2018 at 01:24 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -34,7 +34,8 @@ INSERT INTO `g_games` (`id_group`, `id_game`) VALUES
 (1, 5),
 (1, 7),
 (2, 5),
-(2, 6);
+(2, 6),
+(1, 8);
 
 -- --------------------------------------------------------
 
@@ -69,20 +70,18 @@ CREATE TABLE `t_bet` (
   `a_goal` int(2) DEFAULT NULL COMMENT 'Away team goal(s).',
   `username` varchar(25) NOT NULL,
   `id_game` int(11) NOT NULL,
-  `points` int(1) NOT NULL DEFAULT '0',
-  `done` tinyint(1) NOT NULL DEFAULT '0'
+  `points` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `t_bet`
 --
 
-INSERT INTO `t_bet` (`id_bet`, `h_goal`, `a_goal`, `username`, `id_game`, `points`, `done`) VALUES
-(17, 2, 1, 'Goat', 1, 3, 1),
-(18, 2, 3, 'Goat', 5, 3, 1),
-(19, NULL, NULL, 'Goat', 6, 0, 0),
-(20, NULL, NULL, 'Goat', 7, 0, 0),
-(21, 2, 1, 'KemarLePoulpe', 1, 3, 1);
+INSERT INTO `t_bet` (`id_bet`, `h_goal`, `a_goal`, `username`, `id_game`, `points`) VALUES
+(17, 2, 1, 'Goat', 1, 3),
+(18, 2, 3, 'Goat', 5, 3),
+(21, 2, 1, 'KemarLePoulpe', 1, 3),
+(22, 2, 5, 'Goat', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -137,7 +136,8 @@ INSERT INTO `t_game` (`id_game`, `date`, `hour`, `h_goal`, `a_goal`, `id_origina
 (1, '2018-08-30', '20:30:00', 2, 1, NULL, 1, 5, 1, 1, 1),
 (5, '2018-09-10', '20:00:00', 2, 3, NULL, 5, 1, 1, 1, 1),
 (6, '2018-09-18', '19:00:00', NULL, NULL, NULL, 2, 8, 6, 1, 1),
-(7, '2018-09-20', '22:00:00', NULL, NULL, NULL, 11, 10, 2, 1, 1);
+(7, '2018-09-20', '22:00:00', NULL, NULL, NULL, 11, 10, 2, 1, 1),
+(8, '2018-10-01', '16:00:00', NULL, NULL, NULL, 12, 13, 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -419,7 +419,7 @@ ALTER TABLE `t_user_rank`
 -- AUTO_INCREMENT for table `t_bet`
 --
 ALTER TABLE `t_bet`
-  MODIFY `id_bet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_bet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `t_competition`
@@ -431,7 +431,7 @@ ALTER TABLE `t_competition`
 -- AUTO_INCREMENT for table `t_game`
 --
 ALTER TABLE `t_game`
-  MODIFY `id_game` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_game` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `t_group`
