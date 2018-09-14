@@ -2,6 +2,11 @@
   <div class="col-md">
     <div class="input-group">
       <script>
+
+      function pourcent(n1, n2){
+        return (n1*100/n2).toFixed(0);
+      }
+
       socket.emit('getGroupsOfUser', <%- JSON.stringify(user) %>);
 
       // receive event
@@ -43,19 +48,22 @@
             "<li class=\"nav-item col-md\">" +
             "<h6 class=\"text-muted text-uppercase\"><small>Parfait</small></h6>" +
             "<h2>" + stats[3].nbrbets + "</h2>" +
+            "<span class=\"badge badge-success\">"+pourcent(stats[3].nbrbets, nbrMatch[0].nbrmatchs)+"%</span>" +
             "</li>" +
             "<li class=\"nav-item col-md\">" +
             "<h6 class=\"text-muted text-uppercase\"><small>Différence</small></h6>" +
             "<h2>" + stats[2].nbrbets + "</h2>" +
+            "<span class=\"badge badge-primary\">"+pourcent(stats[2].nbrbets, nbrMatch[0].nbrmatchs)+"%</span>" +
             "</li>" +
             "<li class=\"nav-item col-md\">" +
             "<h6 class=\"text-muted text-uppercase\"><small>Gagné</small></h6>" +
             "<h2>" + stats[1].nbrbets + "</h2>" +
+            "<span class=\"badge badge-warning\">"+pourcent(stats[2].nbrbets, nbrMatch[0].nbrmatchs)+"%</span>" +
             "</li>" +
             "<li class=\"nav-item col-md\">" +
             "<h6 class=\"text-muted text-uppercase\"><small>Perdu</small></h6>" +
             "<h2>" + stats[0].nbrbets + "</h2>" +
-            "<span class=\"badge badge-danger\">77%</span>" +
+            "<span class=\"badge badge-danger\">"+pourcent(stats[1].nbrbets, nbrMatch[0].nbrmatchs)+"%</span>" +
             "</li>" +
             "</ul>" +
             "</div>" +
