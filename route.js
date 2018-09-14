@@ -62,7 +62,7 @@ module.exports = function(app){
       sql.login(req.body.inputUsername, req.body.inputPassword, sess , function(logged){
           if (logged >= 1) {
             console.log("Logged");
-          res.redirect('/accounts');
+          res.redirect('/index');
         }
         else res.redirect('/signin?failed=true');
       });
