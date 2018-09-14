@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 14, 2018 at 01:24 PM
+-- Generation Time: Sep 14, 2018 at 01:53 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -79,9 +79,10 @@ CREATE TABLE `t_bet` (
 
 INSERT INTO `t_bet` (`id_bet`, `h_goal`, `a_goal`, `username`, `id_game`, `points`) VALUES
 (17, 2, 1, 'Goat', 1, 3),
-(18, 2, 3, 'Goat', 5, 3),
+(18, 1, 3, 'Goat', 5, 3),
 (21, 2, 1, 'KemarLePoulpe', 1, 3),
-(22, 2, 5, 'Goat', 8, 0);
+(22, 2, 5, 'Goat', 8, 0),
+(23, 4, 2, 'Goat', 7, 0);
 
 -- --------------------------------------------------------
 
@@ -419,7 +420,7 @@ ALTER TABLE `t_user_rank`
 -- AUTO_INCREMENT for table `t_bet`
 --
 ALTER TABLE `t_bet`
-  MODIFY `id_bet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_bet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `t_competition`
