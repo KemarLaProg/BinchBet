@@ -1,11 +1,27 @@
 <script>
 // emmit event
 var idGroup = <%- JSON.stringify(id) %>;
+let name = <%- JSON.stringify(user) %>;
 
 socket.emit('groupGameList', idGroup);
 socket.emit('getGroupRanking', idGroup);
 socket.emit('getInfosOfGroup', idGroup);
-socket.emit('getGroupBet', 'KemarLePoulpe', idGroup);
+socket.emit('getGroupBet', name, idGroup);
+
+function send(id,bh,ba,name) {
+      if(bh != "" && ba != ""){
+        socket.emit('lookIfBetExist',id,name);
+        socket.on('lookIfBetExist', function(betexist){
+          if(betexist[0].verif != undefined){
+            socket.emit('updateBet',id,bh,ba,name);
+          }else{
+            socket.emit('sendBet',id,bh,ba,name);
+        }
+        });
+      }else{
+        alert("Vous devez remplir les deux champs");
+      }
+};
 
 // receive event
 socket.on('groupGameList', function(groupGameList){
@@ -22,7 +38,7 @@ socket.on('groupGameList', function(groupGameList){
     "<input disabled type=\"text\" class=\"form-control text-center p-0\" value=\"—\" style=\"max-width: 30px;\">" +
     "<input type=\"text\" class=\"form-control bet\" name=\"bet-a-goal\" id=\"bet2-" + game.id_game + "\" maxlength=\"2\" value=\"\">" +
     "</div>"+
-    "<button class=\"btn btn-lg btn-default btn-block\" type=\"submit\" id=\"btn\">Bet</button>"+
+    "<button onclick=\"send("+game.id_game+", $('#bet1-"+ game.id_game+"').val() ,$('#bet2-"+ game.id_game+"').val(),'"+ name + "')\" class=\"btn btn-lg btn-default btn-block\" type=\"submit\" id=\"btn\">Bet</button>"+
     "</td>" +
     "</tr>");
 

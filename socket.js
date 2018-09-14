@@ -80,6 +80,24 @@ module.exports = function(server){
       });
     });
 
+    socket.on('sendBet', function(goalh,goala,id_match,id_user){
+    	sql.addBet(id_match,id_user,goalh,goala, function(result){
+    		socket.emit('sendBet',result);
+    	});
+    });
+
+    socket.on('updateBet', function(goalh,goala,id_match,id_user){
+    	sql.addBet(id_match,id_user,goalh,goala, function(result){
+    		socket.emit('updateBet',result);
+    	});
+    });
+
+    socket.on('lookIfBetExist', function(id,name){
+    	sql.lookIfBetExist(id,name, function(result){
+    		socket.emit('lookIfBetExist',result);
+    	});
+    });
+
     socket.on('disconnect', function(){
       console.log("SOCKET: Mex t'as vu ! j'ai quitté la page.");
     });

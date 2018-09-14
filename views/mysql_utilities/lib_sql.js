@@ -166,19 +166,29 @@ exports.getGameBet = function(uid, game_id, callback){
     callback(result[0]);
   });
 }
-exports.insertGameBet = function(){
-  var sql_updateGameBet = "UPDATE `t_bet` SET `h_goal` = '3', `a_goal` = '4' WHERE `t_bet`.`id_bet` = 19; UPDATE `t_bet` SET `h_goal` = '1', `a_goal` = '0' WHERE `t_bet`.`id_bet` = 20;";
+exports.insertGameBet = function(hgoal,agoal,id_bet,user,callback){
+  var sql_InsertGameBet = "INSERT INTO `t_bet`(`h_goal`, `a_goal`, `username`, `id_game`, `points`) VALUES ('?','?','?','?',0)";
 
-  bdd.db.query(sql_updateGameBet, uid, game_id, function (err, result) {
+  bdd.db.query(sql_InsertGameBet, hgoal,agoal,id_bet,user, function (err, result) {
     if(err) throw err;
+    callback(result);
   });
 }
 
-exports.updateGameBet = function(){
-  var sql_updateGameBet = "UPDATE `t_bet` SET `h_goal` = '3', `a_goal` = '4' WHERE `t_bet`.`id_bet` = 19; UPDATE `t_bet` SET `h_goal` = '1', `a_goal` = '0' WHERE `t_bet`.`id_bet` = 20;"
+exports.updateGameBet = function(hgoal,agoal,id_bet,user,callback){
+  var sql_updateGameBet = "UPDATE `t_bet` SET `h_goal` = '?', `a_goal` = '?' WHERE `t_bet`.`id_bet` = '?' AND `t_bet`.`username` = '?';"
 
-  bdd.db.query(sql_updateGameBet, uid, game_id, function (err, result) {
+  bdd.db.query(sql_updateGameBet, hgoal, agoal,id_bet,user, function (err, result) {
     if(err) throw err;
+    callback(result);
+  });
+}
+
+exports.lookIfBetExist = function(id_game,user,callback){
+  var sql_lookBet = "SELECT `id_bet` as verif FROM t_bet WHERE t_bet.id_game = '?' AND t_bet.username = '?'";
+  bdd.db.query(sql_lookBet, id_game,user, function (err, result) {
+    if(err) throw err;
+    callback(result);
   });
 }
 
