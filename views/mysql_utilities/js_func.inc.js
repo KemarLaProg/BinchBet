@@ -37,10 +37,8 @@ exports.changeDate = function(dateSQL, format){
 **/
 exports.checkNull = function(n){
   if(n == undefined){
-    console.log('undefined');
     return '';
   } else{
-    console.log('defined');
     return n;
   }
 }

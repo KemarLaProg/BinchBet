@@ -253,13 +253,9 @@ exports.getGroupRanking = function(gid, callback){
 exports.getNewsList = function( callback){
   bdd.db.query("SELECT * FROM t_news", function (err, result) {
     if(err) throw err;
-
     result.forEach(function(e){
-
       e.date = js_func.changeDate(e.date, 'month');
-
     });
-    console.log(result);
     callback(result);
   });
 }
