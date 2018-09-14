@@ -13,6 +13,10 @@ exports.changeDate = function(dateSQL, format){
   "Juil", "Août", "Sept", "Oct", "Nov", "Déc"][mydate.getMonth()];
 
   var real_month = mydate.getMonth() + 1;
+  var zero = '';
+  if(real_month < 10){
+    zero = '0';
+  }
 
   switch(format) {
       case 'month':
@@ -23,7 +27,7 @@ exports.changeDate = function(dateSQL, format){
           break;
       default:
 
-          return date = mydate.getDate() + '.' + real_month + '.' + mydate.getFullYear();
+          return date = mydate.getDate() + '.'+zero + real_month + '.' + mydate.getFullYear();
   }
 }
 
