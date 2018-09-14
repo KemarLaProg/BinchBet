@@ -4,7 +4,8 @@ var idGroup = <%- JSON.stringify(id) %>;
 
 socket.emit('groupGameList', idGroup);
 socket.emit('getGroupRanking', idGroup);
-socket.emit('getInfosOfGroup', idGroup)
+socket.emit('getInfosOfGroup', idGroup);
+socket.emit('getGroupBet', 'KemarLePoulpe', idGroup);
 
 // receive event
 socket.on('groupGameList', function(groupGameList){
@@ -25,14 +26,26 @@ socket.on('groupGameList', function(groupGameList){
     "</td>" +
     "</tr>");
 
-    socket.emit('getGameBet', 'KemarLePoulpe', game.id_game);
+
+
+    /*socket.emit('getGameBet', 'KemarLePoulpe', game.id_game);
     socket.on('getGameBet', function(bet){
       if(bet !== undefined){
         $('#bet1-' + game.id_game).val(bet.h_goal);
         $('#bet2-' + game.id_game).val(bet.a_goal);
       }
-    });
+    });*/
   });
+});
+
+socket.on('getGroupBet', function(groupBet){
+groupBet.forEach(function(bet){
+  if(bet !== undefined){
+    $('#bet1-' + bet.id_game).val(bet.h_goal);
+    $('#bet2-' + bet.id_game).val(bet.a_goal);
+  }
+});
+
 });
 
 

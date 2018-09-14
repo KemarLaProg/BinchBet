@@ -95,7 +95,11 @@
 <script>
 var monthName = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
 var month = 0;
+
 socket.emit('getBetByUser', <%- JSON.stringify(user) %>);
+socket.emit('getGroupBet', 'KemarLePoulpe', 1);
+
+
 socket.on('getBetByUser', function(bets){
   bets.forEach(function(bet){
 
@@ -130,8 +134,27 @@ socket.on('getBetByUser', function(bets){
     "<td>" + bet.h_team + "</td>" +
     "<td class=\"text-center\">" + bet.h_goal + " – " + bet.a_goal + "</td>" +
     "<td class=\"text-right\">" + bet.a_team + "</td>" +
-    "<td class=\"text-center\"> – </td>" +
+    "<td class=\"text-center\" style=\"width: 150px;\">" +
+    "<div class=\"input-group mb-3\" style=\"margin: auto;\">" +
+    "<input type=\"text\" class=\"form-control bet\" name=\"bet-h-goal\" id=\"bet1-" + bet.id_game + "\" maxlength=\"2\" value=\"\">" +
+    "<input disabled type=\"text\" class=\"form-control text-center p-0\" value=\"—\" style=\"max-width: 30px;\">" +
+    "<input type=\"text\" class=\"form-control bet\" name=\"bet-a-goal\" id=\"bet2-" + bet.id_game + "\" maxlength=\"2\" value=\"\">" +
+    "</div>"+
+    "<button class=\"btn btn-lg btn-default btn-block\" type=\"submit\" id=\"btn\">Bet</button>"+
+    "</div>"+
+    "</td>" +
     "</tr>");
   });
+});
+
+socket.on('getGroupBet', function(groupBet){
+  console.log(groupBet);
+groupBet.forEach(function(bet){
+  if(bet !== undefined){
+    $('#bet1-' + bet.id_game).val(bet.h_goal);
+    $('#bet2-' + bet.id_game).val(bet.a_goal);
+  }
+});
+
 });
 </script>

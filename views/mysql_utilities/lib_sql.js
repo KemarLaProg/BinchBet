@@ -150,8 +150,16 @@ function searchGroup(){
 }
 
 // BET
+exports.getGroupBet = function(uid, groupid, callback){
+  bdd.db.query("SELECT tb.username, tb.h_goal, tb.a_goal, tg.id_game FROM t_bet AS tb JOIN t_game AS tg ON tb.id_game = tg.id_game JOIN g_games AS gg ON tg.id_game = gg.id_game WHERE tb.username = '"+uid+"' AND gg.id_group = "+ groupid, function (err, result) {
+    if(err) throw err;
+
+    callback(result);
+  });
+}
+
 exports.getGameBet = function(uid, game_id, callback){
-  var sql_getGameBet = "";
+  var sql_getGameBet = "SELECT tb.username, tb.h_goal, tb.a_goal FROM t_bet AS tb JOIN t_game AS tg ON tb.id_game = tg.id_game JOIN g_games AS gg ON tg.id_game = gg.id_game WHERE tb.username = 'KemarLePoulpe' AND gg.id_group = 1";
   bdd.db.query("SELECT tb.username, tb.h_goal, tb.a_goal FROM t_bet AS tb JOIN t_game AS tg ON tb.id_game = tg.id_game WHERE tb.username = '"+uid+"' AND tg.id_game = "+game_id, function (err, result) {
     if(err) throw err;
 
