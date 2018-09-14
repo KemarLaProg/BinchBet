@@ -88,208 +88,50 @@
     <button class="btn btn-secondary">Desc</button>
   </div>
 </div>
-<!-- <div class="row mb-4">
+<div class="row mb-4">
   <div class="col-md" id="bet-list">
-  </div>
-</div> -->
-<div class="row">
-  <div id='bet-list' class="col-md">
   </div>
 </div>
 <script>
 var monthName = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
 var month = 0;
-var newMonth;
 socket.emit('getBetByUser', <%- JSON.stringify(user) %>);
 socket.on('getBetByUser', function(bets){
   bets.forEach(function(bet){
-    newMonth = bet.month;
-    if(month == 0){
-      month = newMonth;
-      $('#bet-list').append("<div id=\"card"+month+"\" class=\"card mb-4\">" +
-          "<div class=\"card-header pb-0\">" +
-              "<h4 class=\"title\">" + monthName[month-1] + "</h4>" +
-            "</div>" +
-            "<div class=\"card-body\">" +
-              "<table class=\"table table-bordered mb-0\">" +
-                "<thead>" +
-                  "<tr>" +
-                    "<th scope=\"col\">Championnat</th>" +
-                    "<th scope=\"col\" class=\"text-center\">Date</th>" +
-                    "<th scope=\"col\">Domicile</th>" +
-                    "<th scope=\"col\" class=\"text-center\">Score</th>" +
-                    "<th scope=\"col\" class=\"text-right\">Extérieur</th>" +
-                    "<th scope=\"col\" class=\"text-center\">Mon BB</th>" +
-                  "</tr>" +
-                "</thead>" +
-                "<tbody id='bet"+ month +"'>"+
-                "</tbody>"+
-                       "</table>"+
-                     "</div>"+
-                   "</div>");
+
+    if(month !== bet.month){
+      month = bet.month;
+      $('#bet-list').append("<div class=\"card mb-4\">" +
+      "<div class=\"card-header pb-0\">" +
+      "<h4 class=\"title\">" + monthName[month-1] + "</h4>" +
+      "</div>" +
+      "<div class=\"card-body\">" +
+      "<table class=\"table table-bordered mb-0\">" +
+      "<thead>" +
+      "<tr>" +
+      "<th scope=\"col\">Championnat</th>" +
+      "<th scope=\"col\" class=\"text-center\">Date</th>" +
+      "<th scope=\"col\">Domicile</th>" +
+      "<th scope=\"col\" class=\"text-center\">Score</th>" +
+      "<th scope=\"col\" class=\"text-right\">Extérieur</th>" +
+      "<th scope=\"col\" class=\"text-center\">Mon BB</th>" +
+      "</tr>" +
+      "</thead>" +
+      "<tbody id='month-"+ month +"'>"+
+      "</tbody>"+
+      "</table>"+
+      "</div>"+
+      "</div>");
     }
-    if(month != newMonth){
-      $("#card"+month).append( "</tbody>"+
-              "</table>"+
-            "</div>"+
-          "</div>"+
-              "<div class=\"card mb-4\">" +
-              "<div class=\"card-header pb-0\">" +
-                  "<h4 class=\"title\">" + monthName[newMonth-1] + "</h4>" +
-                "</div>" +
-                "<div class=\"card-body\">" +
-                  "<table class=\"table table-bordered mb-0\">" +
-                    "<thead>" +
-                      "<tr>" +
-                        "<th scope=\"col\">Championnat</th>" +
-                        "<th scope=\"col\" class=\"text-center\">Date</th>" +
-                        "<th scope=\"col\">Domicile</th>" +
-                        "<th scope=\"col\" class=\"text-center\">Score</th>" +
-                        "<th scope=\"col\" class=\"text-right\">Extérieur</th>" +
-                        "<th scope=\"col\" class=\"text-center\">Mon BB</th>" +
-                      "</tr>" +
-                    "</thead>" +
-                    "<tbody id='bet"+newMonth+"'>");
-                      month = newMonth;
-    }
-    if(month == newMonth){
-      $("#bet"+month).append( "<tr onclick=\"location.href='/bet/" + bet.id_game + "'\">" +
-        "<td>" + bet.competition + "</td>" +
-        "<td class=\"text-center\">" + bet.date + "</td>" +
-        "<td>" + bet.h_team + "</td>" +
-        "<td class=\"text-center\">" + bet.h_goal + " – " + bet.a_goal + "</td>" +
-        "<td class=\"text-right\">" + bet.a_team + "</td>" +
-        "<td class=\"text-center\"> – </td>" +
-      "</tr>");
-    }
+
+    $("#month-"+month).append( "<tr onclick=\"location.href='/bet/" + bet.id_game + "'\">" +
+    "<td>" + bet.competition + "</td>" +
+    "<td class=\"text-center\">" + bet.date + "</td>" +
+    "<td>" + bet.h_team + "</td>" +
+    "<td class=\"text-center\">" + bet.h_goal + " – " + bet.a_goal + "</td>" +
+    "<td class=\"text-right\">" + bet.a_team + "</td>" +
+    "<td class=\"text-center\"> – </td>" +
+    "</tr>");
   });
 });
 </script>
-<!-- <div class="row">
-  <div class="col-md">
-    <div class="card mb-4">
-      <div class="card-header pb-0">
-        <h4 class="title">Septembre</h4>
-      </div>
-      <div class="card-body">
-        <table class="table table-bordered mb-0">
-          <thead>
-            <tr>
-              <th scope="col">Championnat</th>
-              <th scope="col" class="text-center">Date</th>
-              <th scope="col">Domicile</th>
-              <th scope="col" class="text-center">Score</th>
-              <th scope="col" class="text-right">Extérieur</th>
-              <th scope="col" class="text-center">Mon BB</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr onclick="location.href='bet'">
-              <td>Serie A</td>
-              <td class="text-center">31.08.2018</td>
-              <td>Milan AC</td>
-              <td class="text-center">2 – 1</td>
-              <td class="text-right">AS Rome</td>
-              <td class="text-center">2 – 1</td>
-            </tr>
-            <tr>
-              <td>Premier League</td>
-              <td class="text-center">27.08.2018</td>
-              <td>Manchester United</td>
-              <td class="text-center">0 – 3</td>
-              <td class="text-right">Tottenham</td>
-              <td class="text-center">2 – 3</td>
-            </tr>
-            <tr>
-              <td>Liga</td>
-              <td rowspan="2" class="text-center">26.08.2018</td>
-              <td>Séville</td>
-              <td class="text-center">0 – 0</td>
-              <td class="text-right">Villareal</td>
-              <td class="text-center">3 – 1</td>
-            </tr>
-            <tr>
-              <td>Bundesliga</td>
-              <td>B. Dortmund</td>
-              <td class="text-center">3 – 1</td>
-              <td class="text-right">RB Leipzig</td>
-              <td class="text-center">2 – 1</td>
-            </tr>
-            <tr>
-              <td>Serie A</td>
-              <td class="text-center">25.08.2018</td>
-              <td>Naples</td>
-              <td class="text-center">3 – 2</td>
-              <td class="text-right">Milan AC</td>
-              <td class="text-center">0 – 1</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header pb-0">
-        <h4 class="title">Août</h4>
-      </div>
-      <div class="card-body">
-        <table class="table table-bordered mb-0">
-          <thead>
-            <tr>
-              <th scope="col">Championnat</th>
-              <th scope="col" class="text-center">Date</th>
-              <th scope="col">Domicile</th>
-              <th scope="col" class="text-center">Score</th>
-              <th scope="col" class="text-right">Extérieur</th>
-              <th scope="col" class="text-center">Mon BB</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Serie A</td>
-              <td class="text-center">31.08.2018</td>
-              <td>Milan AC</td>
-              <td class="text-center">2 – 1</td>
-              <td class="text-right">AS Rome</td>
-              <td class="text-center">2 – 1</td>
-            </tr>
-            <tr>
-              <td>Premier League</td>
-              <td class="text-center">27.08.2018</td>
-              <td>Manchester United</td>
-              <td class="text-center">0 – 3</td>
-              <td class="text-right">Tottenham</td>
-              <td class="text-center">2 – 3</td>
-            </tr>
-            <tr>
-              <td>Liga</td>
-              <td rowspan="2" class="text-center">26.08.2018</td>
-              <td>Séville</td>
-              <td class="text-center">0 – 0</td>
-              <td class="text-right">Villareal</td>
-              <td class="text-center">3 – 1</td>
-            </tr>
-            <tr>
-              <td>Bundesliga</td>
-              <td>B. Dortmund</td>
-              <td class="text-center">3 – 1</td>
-              <td class="text-right">RB Leipzig</td>
-              <td class="text-center">2 – 1</td>
-            </tr>
-            <tr>
-              <td>Serie A</td>
-              <td class="text-center">25.08.2018</td>
-              <td>Naples</td>
-              <td class="text-center">3 – 2</td>
-              <td class="text-right">Milan AC</td>
-              <td class="text-center">0 – 1</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-    </div>
-
-  </div>
-</div> -->
