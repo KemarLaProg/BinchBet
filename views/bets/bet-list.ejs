@@ -88,7 +88,83 @@
     <button class="btn btn-secondary">Desc</button>
   </div>
 </div>
-
+<!-- <div class="row mb-4">
+  <div class="col-md" id="bet-list">
+  </div>
+</div> -->
+<div class="row">
+  <div id='bet-list' class="col-md">
+  </div>
+</div>
+<script>
+var monthName = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+var month = 0;
+var newMonth;
+socket.emit('getBetByUser', <%- JSON.stringify(user) %>);
+socket.on('getBetByUser', function(bets){
+  bets.forEach(function(bet){
+    newMonth = bet.month;
+    if(month == 0){
+      month = newMonth;
+      $('#bet-list').append("<div id=\"card"+month+"\" class=\"card mb-4\">" +
+          "<div class=\"card-header pb-0\">" +
+              "<h4 class=\"title\">" + monthName[month-1] + "</h4>" +
+            "</div>" +
+            "<div class=\"card-body\">" +
+              "<table class=\"table table-bordered mb-0\">" +
+                "<thead>" +
+                  "<tr>" +
+                    "<th scope=\"col\">Championnat</th>" +
+                    "<th scope=\"col\" class=\"text-center\">Date</th>" +
+                    "<th scope=\"col\">Domicile</th>" +
+                    "<th scope=\"col\" class=\"text-center\">Score</th>" +
+                    "<th scope=\"col\" class=\"text-right\">Extérieur</th>" +
+                    "<th scope=\"col\" class=\"text-center\">Mon BB</th>" +
+                  "</tr>" +
+                "</thead>" +
+                "<tbody id='bet"+ month +"'>");
+    }
+    if(month != newMonth){
+      $("#card"+month).append( "</tbody>"+
+              "</table>"+
+            "</div>"+
+          "</div>"+
+              "<div class=\"card mb-4\">" +
+              "<div class=\"card-header pb-0\">" +
+                  "<h4 class=\"title\">" + monthName[newMonth-1] + "</h4>" +
+                "</div>" +
+                "<div class=\"card-body\">" +
+                  "<table class=\"table table-bordered mb-0\">" +
+                    "<thead>" +
+                      "<tr>" +
+                        "<th scope=\"col\">Championnat</th>" +
+                        "<th scope=\"col\" class=\"text-center\">Date</th>" +
+                        "<th scope=\"col\">Domicile</th>" +
+                        "<th scope=\"col\" class=\"text-center\">Score</th>" +
+                        "<th scope=\"col\" class=\"text-right\">Extérieur</th>" +
+                        "<th scope=\"col\" class=\"text-center\">Mon BB</th>" +
+                      "</tr>" +
+                    "</thead>" +
+                    "<tbody id='bet"+newMonth+"'>");
+                      month = newMonth;
+    }
+    if(month == newMonth){
+      $("#bet"+month).append( "<tr onclick=\"location.href='/bet/" + bet.id_game + "'\">" +
+        "<td>" + bet.competition + "</td>" +
+        "<td class=\"text-center\">" + bet.date + "</td>" +
+        "<td>" + bet.h_team + "</td>" +
+        "<td class=\"text-center\">" + bet.h_goal + " – " + bet.a_goal + "</td>" +
+        "<td class=\"text-right\">" + bet.a_team + "</td>" +
+        "<td class=\"text-center\"> – </td>" +
+      "</tr>");
+    }
+  });
+  $("#bet"+ month).append( "</tbody>"+
+          "</table>"+
+        "</div>"+
+      "</div>");
+});
+</script>
 <!-- <div class="row">
   <div class="col-md">
     <div class="card mb-4">

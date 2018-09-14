@@ -61,6 +61,12 @@ module.exports = function(server){
       });
     });
 
+    socket.on('getBetByUser', function(id_user){
+      sql.groupGameListByUser(id_user, function(result){
+        socket.emit('getBetByUser',result);
+      });
+    });
+
     socket.on('disconnect', function(){
       console.log("SOCKET: Mex t'as vu ! j'ai quitté la page.");
     });

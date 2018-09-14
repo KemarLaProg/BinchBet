@@ -86,7 +86,7 @@ function getNbrOfMatchInGroup(id_group,callback){
 }
 
 function getStatsInGroupByUser(id_group,id_user,callback){
- bdd.db.query("SELECT COUNT(b.points) as nbrbets, tr.name FROM t_rules as tr JOIN g_games as gg LEFT JOIN t_bet as b ON tr.id_rules = b.points AND b.username = '" + id_user + "' AND b.done = 1 AND b.id_game = gg.id_game WHERE gg.id_group = " + id_group + " GROUP BY tr.id_rules", function (err,result){
+ bdd.db.query("SELECT COUNT(b.points) as nbrbets, tr.name FROM t_rules as tr JOIN g_games as gg LEFT JOIN t_bet as b ON tr.id_rules = b.points AND b.username = '" + id_user + "' AND b.id_game = gg.id_game WHERE gg.id_group = " + id_group + " GROUP BY tr.id_rules", function (err,result){
    if(err) throw err;
     callback(result);
  });
@@ -168,6 +168,22 @@ exports.groupGameList = function(id, callback){
 
   var sql_gameList = "SELECT tg.id_game, tc.compet_name AS competition, tg.date, tg.hour, ht.team_name AS h_team, tg.h_goal, tg.a_goal, at.team_name AS a_team FROM g_games AS gg LEFT JOIN t_game AS tg ON gg.id_game = tg.id_game LEFT JOIN t_team AS ht ON tg.h_team = ht.id_team LEFT JOIN t_team AS at ON tg.a_team = at.id_team LEFT JOIN t_competition AS tc ON tg.id_competition = tc.id_competition LEFT JOIN t_season AS ts ON tg.id_season = ts.id_season WHERE gg.id_group = ? AND ts.id_season = 1 ORDER BY tg.date DESC, tg.hour ASC";
 
+
+  bdd.db.query(sql_gameList, id, function (err, result) {
+    if(err) throw err;
+    result.forEach(function(e){
+      e.date = js_func.changeDate(e.date);
+
+      e.h_goal = js_func.checkNull(e.h_goal);
+      e.a_goal = js_func.checkNull(e.a_goal);
+    });
+    callback(result);
+  });
+}
+
+
+exports.groupGameListByUser = function(id, callback){
+  var sql_gameList = "SELECT DISTINCT tg.id_game, MONTH(tg.date) as month, tc.compet_name AS competition, tg.date, tg.hour, ht.team_name AS h_team, tg.h_goal, tg.a_goal, at.team_name AS a_team FROM g_games AS gg LEFT JOIN t_game AS tg ON gg.id_game = tg.id_game LEFT JOIN t_team AS ht ON tg.h_team = ht.id_team LEFT JOIN t_team AS at ON tg.a_team = at.id_team LEFT JOIN t_competition AS tc ON tg.id_competition = tc.id_competition LEFT JOIN t_season AS ts ON tg.id_season = ts.id_season JOIN g_users as gu WHERE gu.id_group = gg.id_group AND gu.username = '" + id + "' AND ts.id_season = 1 ORDER BY tg.date DESC, tg.hour ASC";
 
   bdd.db.query(sql_gameList, id, function (err, result) {
     if(err) throw err;

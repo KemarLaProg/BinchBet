@@ -125,11 +125,12 @@ module.exports = function(app){
 
   //bets
   app.get('/bet-list', isAuthenticated, function(req, res) {
+    let sess = req.session;
     page_to_load.title = "Liste des matchs";
     page_to_load.path.push('BinchBet', 'Pronostic', 'Match');
     page_to_load.page = "bets/bet-list.ejs";
 
-    res.render('main.ejs', {page_to_load});
+    res.render('main.ejs', {page_to_load, user: sess.username});
 
     empty_ptl();
   });
