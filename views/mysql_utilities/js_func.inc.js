@@ -12,6 +12,8 @@ exports.changeDate = function(dateSQL, format){
   var month_cut = ["Janv", "Févr", "Mars", "Avr", "Mai", "Juin",
   "Juil", "Août", "Sept", "Oct", "Nov", "Déc"][mydate.getMonth()];
 
+  var real_month = mydate.getMonth() + 1;
+
   switch(format) {
       case 'month':
         return date = mydate.getDate() + ' ' + month + ' ' + mydate.getFullYear();
@@ -20,7 +22,8 @@ exports.changeDate = function(dateSQL, format){
           return date = mydate.getDate() + ' ' + month_cut + '. ' + mydate.getFullYear();
           break;
       default:
-          return date = mydate.getDate() + '.' + mydate.getMonth() + '.' + mydate.getFullYear();
+
+          return date = mydate.getDate() + '.' + real_month + '.' + mydate.getFullYear();
   }
 }
 
