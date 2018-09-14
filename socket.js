@@ -55,6 +55,12 @@ module.exports = function(server){
       });
     });
 
+    socket.on('getGroupInfos', function(id_group){
+      sql.getGroupInfos(id_group, function(result){
+          socket.emit('getGroupInfos',result);
+      });
+    });
+
 
 
 

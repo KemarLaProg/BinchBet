@@ -7,14 +7,13 @@
       // receive event
       socket.on('getGroupsOfUser', function(groups){
         groups.forEach(function(group){
-          
+
           socket.emit('getDataFromGroup', group.id_group, <%- JSON.stringify(user) %>);
           socket.on('getDataFromGroup', function(name,nbrUser,rank,points,nbrMatch,stats){
-
           $('.container').append("<div class=\"row mb-4\">" +
             "<div class=\"col-md-3\">" +
               "<div class=\"card card-lil-stat\">" +
-                "<a href=\"group\">" +
+                "<a href=\"/group/" + group.id_group + "\">" +
                   "<div class=\"card-body\">" +
                     "<h6 class=\"text-muted text-uppercase mt-0\"><small>Groupe</small></h6>" +
                     "<h2 class=\"text-truncate\">" + name[0].name + "</h2>" +

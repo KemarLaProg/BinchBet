@@ -84,12 +84,13 @@ module.exports = function(app){
   });
 
   //groups
-  app.get('/group', isAuthenticated, function(req, res) {
+  app.get('/group/:id', isAuthenticated, function(req, res) {
+    grpId = req.params.id;
     page_to_load.title = "Groupe";
-    page_to_load.path.push('BinchBet', 'Groups', 'Group');
+    page_to_load.path.push('BinchBet', 'Groups', 'Group', grpId);
     page_to_load.page = "groups/group.ejs";
 
-    res.render('main.ejs', {page_to_load});
+    res.render('main.ejs', {page_to_load, id: grpId});
 
     empty_ptl();
   });

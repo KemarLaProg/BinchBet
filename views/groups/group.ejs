@@ -1,9 +1,12 @@
 <script>
 $(document).ready(function () {
 
+
   // emmit event
-  socket.emit('groupGameList', 1);
-  socket.emit('getGroupRanking', 1);
+
+  socket.emit('getGroupInfos',<%- JSON.stringify(id) %>);
+  socket.emit('groupGameList', <%- JSON.stringify(id) %>);
+  socket.emit('getGroupRanking', <%- JSON.stringify(id) %>);
 
   // receive event
   socket.on('groupGameList', function(groupGameList){
@@ -39,7 +42,9 @@ socket.on('getGroupRanking', function(getGroupRanking){
 });
 });
 
-
+socket.on('getGroupInfos', function(infos){
+  $('#name').append(infos[0].name);
+});
 //alert(test_params({uid: 1, gid: 3}));
 
 
@@ -50,19 +55,19 @@ socket.on('getGroupRanking', function(getGroupRanking){
 
 
 
-function test_params(params = new array()){
-  var a = "Params : ";
-  params.forEach(function(p){
-    a.push(p);
-  });
-  console.log(a);
-  return a;
-}
+// function test_params(params = new array()){
+//   var a = "Params : ";
+//   params.forEach(function(p){
+//     a.push(p);
+//   });
+//   console.log(a);
+//   return a;
+// }
 
 </script>
 <div class="row mb-4">
   <div class="col-md">
-    <button type="button" class="btn btn-default" onClick="location.href='group-list'">Retour à la liste</button>
+    <button type="button" class="btn btn-default" onClick="location.href='../group-list'">Retour à la liste</button>
   </div>
   <div class="col-md">
     <div class="dropdown float-right">
@@ -82,7 +87,7 @@ function test_params(params = new array()){
   <div class="col-md-4">
     <div class="card mb-4 card-green">
       <div class="card-header card-title text-center">
-        <h2>Original</h2>
+        <h2 id="name"></h2>
       </div>
 
       <div class="card-body">
