@@ -122,7 +122,11 @@ socket.on('getBetByUser', function(bets){
                     "<th scope=\"col\" class=\"text-center\">Mon BB</th>" +
                   "</tr>" +
                 "</thead>" +
-                "<tbody id='bet"+ month +"'>");
+                "<tbody id='bet"+ month +"'>"+
+                "</tbody>"+
+                       "</table>"+
+                     "</div>"+
+                   "</div>");
     }
     if(month != newMonth){
       $("#card"+month).append( "</tbody>"+
@@ -159,10 +163,6 @@ socket.on('getBetByUser', function(bets){
       "</tr>");
     }
   });
-  $("#bet"+ month).append( "</tbody>"+
-          "</table>"+
-        "</div>"+
-      "</div>");
 });
 </script>
 <!-- <div class="row">

@@ -17,9 +17,10 @@ socket.on('groupGameList', function(groupGameList){
     "<td class=\"text-right\">" + game.a_team + "</td>" +
     "<td class=\"text-center\" style=\"width: 150px;\">" +
     "<div class=\"input-group mb-3\" style=\"margin: auto;\">" +
-    "<input type=\"text\" class=\"form-control bet\" name=\"bet-h-goal\" id=\"coucou\" maxlength=\"2\">" +
+    "<input type=\"text\" class=\"form-control bet\" name=\"bet-h-goal\" id=\"bet1" + game.id_game + "\" maxlength=\"2\">" +
     "<input disabled type=\"text\" class=\"form-control text-center p-0\" value=\"—\" style=\"max-width: 30px;\">" +
-    "<input type=\"text\" class=\"form-control bet\" name=\"bet-a-goal\" maxlength=\"2\">" +
+    "<input type=\"text\" class=\"form-control bet\" name=\"bet-a-goal\" id=\"bet2" + game.id_game + "\" maxlength=\"2\">" +
+    "<button class=\"btn btn-lg btn-default btn-block\" type=\"submit\" id=\"btn\">Bet</button>"+
     "</div>"+
     "</td>" +
     "</tr>");
@@ -41,17 +42,9 @@ socket.on('getInfosOfGroup', function(infos,nbrUser,nbrMatch){
   $('#date').append(infos[0].date);
   $('#nbrUser').append(nbrUser[0].number);
   $('#nbrMatch').append(nbrMatch[0].nbrmatchs);
-})
+});
 
 //alert(test_params({uid: 1, gid: 3}));
-
-
-
-$(document).ready(function(){
-  $('#coucou').focusout(function(){
-    console.log("j'ai dcofus : ");
-  });
-});
 
 
 
