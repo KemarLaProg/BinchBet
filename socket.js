@@ -49,9 +49,9 @@ module.exports = function(server){
       });
     });
 
-    socket.on('getDataFromGroup', function(id){
-      sql.getGroup(id, function(result){
-        socket.emit('getDataFromGroup',result);
+    socket.on('getDataFromGroup', function(id_group,id_user){
+      sql.getDataGroupListOfUser(id_group,id_user, function(name,nbrUser,rank,points,nbrMatch,stats){
+        socket.emit('getDataFromGroup',name,nbrUser,rank,points,nbrMatch,stats);
       });
     });
 

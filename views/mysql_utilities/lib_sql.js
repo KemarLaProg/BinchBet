@@ -49,65 +49,74 @@ exports.getUser = function(usr, callback){
 function getNameOfGroup(id_group,callback){
   bdd.db.query("SELECT name FROM `t_group` WHERE id_group = '" + id_group + "'" , function (err, result) {
     if(err) throw err;
-    callback(result[0]);
+    callback(result);
   });
 }
 
 function getNbrUsersFromGroup(id_group,callback){
-  bdd.db.query("SELECT COUNT(id_user) as number FROM g_users WHERE id_group = " + id_group , function (err, result) {
+  bdd.db.query("SELECT COUNT(gu.username) as number FROM g_users as gu WHERE id_group = " + id_group , function (err, result) {
     if(err) throw err;
-    callback(result[0]);
+    callback(result);
   });
 }
 
+//Don't work
+// function getRankByUserInGroup(id_group,id_user,callback){
+//   bdd.db.query("SELECT FIND_IN_SET('" + id_user + "',(SELECT gu.username AS points FROM t_bet AS tb JOIN g_games AS gg ON tb.id_game = gg.id_game JOIN g_users AS gu ON gu.id_group = gg.id_group AND gu.username = tb.username WHERE gg.id_group = '" + id_group + "' GROUP BY gu.username ORDER BY SUM(tb.points) DESC) ) as Rank", function(err, result){
+//     if(err) throw err;
+//     callback(result);
+//   });
+// }
 function getRankByUserInGroup(id_group,id_user,callback){
-  bdd.db.query("SELECT FIND_IN_SET('" + id_user + "',(SELECT gu.username AS points FROM t_bet AS tb JOIN g_games AS gg ON tb.id_game = gg.id_game JOIN g_users AS gu ON gu.id_group = gg.id_group AND gu.username = tb.username WHERE gg.id_group = '" + id_group + "' GROUP BY gu.username ORDER BY SUM(tb.points) DESC) ) as Rank", function(err, result){
-    if(err) throw err;
-    callback(result[0]);
-  });
+    callback(1);
 }
 
 function getTotalPointsInGroup(id_group,id_user,callback){
   bdd.db.query("SELECT SUM(points) as points FROM t_bet as b JOIN g_games as gg WHERE b.id_game = gg.id_game AND gg.id_group = " + id_group + " AND b.username = '" + id_user + "'", function (err, result){
     if(err) throw err;
-      callback(result[0]);
+    callback(result);
   });
 }
 
 function getNbrOfMatchInGroup(id_group,callback){
   bdd.db.query("SELECT COUNT(`id_game`) as nbrmatchs FROM g_games WHERE id_group = '" + id_group + "'", function (err,result){
     if(err) throw err;
-    callback(result[0]);
+    callback(result);
   });
 }
 
 function getStatsInGroupByUser(id_group,id_user,callback){
- bdd.db.query("SELECT COUNT(b.points) as nbrbets, b.points FROM t_bet as b JOIN g_games as gg WHERE b.id_game = gg.id_game AND gg.id_group = " + id_group + " AND b.username = '" + id_user + "'GROUP BY b.points", function (err,result){
+ bdd.db.query("SELECT COUNT(b.points) as nbrbets, tr.name FROM t_rules as tr JOIN g_games as gg LEFT JOIN t_bet as b ON tr.id_rules = b.points AND b.username = '" + id_user + "' AND b.done = 1 AND b.id_game = gg.id_game WHERE gg.id_group = " + id_group + " GROUP BY tr.id_rules", function (err,result){
    if(err) throw err;
     callback(result);
  });
 }
 
-// exports.getDataGroupListOfUser = function(id_group,id_user,callback){
-//   //Group name
-//   //Nombre participants - ok
-//   //classement perso
-//   //nombre de Points
-//   //stats de matchs (nbr,victoire,parfait,perdu,diff,gagné)
-//   stats = getStatsInGroupByUser(id_group,id_user,callback)
-//   let groupData = {
-//     name: getNameOfGroup(id_group,callback)
-//     nbrUser: getUsersFromGroup(id_group,callback)
-//     ranking: getRankingInGroup(id_group,id_user,callback)
-//     nbrPoints: getTotalPointsInGroup(id_group,id_user,callback)
-//     nbrMatchs: getNbrOfMatchInGroup(id_group,callback)
-//     nbrLoose: stats[0]
-//     nbrWin: stats[1]
-//     nbrDiff: stats[2]
-//     nbrPerfect: stats[3]
-//   }
-//   callback(groupData)
-// }
+exports.getDataGroupListOfUser = function(id_group,id_user,callback){
+  //Group name
+  //Nombre participants - ok
+  //classement perso
+  //nombre de Points
+  //stats de matchs (nbr,victoire,parfait,perdu,diff,gagné)
+
+     getNameOfGroup(id_group, function(name){
+       getNbrUsersFromGroup(id_group, function(nbrUser){
+         getRankByUserInGroup(id_group,id_user, function(rank){
+           getTotalPointsInGroup(id_group,id_user, function(points){
+             getNbrOfMatchInGroup(id_group, function(nbrMatch){
+               getStatsInGroupByUser(id_group,id_user, function(stats){
+                 callback (name,nbrUser,rank,points,nbrMatch,stats);
+               });
+              });
+            });
+          });
+        });
+      });
+    // groupData.nbrLoose = stats[0];
+    // groupData.nbrWin = stats[1];
+    // groupData.nbrDiff = stats[2];
+    // groupData.nbrPerfect = stats[3];
+}
 
 exports.getGroup = function(id){
   bdd.db.query("SELECT * FROM `t_group` WHERE id = " + id , function (err, result) {
@@ -119,7 +128,7 @@ exports.getGroup = function(id){
 exports.getGroupsOfUser = function(username,callback){
   bdd.db.query("SELECT id_group FROM `g_users` WHERE username = '" + username + "'" , function (err, result) {
     if(err) throw err;
-    callback(result[0]);
+    callback(result);
   });
 }
 

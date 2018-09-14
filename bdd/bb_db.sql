@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 13, 2018 at 12:52 PM
+-- Generation Time: Sep 14, 2018 at 12:35 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -30,7 +30,11 @@ CREATE TABLE `g_games` (
 --
 
 INSERT INTO `g_games` (`id_group`, `id_game`) VALUES
-(1, 1);
+(1, 1),
+(1, 5),
+(1, 7),
+(2, 5),
+(2, 6);
 
 -- --------------------------------------------------------
 
@@ -49,7 +53,9 @@ CREATE TABLE `g_users` (
 
 INSERT INTO `g_users` (`id_group`, `username`) VALUES
 (1, 'KemarLePoulpe'),
-(1, 'Goat');
+(1, 'Goat'),
+(2, 'Goat'),
+(2, 'KemarLePoulpe');
 
 -- --------------------------------------------------------
 
@@ -63,18 +69,20 @@ CREATE TABLE `t_bet` (
   `a_goal` int(2) DEFAULT NULL COMMENT 'Away team goal(s).',
   `username` varchar(25) NOT NULL,
   `id_game` int(11) NOT NULL,
-  `points` int(1) DEFAULT NULL
+  `points` int(1) NOT NULL DEFAULT '0',
+  `done` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `t_bet`
 --
 
-INSERT INTO `t_bet` (`id_bet`, `h_goal`, `a_goal`, `username`, `id_game`, `points`) VALUES
-(17, 2, 1, 'Goat', 1, 3),
-(18, 2, 3, 'Goat', 5, 3),
-(19, NULL, NULL, 'Goat', 6, NULL),
-(20, NULL, NULL, 'Goat', 7, NULL);
+INSERT INTO `t_bet` (`id_bet`, `h_goal`, `a_goal`, `username`, `id_game`, `points`, `done`) VALUES
+(17, 2, 1, 'Goat', 1, 3, 1),
+(18, 2, 3, 'Goat', 5, 3, 1),
+(19, NULL, NULL, 'Goat', 6, 0, 0),
+(20, NULL, NULL, 'Goat', 7, 0, 0),
+(21, 2, 1, 'KemarLePoulpe', 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -84,14 +92,14 @@ INSERT INTO `t_bet` (`id_bet`, `h_goal`, `a_goal`, `username`, `id_game`, `point
 
 CREATE TABLE `t_competition` (
   `id_competition` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL
+  `compet_name` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `t_competition`
 --
 
-INSERT INTO `t_competition` (`id_competition`, `name`) VALUES
+INSERT INTO `t_competition` (`id_competition`, `compet_name`) VALUES
 (1, 'Serie A'),
 (2, 'Premier League'),
 (3, 'Liga'),
@@ -148,7 +156,8 @@ CREATE TABLE `t_group` (
 --
 
 INSERT INTO `t_group` (`id_group`, `name`, `date`) VALUES
-(1, 'Mondial', '2018-09-13');
+(1, 'Mondial', '2018-09-13'),
+(2, 'New group', '2018-09-13');
 
 -- --------------------------------------------------------
 
@@ -197,11 +206,19 @@ INSERT INTO `t_prolongation` (`id_prolongation`, `prolongation`) VALUES
 --
 
 CREATE TABLE `t_rules` (
-  `id_rules` int(11) NOT NULL,
-  `perfect` int(1) NOT NULL,
-  `win` int(1) NOT NULL,
-  `lose` int(1) NOT NULL
+  `id_rules` int(1) NOT NULL,
+  `name` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `t_rules`
+--
+
+INSERT INTO `t_rules` (`id_rules`, `name`) VALUES
+(0, 'Lose'),
+(1, 'Win'),
+(2, 'Difference'),
+(3, 'Perfect');
 
 -- --------------------------------------------------------
 
@@ -232,14 +249,14 @@ INSERT INTO `t_season` (`id_season`, `season`, `y_start`, `y_end`, `id_rules`) V
 
 CREATE TABLE `t_team` (
   `id_team` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL
+  `team_name` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `t_team`
 --
 
-INSERT INTO `t_team` (`id_team`, `name`) VALUES
+INSERT INTO `t_team` (`id_team`, `team_name`) VALUES
 (1, 'Milan AC'),
 (2, 'Real Madrid'),
 (3, 'Juventus'),
@@ -402,7 +419,7 @@ ALTER TABLE `t_user_rank`
 -- AUTO_INCREMENT for table `t_bet`
 --
 ALTER TABLE `t_bet`
-  MODIFY `id_bet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_bet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `t_competition`
@@ -420,7 +437,7 @@ ALTER TABLE `t_game`
 -- AUTO_INCREMENT for table `t_group`
 --
 ALTER TABLE `t_group`
-  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `t_news`
@@ -469,7 +486,8 @@ ALTER TABLE `g_users`
 --
 ALTER TABLE `t_bet`
   ADD CONSTRAINT `t_bet_ibfk_1` FOREIGN KEY (`username`) REFERENCES `t_user` (`username`),
-  ADD CONSTRAINT `t_bet_ibfk_2` FOREIGN KEY (`id_game`) REFERENCES `t_game` (`id_game`);
+  ADD CONSTRAINT `t_bet_ibfk_2` FOREIGN KEY (`id_game`) REFERENCES `t_game` (`id_game`),
+  ADD CONSTRAINT `t_bet_ibfk_3` FOREIGN KEY (`points`) REFERENCES `t_rules` (`id_rules`);
 
 --
 -- Constraints for table `t_game`
