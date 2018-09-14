@@ -36,6 +36,13 @@ module.exports = function(server){
         socket.emit('groupGameList',result);
       });
     });
+    socket.on('getGameBet', function(uid, game_id){
+      console.log('SOCKET: getGameBet received a username ' + uid + " and a game " + game_id);
+      sql.getGameBet(uid, game_id, function(result){
+        console.log(result);
+        socket.emit('getGameBet',result);
+      });
+    });
     socket.on('getGroupRanking', function(groupid){
       console.log('SOCKET: Received an id equal to ' + groupid);
       sql.getGroupRanking(groupid, function(result){

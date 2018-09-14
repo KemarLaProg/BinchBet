@@ -17,13 +17,21 @@ socket.on('groupGameList', function(groupGameList){
     "<td class=\"text-right\">" + game.a_team + "</td>" +
     "<td class=\"text-center\" style=\"width: 150px;\">" +
     "<div class=\"input-group mb-3\" style=\"margin: auto;\">" +
-    "<input type=\"text\" class=\"form-control bet\" name=\"bet-h-goal\" id=\"bet1" + game.id_game + "\" maxlength=\"2\">" +
+    "<input type=\"text\" class=\"form-control bet\" name=\"bet-h-goal\" id=\"bet1-" + game.id_game + "\" maxlength=\"2\" value=\"\">" +
     "<input disabled type=\"text\" class=\"form-control text-center p-0\" value=\"—\" style=\"max-width: 30px;\">" +
-    "<input type=\"text\" class=\"form-control bet\" name=\"bet-a-goal\" id=\"bet2" + game.id_game + "\" maxlength=\"2\">" +
-    "<button class=\"btn btn-lg btn-default btn-block\" type=\"submit\" id=\"btn\">Bet</button>"+
+    "<input type=\"text\" class=\"form-control bet\" name=\"bet-a-goal\" id=\"bet2-" + game.id_game + "\" maxlength=\"2\" value=\"\">" +
     "</div>"+
+    "<button class=\"btn btn-lg btn-default btn-block\" type=\"submit\" id=\"btn\">Bet</button>"+
     "</td>" +
     "</tr>");
+
+    socket.emit('getGameBet', 'KemarLePoulpe', game.id_game);
+    socket.on('getGameBet', function(bet){
+      if(bet !== undefined){
+        $('#bet1-' + game.id_game).val(bet.h_goal);
+        $('#bet2-' + game.id_game).val(bet.a_goal);
+      }
+    });
   });
 });
 

@@ -151,14 +151,15 @@ function searchGroup(){
 
 // BET
 exports.getGameBet = function(uid, game_id, callback){
-  var sql_getGameBet = "SELECT tb.username, tb.h_goal, tb.a_goal FROM t_bet AS tb JOIN t_game AS tg ON tb.id_game = tg.id_game WHERE tb.username = ? AND tg.id_game = ?"
-  bdd.db.query(sql_getGameBet, uid, game_id, function (err, result) {
+  var sql_getGameBet = "";
+  bdd.db.query("SELECT tb.username, tb.h_goal, tb.a_goal FROM t_bet AS tb JOIN t_game AS tg ON tb.id_game = tg.id_game WHERE tb.username = '"+uid+"' AND tg.id_game = "+game_id, function (err, result) {
     if(err) throw err;
+
     callback(result[0]);
   });
 }
 exports.insertGameBet = function(){
-  var sql_updateGameBet = "UPDATE `t_bet` SET `h_goal` = '3', `a_goal` = '4' WHERE `t_bet`.`id_bet` = 19; UPDATE `t_bet` SET `h_goal` = '1', `a_goal` = '0' WHERE `t_bet`.`id_bet` = 20;"
+  var sql_updateGameBet = "UPDATE `t_bet` SET `h_goal` = '3', `a_goal` = '4' WHERE `t_bet`.`id_bet` = 19; UPDATE `t_bet` SET `h_goal` = '1', `a_goal` = '0' WHERE `t_bet`.`id_bet` = 20;";
 
   bdd.db.query(sql_updateGameBet, uid, game_id, function (err, result) {
     if(err) throw err;
