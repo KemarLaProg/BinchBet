@@ -81,13 +81,13 @@ module.exports = function(server){
     });
 
     socket.on('sendBet', function(goalh,goala,id_match,id_user){
-    	sql.addBet(id_match,id_user,goalh,goala, function(result){
+    	sql.insertGameBet(id_match,id_user,goalh,goala, function(result){
     		socket.emit('sendBet',result);
     	});
     });
 
     socket.on('updateBet', function(goalh,goala,id_match,id_user){
-    	sql.addBet(id_match,id_user,goalh,goala, function(result){
+    	sql.updateGameBet(id_match,id_user,goalh,goala, function(result){
     		socket.emit('updateBet',result);
     	});
     });
