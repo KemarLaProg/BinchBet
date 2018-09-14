@@ -108,19 +108,29 @@ exports.getDataGroupListOfUser = function(id_group,id_user,callback){
       });
 }
 
+function getGroupInfos(id,callback){
+  bdd.db.query("SELECT * FROM `t_group` WHERE id_group = '" + id +"'", function (err, result) {
+    if(err) throw err;
+    callback(result);
+  });
+}
+
+exports.getInfosOfGroup = function(id_group,callback){
+  getGroupInfos(id_group, function(infos){
+    getNbrUsersFromGroup(id_group, function(nbrUser){
+      getNbrOfMatchInGroup(id_group, function(nbrMatch){
+        callback(infos,nbrUser,nbrMatch);
+      });
+    });
+  });
+}
+
 // exports.getGroup = function(id){
 //   bdd.db.query("SELECT * FROM `t_group` WHERE id = " + id , function (err, result) {
 //     if(err) throw err;
 //     callback(result[0]);
 //   });
 // }
-
-exports.getGroupInfos = function(id,callback){
-  bdd.db.query("SELECT * FROM `t_group` WHERE id_group = '" + id +"'", function (err, result) {
-    if(err) throw err;
-    callback(result);
-  });
-}
 
 exports.getGroupsOfUser = function(username,callback){
   bdd.db.query("SELECT id_group FROM `g_users` WHERE username = '" + username + "'" , function (err, result) {

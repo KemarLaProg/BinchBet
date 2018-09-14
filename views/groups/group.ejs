@@ -4,9 +4,9 @@ $(document).ready(function () {
 
   // emmit event
 
-  socket.emit('getGroupInfos',<%- JSON.stringify(id) %>);
   socket.emit('groupGameList', <%- JSON.stringify(id) %>);
   socket.emit('getGroupRanking', <%- JSON.stringify(id) %>);
+  socket.emit('getInfosOfGroup', <%- JSON.stringify(id) %>)
 
   // receive event
   socket.on('groupGameList', function(groupGameList){
@@ -42,9 +42,13 @@ socket.on('getGroupRanking', function(getGroupRanking){
 });
 });
 
-socket.on('getGroupInfos', function(infos){
+socket.on('getInfosOfGroup', function(infos,nbrUser,nbrMatch){
   $('#name').append(infos[0].name);
-});
+  $('#date').append(infos[0].date);
+  $('#nbrUser').append(nbrUser[0].number);
+  $('#nbrMatch').append(nbrMatch[0].nbrmatchs);
+})
+
 //alert(test_params({uid: 1, gid: 3}));
 
 
@@ -93,16 +97,16 @@ socket.on('getGroupInfos', function(infos){
       <div class="card-body">
         <dl class="row">
           <dt class="col-sm-6">Participants</dt>
-          <dd class="col-sm-6">2</dd>
+          <dd id='nbrUser' class="col-sm-6"></dd>
 
           <dt class="col-sm-6">BinchBet</dt>
-          <dd class="col-sm-6">18</dd>
+          <dd id='nbrMatch' class="col-sm-6"></dd>
           <hr/>
           <dt class="col-sm-6">Saison</dt>
-          <dd class="col-sm-6">3</dd>
+          <dd class="col-sm-6">1</dd>
 
           <dt class="col-sm-6">Date de création</dt>
-          <dd class="col-sm-6">Mars 2017</dd>
+          <dd id='date' class="col-sm-6"></dd>
         </dl>
       </div>
     </div>
