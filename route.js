@@ -211,6 +211,8 @@ module.exports = function(app){
   });
 
   app.get('/fetch.json', isAuthenticated, function(req, app_res) {
+    //Daily result : https://api.sportradar.us/soccer-t3/eu/fr/schedules/2018-10-07/results.json?api_key=myjru2suj5mcbs7fjduvxx2f
+    //Daily Schedule : https://api.sportradar.us/soccer-t3/eu/fr/schedules/2018-10-15/schedule.json?api_key=myjru2suj5mcbs7fjduvxx2f
     const api = 'https://api.sportradar.us/soccer-t3/eu/fr/tournaments/sr:tournament:8/standings.json?api_key=myjru2suj5mcbs7fjduvxx2f';
     request(api, function (err, res, body) {
       if (err) {
